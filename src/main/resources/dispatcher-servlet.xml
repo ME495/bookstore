@@ -15,11 +15,4 @@
 	<!-- 定义扫描装载包 -->
 	<context:component-scan base-package="com.bookstore.controller"></context:component-scan>
 	
-	<!-- 配置拦截器 -->
-	<mvc:interceptors>
-		<mvc:interceptor>
-			<mvc:mapping path="/user/*"/>
-			<bean class="com.bookstore.interceptor.UserInterceptor"></bean>
-		</mvc:interceptor>
-	</mvc:interceptors>
 </beans>
