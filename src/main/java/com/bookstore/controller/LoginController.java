@@ -70,4 +70,26 @@ public class LoginController {
 			return new ResponseMes(ResponseMes.FAIL, null).toJsonString();
 		}
 	}
+	
+	/**
+	 * 超级管理员登陆
+	 * @param adminName
+	 * @param password
+	 * @param httpSession
+	 * @return
+	 * 如果登陆成功，则返回 {"status":"success"}
+	 * 否则，返回 {"status":"fail"}
+	 */
+	@RequestMapping(value = "/super_login.do", method = RequestMethod.POST)
+	@ResponseBody
+	public String superAdmin(@RequestParam("password") String password,
+			HttpSession httpSession) {
+		if (loginService.checkSuper(password)) {
+			httpSession.setAttribute("role", "super");
+			httpSession.setAttribute("name", "super");
+			return new ResponseMes(ResponseMes.SUCCESS, null).toJsonString();
+		} else {
+			return new ResponseMes(ResponseMes.FAIL, null).toJsonString();
+		}
+	}
 }

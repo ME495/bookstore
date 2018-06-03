@@ -5,6 +5,7 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 import com.bookstore.controller.test.LoginControllerTest;
+import com.bookstore.controller.test.LogoutControllerTest;
 import com.bookstore.mapper.test.AdminMapperTest;
 import com.bookstore.mapper.test.UserMapperTest;
 import com.bookstore.message.test.ResponseMesTest;
@@ -22,7 +23,8 @@ import junit.framework.TestSuite;
 	UserMapperTest.class,
 	ResponseMesTest.class,
 	AdminServiceTest.class,
-	LoginServiceTest.class
+	LoginServiceTest.class,
+	LogoutControllerTest.class
 })
 public class AllTests {
 	
