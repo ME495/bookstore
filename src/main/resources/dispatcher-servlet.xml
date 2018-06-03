@@ -14,5 +14,4 @@
 	
 	<!-- 定义扫描装载包 -->
 	<context:component-scan base-package="com.bookstore.controller"></context:component-scan>
-	
 </beans>
