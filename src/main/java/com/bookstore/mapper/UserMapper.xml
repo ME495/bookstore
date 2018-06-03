@@ -4,4 +4,8 @@
 	<select id="getUser" parameterType="string" resultType="com.bookstore.entity.User">
 		select user_name, password, phone from user where user_name = #{userName}
 	</select>
+			
+	<insert id="insertUser" parameterType="com.bookstore.entity.User">
+		insert into user values(#{userName},MD5(#{password}),#{phone})
+	</insert>
 </mapper>
