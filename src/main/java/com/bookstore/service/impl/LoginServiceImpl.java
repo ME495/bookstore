@@ -1,5 +1,6 @@
 package com.bookstore.service.impl;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +17,7 @@ public class LoginServiceImpl implements LoginService {
 	@Override
 	public boolean checkUser(String userName, String password) {
 		User user = userMapper.getUser(userName);
-		if (user != null && user.getPassword().equals(password)) {
+		if (user != null && DigestUtils.md5(user.getPassword()).equals(password)) {
 			return true;
 		} else {
 			return false;
