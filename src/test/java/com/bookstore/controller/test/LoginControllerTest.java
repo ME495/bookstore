@@ -19,7 +19,10 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:spring-cfg.xml", "classpath:mybatis-cfg.xml", "classpath:dispatcher-servlet.xml"})
+@ContextConfiguration({
+	"classpath:spring-cfg.xml", 
+	"classpath:mybatis-cfg.xml", 
+	"classpath:dispatcher-servlet.xml"})
 @WebAppConfiguration
 public class LoginControllerTest {
 
