@@ -33,4 +33,10 @@ public class AdminServiceImpl implements AdminService {
 		}
 		return responseMes;
 	}
+	
+	@Override
+	public ResponseMes deleteAdmin(String adminName) {
+		adminMapper.deleteAdmin(adminName);
+		return new ResponseMes(ResponseMes.SUCCESS, "删除成功");
+	}
 }

@@ -8,4 +8,10 @@
 	<insert id="insertAdmin" parameterType="com.bookstore.entity.Admin">
 		insert into admin values(#{adminName},MD5(#{password}))
 	</insert>
+	
+	<delete id="deleteAdmin" parameterType="string">
+		delete from admin where admin_name = #{adminName}
+	</delete>
+	
+
 </mapper>
