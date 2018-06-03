@@ -6,9 +6,12 @@ import org.junit.runners.Suite.SuiteClasses;
 
 import com.bookstore.controller.test.LoginControllerTest;
 import com.bookstore.controller.test.LogoutControllerTest;
+import com.bookstore.controller.test.OrderManagerControllerTest;
 import com.bookstore.mapper.test.AdminMapperTest;
+import com.bookstore.mapper.test.OrderMapperTest;
 import com.bookstore.mapper.test.UserMapperTest;
 import com.bookstore.message.test.ResponseMesTest;
+import com.bookstore.service.OrderManagerService;
 import com.bookstore.service.test.AdminServiceTest;
 import com.bookstore.service.test.LoginServiceTest;
 
@@ -24,7 +27,9 @@ import junit.framework.TestSuite;
 	ResponseMesTest.class,
 	AdminServiceTest.class,
 	LoginServiceTest.class,
-	LogoutControllerTest.class
+	LogoutControllerTest.class,
+	OrderMapperTest.class,
+	OrderManagerControllerTest.class
 })
 public class AllTests {
 	

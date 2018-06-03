@@ -16,11 +16,7 @@ import com.bookstore.entity.User;
 import com.bookstore.mapper.UserMapper;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration({
-	"classpath:spring-cfg.xml", 
-	"classpath:mybatis-cfg.xml", 
-	"classpath:dispatcher-servlet.xml"
-})
+@ContextConfiguration({"classpath:spring-cfg.xml"})
 public class UserMapperTest {
 
 	@Autowired
