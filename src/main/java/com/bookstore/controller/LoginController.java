@@ -14,24 +14,12 @@ import com.bookstore.entity.ErrorMessage;
 import com.bookstore.message.ResponseMes;
 import com.bookstore.service.LoginService;
 
-/**
- * 登陆控制器
- * @author ME495
- *
- */
 @Controller
 public class LoginController {
 	
 	@Autowired
 	private LoginService loginService;
 	
-	/**
-	 * 用户登陆，验证用户名和密码，并返回json格式的组字符串，验证通过则创建session
-	 * @param userName
-	 * @param password
-	 * @return
-	 * 验证通过时返回
-	 */
 	@RequestMapping(value = "/user_login.do", method = RequestMethod.POST)
 	@ResponseBody
 	public String userLogin(@RequestParam("user_name") String userName, 
@@ -42,7 +30,7 @@ public class LoginController {
 			httpSession.setAttribute("name", userName);
 			return new ResponseMes(ResponseMes.SUCCESS, null).toJsonString();
 		} else {
-			return new ResponseMes(ResponseMes.FAIL, new ErrorMessage("用户名或密码错误！")).toJsonString();
+			return new ResponseMes(ResponseMes.FAIL, null).toJsonString();
 		}
 	}
 	

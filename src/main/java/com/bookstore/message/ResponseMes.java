@@ -30,6 +30,10 @@ public class ResponseMes {
 		this.message = message;
 	}
 	
+	public ResponseMes() {
+		
+	}
+	
 	public String toJsonString() {
 		return JSON.toJSONString(this);
 	}
