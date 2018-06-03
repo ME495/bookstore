@@ -10,9 +10,17 @@ import com.bookstore.mapper.AdminMapper;
 import com.bookstore.mapper.UserMapper;
 import com.bookstore.service.LoginService;
 
+/**
+ * 
+ * @author ME495
+ *
+ */
 @Service
 public class LoginServiceImpl implements LoginService {
 
+	//超级管理员密码
+	private final static String superPassword = "Bookstore!";
+	
 	@Autowired
 	private UserMapper userMapper;
 	
@@ -33,6 +41,15 @@ public class LoginServiceImpl implements LoginService {
 	public boolean checkAdmin(String adminName, String password) {
 		Admin admin = adminMapper.getAdminByName(adminName);
 		if (admin != null && admin.getPassword().equals(DigestUtils.md5Hex(password))) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	@Override
+	public boolean checkSuper(String password) {
+		if (password != null && password.equals(superPassword)) {
 			return true;
 		} else {
 			return false;

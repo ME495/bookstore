@@ -1,5 +1,10 @@
 package com.bookstore.entity;
 
+/**
+ * 
+ * @author ME495
+ *
+ */
 public class User {
 	private String userName;
 	private String password;

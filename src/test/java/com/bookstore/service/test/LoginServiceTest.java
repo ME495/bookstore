@@ -35,4 +35,10 @@ public class LoginServiceTest {
 		assertEquals(false, loginService.checkAdmin("chengjian", "111111"));
 		assertEquals(false, loginService.checkAdmin("falesjo4_912", "111111"));
 	}
+	
+	@Test
+	public void testSuperLogin() {
+		assertEquals(true, loginService.checkSuper("Bookstore!"));
+		assertEquals(false, loginService.checkSuper("bookstore!"));
+	}
 }

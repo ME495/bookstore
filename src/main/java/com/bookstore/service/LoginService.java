@@ -25,4 +25,14 @@ public interface LoginService {
 	 * 否则返回 false
 	 */
 	public boolean checkAdmin(String adminName, String password);
+	
+	/**
+	 * 检查超级管理员的密码是否正确
+	 * @param adminName
+	 * @param password
+	 * @return
+	 * 正确则返回 true
+	 * 否则返回 false
+	 */
+	public boolean checkSuper(String password);
 }
