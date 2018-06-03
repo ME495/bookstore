@@ -19,7 +19,10 @@ import com.bookstore.message.ResponseMes;
 import com.bookstore.service.LoginService;
 
 /**
- * Servlet Filter implementation class UserLoginFilter
+ * 用户过滤器.
+ * 对于非用户访问 /admin 文件夹下的内容，重定向到管理员登陆页面.
+ * @author ME495
+ *
  */
 @WebFilter("/user/*")
 public class UserFilter implements Filter {

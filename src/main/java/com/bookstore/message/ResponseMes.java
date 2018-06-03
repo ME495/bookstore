@@ -3,6 +3,12 @@ package com.bookstore.message;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 
+/**
+ * 返回消息类.
+ * 定义了返回的 json 的格式.
+ * @author ME495
+ *
+ */
 public class ResponseMes {
 	public final static String SUCCESS = "success";
 	public final static String FAIL = "fail";
