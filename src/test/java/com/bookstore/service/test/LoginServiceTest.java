@@ -24,8 +24,8 @@ public class LoginServiceTest {
 	
 	@Test
 	public void userLoginTest() {
-		String userName = "chengjian";
-		String password = "123456";
-		assertEquals(loginService.checkUser(userName, password), true);
+		assertEquals(true, loginService.checkUser("chengjian", "123456"));
+		assertEquals(false, loginService.checkUser("chengjian", "111111"));
+		assertEquals(false, loginService.checkUser("falesjo4_912", "111111"));
 	}
 }

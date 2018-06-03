@@ -18,6 +18,10 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.bookstore.message.ResponseMes;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({
 	"classpath:spring-cfg.xml", 
@@ -39,13 +43,14 @@ public class LoginControllerTest {
 	@Test
 	public void userLoginTest() throws UnsupportedEncodingException, Exception {
 		String st = mockMvc.perform(
-				post("/user_login")
+				post("/user_login.do")
 				.contentType(MediaType.APPLICATION_FORM_URLENCODED)
 				.param("user_name", "chengjian")
 				.param("password", "123456"))
 			.andExpect(status().isOk())
 			.andReturn().getResponse().getContentAsString();
-		System.out.println(st);
+		JSONObject jsonObject = JSONObject.parseObject(st);
+		assertEquals(ResponseMes.SUCCESS, jsonObject.getString("status"));
 	}
 
 }

@@ -17,7 +17,7 @@ public class LoginServiceImpl implements LoginService {
 	@Override
 	public boolean checkUser(String userName, String password) {
 		User user = userMapper.getUser(userName);
-		if (user != null && DigestUtils.md5(user.getPassword()).equals(password)) {
+		if (user != null && user.getPassword().equals(DigestUtils.md5Hex(password))) {
 			return true;
 		} else {
 			return false;

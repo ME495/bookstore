@@ -1,11 +1,17 @@
 package com.bookstore.controller;
 
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.bookstore.entity.ErrorMessage;
+import com.bookstore.message.ResponseMes;
 import com.bookstore.service.LoginService;
 
 /**
@@ -26,14 +32,17 @@ public class LoginController {
 	 * @return
 	 * 验证通过时返回
 	 */
-	@RequestMapping("/user_login")
+	@RequestMapping(value = "/user_login.do", method = RequestMethod.POST)
 	@ResponseBody
 	public String userLogin(@RequestParam("user_name") String userName, 
-			@RequestParam("password") String password) {
+			@RequestParam("password") String password,
+			HttpSession httpSession) {
 		if (loginService.checkUser(userName, password)) {
-			return "ok";
+			httpSession.setAttribute("role", "user");
+			httpSession.setAttribute("name", userName);
+			return new ResponseMes(ResponseMes.SUCCESS, null).toJsonString();
 		} else {
-			return "no";
+			return new ResponseMes(ResponseMes.FAIL, new ErrorMessage("用户名或密码错误！")).toJsonString();
 		}
 	}
 	
