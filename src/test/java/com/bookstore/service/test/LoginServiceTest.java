@@ -26,6 +26,6 @@ public class LoginServiceTest {
 	public void userLoginTest() {
 		String userName = "chengjian";
 		String password = DigestUtils.md5Hex("123456");
-		assertEquals(loginService.userCheck(userName, password), true);
+		assertEquals(loginService.checkUser(userName, password), true);
 	}
 }

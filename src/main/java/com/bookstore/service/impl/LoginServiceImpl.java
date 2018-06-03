@@ -14,7 +14,7 @@ public class LoginServiceImpl implements LoginService {
 	private UserMapper userMapper;
 	
 	@Override
-	public boolean userCheck(String userName, String password) {
+	public boolean checkUser(String userName, String password) {
 		User user = userMapper.getUser(userName);
 		if (user != null && user.getPassword().equals(password)) {
 			return true;
