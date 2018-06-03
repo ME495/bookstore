@@ -7,13 +7,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.bookstore.entity.Admin;
 import com.bookstore.mapper.AdminMapper;
 
+@SuppressWarnings("deprecation")
+@TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true)
+@Transactional
 @RunWith(SpringJUnit4ClassRunner.class) // 使用junit4进行测试
 @ContextConfiguration(locations = { "classpath:spring-cfg.xml" })
-@TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true)
 public class AdminMapperTest {
 	@Autowired
 	AdminMapper adminMapper;

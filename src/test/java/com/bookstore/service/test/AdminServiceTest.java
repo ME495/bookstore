@@ -19,8 +19,6 @@ public class AdminServiceTest {
 	public void testInsertAdmin() {
 		ResponseMes responseMes = adminService.insertAdmin("hzx","123456");
 		System.out.println(responseMes.getMessage());
-		responseMes = adminService.insertAdmin("hzx","123456");
-		System.out.println(responseMes.getMessage());
 		responseMes = adminService.insertAdmin("abcd", "aajklasd");
 		System.out.println(responseMes.getMessage());
 		responseMes = adminService.insertAdmin("asbadfasdfasdfasdfasdf", "asdf");
