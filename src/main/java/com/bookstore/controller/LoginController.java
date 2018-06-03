@@ -1,6 +1,5 @@
 package com.bookstore.controller;
 
-import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,7 +72,6 @@ public class LoginController {
 	
 	/**
 	 * 超级管理员登陆
-	 * @param adminName
 	 * @param password
 	 * @param httpSession
 	 * @return
