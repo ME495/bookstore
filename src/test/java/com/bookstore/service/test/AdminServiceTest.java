@@ -7,7 +7,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 
-import com.bookstore.entity.Admin;
+import com.bookstore.message.ResponseMes;
 import com.bookstore.service.AdminService;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:spring-cfg.xml" })
@@ -17,7 +17,13 @@ public class AdminServiceTest {
 	private AdminService adminService;
 	@Test
 	public void testInsertAdmin() {
-		adminService.insertAdmin("hzx","123456");
+		ResponseMes responseMes = adminService.insertAdmin("hzx","123456");
+		System.out.println(responseMes.getMessage());
+		responseMes = adminService.insertAdmin("hzx","123456");
+		System.out.println(responseMes.getMessage());
+		responseMes = adminService.insertAdmin("abcd", "aajklasd");
+		System.out.println(responseMes.getMessage());
+		responseMes = adminService.insertAdmin("asbadfasdfasdfasdfasdf", "asdf");
+		System.out.println(responseMes.getMessage());
 	}
-
 }
