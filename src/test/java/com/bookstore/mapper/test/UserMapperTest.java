@@ -21,7 +21,7 @@ import com.bookstore.mapper.UserMapper;
 	"classpath:mybatis-cfg.xml", 
 	"classpath:dispatcher-servlet.xml"
 })
-public class UserTest {
+public class UserMapperTest {
 
 	@Autowired
 	private UserMapper userMapper;
