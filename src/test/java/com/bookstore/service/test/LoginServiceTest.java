@@ -28,4 +28,11 @@ public class LoginServiceTest {
 		assertEquals(false, loginService.checkUser("chengjian", "111111"));
 		assertEquals(false, loginService.checkUser("falesjo4_912", "111111"));
 	}
+	
+	@Test
+	public void adminLoginTest() {
+		assertEquals(true, loginService.checkAdmin("chengjian", "123456"));
+		assertEquals(false, loginService.checkAdmin("chengjian", "111111"));
+		assertEquals(false, loginService.checkAdmin("falesjo4_912", "111111"));
+	}
 }

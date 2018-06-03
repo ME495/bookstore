@@ -46,4 +46,17 @@ public class LoginController {
 		}
 	}
 	
+	@RequestMapping(value = "/admin_login.do", method = RequestMethod.POST)
+	@ResponseBody
+	public String adminLogin(@RequestParam("admin_name") String adminName,
+			@RequestParam("password") String password,
+			HttpSession httpSession) {
+		if (loginService.checkAdmin(adminName, password)) {
+			httpSession.setAttribute("role", "admin");
+			httpSession.setAttribute("name", adminName);
+			return new ResponseMes(ResponseMes.SUCCESS, null).toJsonString();
+		} else {
+			return new ResponseMes(ResponseMes.FAIL, null).toJsonString();
+		}
+	}
 }

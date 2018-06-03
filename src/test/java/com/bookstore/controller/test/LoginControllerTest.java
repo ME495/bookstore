@@ -52,5 +52,17 @@ public class LoginControllerTest {
 		JSONObject jsonObject = JSONObject.parseObject(st);
 		assertEquals(ResponseMes.SUCCESS, jsonObject.getString("status"));
 	}
-
+	
+	@Test
+	public void adminLoginTest() throws UnsupportedEncodingException, Exception {
+		String st = mockMvc.perform(
+				post("/admin_login.do")
+				.contentType(MediaType.APPLICATION_FORM_URLENCODED)
+				.param("admin_name", "chengjian")
+				.param("password", "123456"))
+			.andExpect(status().isOk())
+			.andReturn().getResponse().getContentAsString();
+		JSONObject jsonObject = JSONObject.parseObject(st);
+		assertEquals(ResponseMes.SUCCESS, jsonObject.getString("status"));
+	}
 }
