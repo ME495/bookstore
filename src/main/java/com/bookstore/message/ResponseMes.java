@@ -1,21 +1,14 @@
 package com.bookstore.message;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 
 public class ResponseMes {
+	public final static String SUCCESS = "success";
+	public final static String FAIL = "fail";
 	private String status;
-	private JSONObject jsonObject;
-
-	public ResponseMes() {
-		super();
-	}
-
-	public ResponseMes(String status, JSONObject jsonObject) {
-		super();
-		this.status = status;
-		this.jsonObject = jsonObject;
-	}
-
+	private Object message;
+	
 	public String getStatus() {
 		return status;
 	}
@@ -24,11 +17,20 @@ public class ResponseMes {
 		this.status = status;
 	}
 
-	public JSONObject getJsonObject() {
-		return jsonObject;
+	public Object getMessage() {
+		return message;
 	}
 
-	public void setJsonObject(JSONObject jsonObject) {
-		this.jsonObject = jsonObject;
+	public void setMessage(Object message) {
+		this.message = message;
+	}
+
+	public ResponseMes(String status, Object message) {
+		this.status = status;
+		this.message = message;
+	}
+	
+	public String toJsonString() {
+		return JSON.toJSONString(this);
 	}
 }
