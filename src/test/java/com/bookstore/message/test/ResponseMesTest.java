@@ -17,8 +17,8 @@ public class ResponseMesTest {
 		user.setUserName("chengjian");
 		user.setPassword("123456");
 		user.setPhone("15616381480");
-		ResponseMes mes = new ResponseMes(ResponseMes.SUCCESS, new ErrorMessage("404"));
-		System.out.println(mes.toJsonString());
+//		ResponseMes mes = new ResponseMes(ResponseMes.getSUCCESS(), new ErrorMessage("404"));
+//		System.out.println(mes.toString());
 	}
 
 }

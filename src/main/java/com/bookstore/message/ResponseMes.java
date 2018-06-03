@@ -1,5 +1,7 @@
 package com.bookstore.message;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
+
 public class ResponseMes {
 	final String SUCCESS = "success";
 	final String FAIL = "fail";
@@ -26,5 +28,9 @@ public class ResponseMes {
 
 	public String getSUCCESS() {
 		return SUCCESS;
+	}
+	
+	public Object getMes() {
+		return message;
 	}
 }
