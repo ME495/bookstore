@@ -15,6 +15,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
@@ -41,28 +42,34 @@ public class LoginControllerTest {
 	}
 	
 	@Test
-	public void userLoginTest() throws UnsupportedEncodingException, Exception {
-		String st = mockMvc.perform(
+	public void testUserLogin() throws UnsupportedEncodingException, Exception {
+		MvcResult result = mockMvc.perform(
 				post("/user_login.do")
 				.contentType(MediaType.APPLICATION_FORM_URLENCODED)
 				.param("user_name", "chengjian")
 				.param("password", "123456"))
 			.andExpect(status().isOk())
-			.andReturn().getResponse().getContentAsString();
+			.andReturn();
+		String st = result.getResponse().getContentAsString();
 		JSONObject jsonObject = JSONObject.parseObject(st);
 		assertEquals(ResponseMes.SUCCESS, jsonObject.getString("status"));
+		String role = (String) result.getRequest().getSession().getAttribute("role");
+		assertEquals("user", role);
 	}
 	
 	@Test
-	public void adminLoginTest() throws UnsupportedEncodingException, Exception {
-		String st = mockMvc.perform(
+	public void testAdminLogin() throws UnsupportedEncodingException, Exception {
+		MvcResult result = mockMvc.perform(
 				post("/admin_login.do")
 				.contentType(MediaType.APPLICATION_FORM_URLENCODED)
 				.param("admin_name", "chengjian")
 				.param("password", "123456"))
 			.andExpect(status().isOk())
-			.andReturn().getResponse().getContentAsString();
+			.andReturn();
+		String st = result.getResponse().getContentAsString();
 		JSONObject jsonObject = JSONObject.parseObject(st);
 		assertEquals(ResponseMes.SUCCESS, jsonObject.getString("status"));
+		String role = (String) result.getRequest().getSession().getAttribute("role");
+		assertEquals("admin", role);
 	}
 }

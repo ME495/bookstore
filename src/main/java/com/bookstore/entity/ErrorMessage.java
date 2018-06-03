@@ -1,5 +1,10 @@
 package com.bookstore.entity;
 
+/**
+ * 错误信息实体类
+ * @author ME495
+ *
+ */
 public class ErrorMessage {
 	private String error;
 	

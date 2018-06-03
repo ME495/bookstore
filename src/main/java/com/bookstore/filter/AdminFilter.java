@@ -13,7 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Servlet Filter implementation class AdminFilter
+ * 管理员过滤器.
+ * 非管理员访问 /admin 文件夹下的内容，重定向到管理员登陆页面.
+ * @author ME495
+ *
  */
 @WebFilter("/admin/*")
 public class AdminFilter implements Filter {

@@ -14,12 +14,26 @@ import com.bookstore.entity.ErrorMessage;
 import com.bookstore.message.ResponseMes;
 import com.bookstore.service.LoginService;
 
+/**
+ * 登陆控制器
+ * @author ME495
+ *
+ */
 @Controller
 public class LoginController {
 	
 	@Autowired
 	private LoginService loginService;
 	
+	/**
+	 * 用户登陆
+	 * @param userName
+	 * @param password
+	 * @param httpSession
+	 * @return
+	 * 如果登陆成功，则返回 {"status":"success"}
+	 * 否则，返回 {"status":"fail"}
+	 */
 	@RequestMapping(value = "/user_login.do", method = RequestMethod.POST)
 	@ResponseBody
 	public String userLogin(@RequestParam("user_name") String userName, 
@@ -34,6 +48,15 @@ public class LoginController {
 		}
 	}
 	
+	/**
+	 * 管理员登陆
+	 * @param adminName
+	 * @param password
+	 * @param httpSession
+	 * @return
+	 * 如果登陆成功，则返回 {"status":"success"}
+	 * 否则，返回 {"status":"fail"}
+	 */
 	@RequestMapping(value = "/admin_login.do", method = RequestMethod.POST)
 	@ResponseBody
 	public String adminLogin(@RequestParam("admin_name") String adminName,
