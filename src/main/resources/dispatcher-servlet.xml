@@ -14,4 +14,20 @@
 	
 	<!-- 定义扫描装载包 -->
 	<context:component-scan base-package="com.bookstore.controller"></context:component-scan>
+
+	<!-- 配置拦截器 -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/admin/*.do"/>
+			<bean class="com.bookstore.interceptor.AdminInterceptor"></bean>
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/user/*.do"/>
+			<bean class="com.bookstore.interceptor.UserInterceptor"></bean>
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/super/*.do"/>
+			<bean class="com.bookstore.interceptor.SuperInterceptor"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
 </beans>
