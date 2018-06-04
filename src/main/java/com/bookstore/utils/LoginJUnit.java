@@ -37,7 +37,7 @@ public abstract class LoginJUnit extends MockMvcJUnit{
      * 模拟用户登陆，返回登陆信息，并保存session
      * @param userName 用户账号
      * @param password 密码
-     * @return
+     * @return 登陆信息，json数据
      * @throws UnsupportedEncodingException
      */
     protected String userLogin(String userName, String password) throws UnsupportedEncodingException {
