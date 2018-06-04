@@ -16,6 +16,14 @@ import javax.servlet.http.HttpSession;
  */
 public class UserInterceptor extends HandlerInterceptorAdapter {
 
+    /**
+     * 拦截并处理 /user/*.do 的请求
+     * @param request
+     * @param response
+     * @param handler
+     * @return 如果是user，则返回true，否则返回false
+     * @throws Exception
+     */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         HttpSession httpSession = request.getSession();

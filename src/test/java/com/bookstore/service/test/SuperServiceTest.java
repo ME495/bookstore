@@ -14,16 +14,15 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.bookstore.mapper.AdminMapper;
 import com.bookstore.message.ResponseMes;
-import com.bookstore.service.impl.AdminServiceImpl;
+import com.bookstore.service.impl.SuperServiceImpl;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:spring-cfg.xml" })
 @Transactional
 @TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true)
-public class AdminServiceTest {
+public class SuperServiceTest {
 	@Autowired
-	private AdminServiceImpl adminService;
+	private SuperServiceImpl adminService;
 	@Ignore
 	@Test
 	public void testInsertAdmin() {

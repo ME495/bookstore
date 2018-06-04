@@ -24,6 +24,11 @@
 		<property name="maxActive" value="255"></property>
 		<property name="maxIdle" value="5"></property>
 		<property name="maxWait" value="10000"></property>
+		<!--<property name="validationQuery" value="select 1"></property>-->
+		<!--<property name="testWhileIdle" value="true"></property>-->
+		<!--<property name="timeBetweenEvictionRunsMillis" value="3600000"></property>-->
+		<!--<property name="minEvictableIdleTimeMillis" value="18000000"></property>-->
+		<!--<property name="testOnBorrow" value="true"></property>-->
 	</bean>
 	
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">

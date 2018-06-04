@@ -38,9 +38,11 @@ public class LoginController {
 	public String userLogin(@RequestParam("user_name") String userName, 
 			@RequestParam("password") String password,
 			HttpSession httpSession) {
+		System.out.println("ok");
 		if (loginService.checkUser(userName, password)) {
 			httpSession.setAttribute("role", "user");
 			httpSession.setAttribute("name", userName);
+			System.out.println("login success!");
 			return new ResponseMes(ResponseMes.SUCCESS, null).toJsonString();
 		} else {
 			return new ResponseMes(ResponseMes.FAIL, null).toJsonString();

@@ -6,10 +6,10 @@ import org.springframework.stereotype.Service;
 import com.bookstore.entity.Admin;
 import com.bookstore.mapper.AdminMapper;
 import com.bookstore.message.ResponseMes;
-import com.bookstore.service.AdminService;
+import com.bookstore.service.SuperService;
 
 @Service
-public class AdminServiceImpl implements AdminService {
+public class SuperServiceImpl implements SuperService {
 	@Autowired
 	private AdminMapper adminMapper;
 	@Autowired

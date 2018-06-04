@@ -17,7 +17,7 @@ import com.bookstore.service.impl.UserServiceImpl;
 @ContextConfiguration(locations = { "classpath:spring-cfg.xml" })
 @Transactional
 @TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true)
-public class UserServiceImplTest {
+public class UserServiceTest {
 	@Autowired
 	private UserServiceImpl userServiceImpl;
 

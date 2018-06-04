@@ -28,7 +28,6 @@ public interface LoginService {
 	
 	/**
 	 * 检查超级管理员的密码是否正确
-	 * @param adminName
 	 * @param password
 	 * @return
 	 * 正确则返回 true

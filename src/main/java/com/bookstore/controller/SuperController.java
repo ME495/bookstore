@@ -7,23 +7,23 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
-import com.bookstore.service.AdminService;
+import com.bookstore.service.SuperService;
 
 @Controller
-@RequestMapping(value="/admin",produces= "text/html;charset=UTF-8")
-public class AdminController {
+@RequestMapping(value="/super",produces= "text/html;charset=UTF-8")
+public class SuperController {
 	@Autowired
-	private AdminService adminService;
+	private SuperService superService;
 
 	@ResponseBody
 	@RequestMapping("/add.do")
 	public String insertAdmin(@RequestParam("admin_name") String adminName, @RequestParam("password") String password) {
-		return JSON.toJSONString(adminService.insertAdmin(adminName, password));
+		return JSON.toJSONString(superService.insertAdmin(adminName, password));
 	}
 
 	@ResponseBody
 	@RequestMapping("/delete.do")
 	public String deleteAdmin(@RequestParam("admin_name") String adminName) {
-		return JSON.toJSONString(adminService.deleteAdmin(adminName));
+		return JSON.toJSONString(superService.deleteAdmin(adminName));
 	}
 }
