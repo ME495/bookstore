@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.bookstore.entity.OrderSelector;
 import com.bookstore.service.OrderManagerService;
 
+import javax.servlet.http.HttpSession;
+
 /**
  * 订单管理控制器
  * @author ME495
@@ -44,6 +46,21 @@ public class OrderManagerController {
 		s.setEndTime(endTime);
 		s.setIndex(index);
 		s.setPage(page);
-		return orderManagerService.orderQuery(s);
+		return orderManagerService.orderQuery(s, true);
+	}
+
+	@RequestMapping(value = "/user/my_order.do", produces = "text/json;charset=UTF-8")
+	@ResponseBody
+	public String myOrder(@RequestParam boolean status0, @RequestParam boolean status1, @RequestParam boolean status2,
+			@RequestParam int index, @RequestParam int page, HttpSession httpSession) {
+		String userName = (String) httpSession.getAttribute("name");
+		OrderSelector s = new OrderSelector();
+		s.setStatus0(status0);
+		s.setStatus1(status1);
+		s.setStatus2(status2);
+		s.setUserName(userName);
+		s.setIndex(index);
+		s.setPage(page);
+		return orderManagerService.orderQuery(s, false);
 	}
 }

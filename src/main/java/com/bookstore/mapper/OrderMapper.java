@@ -10,5 +10,5 @@ import com.bookstore.entity.OrderSelector;
 
 @Repository
 public interface OrderMapper {
-	public List<Order> query(@Param("s") OrderSelector s);
+	public List<Order> query(@Param("s") OrderSelector s, @Param("is_asc") boolean isAsc);
 }

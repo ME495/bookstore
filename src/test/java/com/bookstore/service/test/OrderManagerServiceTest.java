@@ -33,9 +33,8 @@ public class OrderManagerServiceTest {
         s.setStatus0(true);
         s.setStatus1(true);
         s.setStatus2(true);
-        String st = orderManagerService.orderQuery(s);
-        System.out.println(st);
-        JSONObject jsonObject = JSONObject.parseObject(orderManagerService.orderQuery(s));
+        String st = orderManagerService.orderQuery(s, true);
+        JSONObject jsonObject = JSONObject.parseObject(st);
         assertEquals(ResponseMes.SUCCESS, jsonObject.getString("status"));
     }
 }

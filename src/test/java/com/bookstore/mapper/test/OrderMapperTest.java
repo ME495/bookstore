@@ -31,7 +31,7 @@ public class OrderMapperTest {
 		s.setStatus1(true);
 		s.setStatus2(true);
 //		s.setUserName("rigzyxwl");
-		List<Order> list = orderMapper.query(s);
+		List<Order> list = orderMapper.query(s, true);
 		System.out.println(new ResponseMes(ResponseMes.SUCCESS, list).toJsonString());
 	}
 

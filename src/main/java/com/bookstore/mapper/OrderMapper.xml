@@ -29,6 +29,14 @@
 				and order_time &lt;= #{s.endTime}
 			</if>
 		</where>
+		<choose>
+			<when test="is_asc">
+				order by order_time asc
+			</when>
+			<otherwise>
+				order by order_time desc
+			</otherwise>
+		</choose>
 		limit #{s.index}, #{s.page}
 	</select>
 </mapper>

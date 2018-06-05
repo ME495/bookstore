@@ -23,9 +23,10 @@ public class OrderManagerServiceImpl implements OrderManagerService {
 	OrderMapper orderMapper;
 	
 	@Override
-	public String orderQuery(OrderSelector s) {
-		List<Order> list = orderMapper.query(s);
+	public String orderQuery(OrderSelector s, boolean isAsc) {
+		List<Order> list = orderMapper.query(s, isAsc);
 		return new ResponseMes(ResponseMes.SUCCESS, list).toJsonString();
 	}
+
 
 }
