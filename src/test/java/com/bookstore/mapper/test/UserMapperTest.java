@@ -2,6 +2,7 @@ package com.bookstore.mapper.test;
 
 import static org.junit.Assert.*;
 
+import com.bookstore.utils.BaseJUnit;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -18,11 +19,9 @@ import org.springframework.transaction.annotation.Transactional;
 import com.bookstore.entity.User;
 import com.bookstore.mapper.UserMapper;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration({"classpath:spring-cfg.xml"})
 @Transactional
 @TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true)
-public class UserMapperTest {
+public class UserMapperTest extends BaseJUnit {
 
 	@Autowired
 	private UserMapper userMapper;

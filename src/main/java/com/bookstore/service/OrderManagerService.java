@@ -4,4 +4,5 @@ import com.bookstore.entity.OrderSelector;
 
 public interface OrderManagerService {
 	public String orderQuery(OrderSelector s, boolean isAsc);
+	public String orderDetail(int orderId);
 }

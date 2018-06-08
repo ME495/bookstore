@@ -1,5 +1,9 @@
 package com.bookstore.controller;
 
+import com.bookstore.entity.Order;
+import com.bookstore.mapper.OrderMapper;
+import com.bookstore.mapper.UserMapper;
+import com.bookstore.message.ResponseMes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +25,9 @@ public class OrderManagerController {
 	
 	@Autowired
 	private OrderManagerService orderManagerService;
+
+	@Autowired
+	OrderMapper orderMapper;
 	
 	@RequestMapping(value="/admin/order_query.do", produces="text/json;charset=UTF-8")
 	@ResponseBody
@@ -60,5 +67,23 @@ public class OrderManagerController {
 		s.setIndex(index);
 		s.setSize(size);
 		return orderManagerService.orderQuery(s, false);
+	}
+
+	@RequestMapping(value = "/admin/order_detail.do", produces = "text/json;charset=UTF-8")
+	@ResponseBody
+	public String adminOrderDetail(@RequestParam("order_id") int orderId) {
+		return orderManagerService.orderDetail(orderId);
+	}
+
+	@RequestMapping(value = "/user/order_detail.do", produces = "text/json;charset=UTF-8")
+	@ResponseBody
+	public String userOrderDetail(@RequestParam("order_id") int orderId, HttpSession httpSession) {
+		Order order = orderMapper.getOrder(orderId);
+		String userName = (String) httpSession.getAttribute("name");
+		if (!userName.equals(order.getUserName())) {
+			return new ResponseMes(ResponseMes.FAIL, "你没有权限查看其他用户的订单").toJsonString();
+		} else {
+			return orderManagerService.orderDetail(orderId);
+		}
 	}
 }

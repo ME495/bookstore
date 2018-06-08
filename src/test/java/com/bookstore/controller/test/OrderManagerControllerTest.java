@@ -91,7 +91,7 @@ public class OrderManagerControllerTest extends LoginJUnit {
      */
     @Test
     public void testMyOrder1() throws Exception {
-        userLogin("chengjian", "123456");
+        userLogin("brtlnuis", "123456");
         MvcResult result = getMockMvc().perform(post("/user/my_order.do")
                 .param("status0", "true")
                 .param("status1", "true")
@@ -139,6 +139,87 @@ public class OrderManagerControllerTest extends LoginJUnit {
                 .param("index", "0")
                 .param("size", "20")
                 .session(getMockHttpSession())
+                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+        ).andExpect(status().isOk()).andReturn();
+        String st = result.getResponse().getContentAsString();
+        JSONObject jsonObject = JSON.parseObject(st);
+        assertEquals(ResponseMes.FAIL, jsonObject.getString("status"));
+    }
+
+    /**
+     * 管理员登陆后查看管理员订单详情
+     * @throws Exception
+     */
+    @Test
+    public void testAdminOrderDetail1() throws Exception {
+        adminLogin("chengjian", "123456");
+        MvcResult result = getMockMvc().perform(post("/admin/order_detail.do")
+                .param("order_id", "457")
+                .session(getMockHttpSession())
+                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+        ).andExpect(status().isOk()).andReturn();
+        String st = result.getResponse().getContentAsString();
+        JSONObject jsonObject = JSON.parseObject(st);
+        assertEquals(ResponseMes.SUCCESS, jsonObject.getString("status"));
+    }
+
+    /**
+     * 未登陆查看管理员订单详情
+     * @throws Exception
+     */
+    @Test
+    public void testAdminOrderDetail2() throws Exception {
+        MvcResult result = getMockMvc().perform(post("/admin/order_detail.do")
+                .param("order_id", "457")
+                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+        ).andExpect(status().isOk()).andReturn();
+        String st = result.getResponse().getContentAsString();
+        JSONObject jsonObject = JSON.parseObject(st);
+        assertEquals(ResponseMes.FAIL, jsonObject.getString("status"));
+    }
+
+    /**
+     * 用户登陆后查看自己的订单详情
+     * @throws Exception
+     */
+    @Test
+    public void testUserOrderDetail1() throws Exception {
+        userLogin("jgiblzwh", "123456");
+        MvcResult result = getMockMvc().perform(post("/user/order_detail.do")
+                .param("order_id", "457")
+                .session(getMockHttpSession())
+                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+        ).andExpect(status().isOk()).andReturn();
+        String st = result.getResponse().getContentAsString();
+        JSONObject jsonObject = JSON.parseObject(st);
+        assertEquals(ResponseMes.SUCCESS, jsonObject.getString("status"));
+    }
+
+    /**
+     * 用户登陆后查看别人的订单详情
+     * @throws Exception
+     */
+    @Test
+    public void testUserOrderDetail2() throws Exception {
+        userLogin("jgiblzwh", "123456");
+        MvcResult result = getMockMvc().perform(post("/user/order_detail.do")
+                .param("order_id", "458")
+                .session(getMockHttpSession())
+                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+        ).andExpect(status().isOk()).andReturn();
+        String st = result.getResponse().getContentAsString();
+        JSONObject jsonObject = JSON.parseObject(st);
+        assertEquals(ResponseMes.FAIL, jsonObject.getString("status"));
+    }
+
+    /**
+     * 未登录登陆查看用户订单详情
+     * @throws Exception
+     */
+    @Test
+    public void testUserOrderDetail3() throws Exception {
+        MvcResult result = getMockMvc().perform(post("/user/order_detail.do")
+                .param("order_id", "457")
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
         ).andExpect(status().isOk()).andReturn();
         String st = result.getResponse().getContentAsString();

@@ -23,13 +23,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * MockMvc模拟测试基类
  * @Author ME495
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration({
-        "classpath:spring-cfg.xml",
-        "classpath:mybatis-cfg.xml",
-        "classpath:dispatcher-servlet.xml"})
 @WebAppConfiguration
-public abstract class MockMvcJUnit{
+public abstract class MockMvcJUnit extends BaseJUnit{
 
     @Autowired
     private WebApplicationContext wac;
