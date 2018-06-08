@@ -8,16 +8,20 @@ import com.alibaba.fastjson.JSON;
 import com.bookstore.utils.LoginJUnit;
 import org.junit.Test;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.test.web.servlet.MvcResult;
 
 import com.alibaba.fastjson.JSONObject;
 import com.bookstore.message.ResponseMes;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.UnsupportedEncodingException;
 
 /**
  * @Auther ME495
  */
+@Transactional
+@TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true)
 public class OrderManagerControllerTest extends LoginJUnit {
 
     /**
@@ -31,7 +35,7 @@ public class OrderManagerControllerTest extends LoginJUnit {
                 .param("status1", "true")
                 .param("status2", "true")
                 .param("index", "0")
-                .param("page", "20")
+                .param("size", "20")
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
         ).andExpect(status().isOk()).andReturn();
         String st = result.getResponse().getContentAsString();
@@ -51,7 +55,7 @@ public class OrderManagerControllerTest extends LoginJUnit {
                 .param("status1", "true")
                 .param("status2", "true")
                 .param("index", "0")
-                .param("page", "20")
+                .param("size", "20")
                 .session(getMockHttpSession())
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
             ).andExpect(status().isOk()).andReturn();
@@ -72,7 +76,7 @@ public class OrderManagerControllerTest extends LoginJUnit {
                 .param("status1", "true")
                 .param("status2", "true")
                 .param("index", "0")
-                .param("page", "20")
+                .param("size", "20")
                 .session(getMockHttpSession())
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
         ).andExpect(status().isOk()).andReturn();
@@ -93,7 +97,7 @@ public class OrderManagerControllerTest extends LoginJUnit {
                 .param("status1", "true")
                 .param("status2", "true")
                 .param("index", "0")
-                .param("page", "20")
+                .param("size", "20")
                 .session(getMockHttpSession())
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
         ).andExpect(status().isOk()).andReturn();
@@ -113,7 +117,7 @@ public class OrderManagerControllerTest extends LoginJUnit {
                 .param("status1", "true")
                 .param("status2", "true")
                 .param("index", "0")
-                .param("page", "20")
+                .param("size", "20")
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
         ).andExpect(status().isOk()).andReturn();
         String st = result.getResponse().getContentAsString();
@@ -133,7 +137,7 @@ public class OrderManagerControllerTest extends LoginJUnit {
                 .param("status1", "true")
                 .param("status2", "true")
                 .param("index", "0")
-                .param("page", "20")
+                .param("size", "20")
                 .session(getMockHttpSession())
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
         ).andExpect(status().isOk()).andReturn();

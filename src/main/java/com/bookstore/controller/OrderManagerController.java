@@ -29,11 +29,10 @@ public class OrderManagerController {
 			@RequestParam boolean status2,
 			@RequestParam(value="order_id", required=false) Integer orderId,
 			@RequestParam(value="user_name", required=false) String userName,
-			@RequestParam(value="admin_name", required=false) String adminName,
 			@RequestParam(value="begin_time", required=false) String beginTime,
 			@RequestParam(value="end_time", required=false) String endTime,
 			@RequestParam int index,
-			@RequestParam int page
+			@RequestParam int size
 			) {
 		OrderSelector s = new OrderSelector();
 		s.setStatus0(status0);
@@ -41,18 +40,17 @@ public class OrderManagerController {
 		s.setStatus2(status2);
 		s.setOrderId(orderId);
 		s.setUserName(userName);
-		s.setAdminName(adminName);
 		s.setBeginTime(beginTime);
 		s.setEndTime(endTime);
 		s.setIndex(index);
-		s.setPage(page);
+		s.setSize(size);
 		return orderManagerService.orderQuery(s, true);
 	}
 
 	@RequestMapping(value = "/user/my_order.do", produces = "text/json;charset=UTF-8")
 	@ResponseBody
 	public String myOrder(@RequestParam boolean status0, @RequestParam boolean status1, @RequestParam boolean status2,
-			@RequestParam int index, @RequestParam int page, HttpSession httpSession) {
+						  @RequestParam int index, @RequestParam int size, HttpSession httpSession) {
 		String userName = (String) httpSession.getAttribute("name");
 		OrderSelector s = new OrderSelector();
 		s.setStatus0(status0);
@@ -60,7 +58,7 @@ public class OrderManagerController {
 		s.setStatus2(status2);
 		s.setUserName(userName);
 		s.setIndex(index);
-		s.setPage(page);
+		s.setSize(size);
 		return orderManagerService.orderQuery(s, false);
 	}
 }

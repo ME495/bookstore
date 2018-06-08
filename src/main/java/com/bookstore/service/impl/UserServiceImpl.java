@@ -24,7 +24,7 @@ public class UserServiceImpl implements UserService {
 				User user = new User();
 				user.setUserName(userName);
 				user.setPassword(password);
-				user.setPhone(phone);
+				user.setEmail(phone);
 				userMapper.insertUser(user);
 				responseMes = new ResponseMes(ResponseMes.SUCCESS, "注册成功");
 			} else {

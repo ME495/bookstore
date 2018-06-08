@@ -26,13 +26,12 @@ public class UserMapperTest {
 
 	@Autowired
 	private UserMapper userMapper;
-	
-	@Ignore
+
 	@Test
 	public void test() {
 		User user = userMapper.getUser("chengjian");
 		assertEquals(user.getPassword(), DigestUtils.md5Hex("123456"));
-		assertEquals(user.getPhone(), "15616381480");
+		assertEquals(user.getEmail(), "765122749@qq.com");
 	}
 
 	@Test
@@ -40,7 +39,7 @@ public class UserMapperTest {
 		User user = new User();
 		user.setUserName("xiaoxiong");
 		user.setPassword("123456");
-		user.setPhone("18880207329");
+		user.setEmail("18880207329");
 		assertEquals(1, userMapper.insertUser(user));
 	}
 }

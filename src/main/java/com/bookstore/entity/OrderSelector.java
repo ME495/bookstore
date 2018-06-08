@@ -11,13 +11,13 @@ import java.util.Date;
 public class OrderSelector {
 	private Integer orderId;
 	private boolean status0, status1, status2;
-	private String userName, adminName, beginTime, endTime;
-	private int index, page;
+	private String userName, beginTime, endTime;
+	private int index, size;
 
 	public OrderSelector() {
 		this.status0 = this.status1 = this.status2 = false;
 		this.index = 0;
-		this.page = 20;
+		this.size = 20;
 	}
 
 	public int getIndex() {
@@ -28,12 +28,12 @@ public class OrderSelector {
 		this.index = index;
 	}
 
-	public int getPage() {
-		return page;
+	public int getSize() {
+		return size;
 	}
 
-	public void setPage(int page) {
-		this.page = page;
+	public void setSize(int page) {
+		this.size = page;
 	}
 
 	public Integer getOrderId() {
@@ -90,14 +90,6 @@ public class OrderSelector {
 
 	public void setUserName(String userName) {
 		this.userName = userName;
-	}
-
-	public String getAdminName() {
-		return adminName;
-	}
-
-	public void setAdminName(String adminName) {
-		this.adminName = adminName;
 	}
 
 }

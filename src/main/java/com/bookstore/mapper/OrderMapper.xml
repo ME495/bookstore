@@ -19,9 +19,6 @@
 			<if test="s.userName != null">
 				and user_name = #{s.userName}
 			</if>
-			<if test="s.adminName != null">
-				and admin_name = #{s.userName}
-			</if>
 			<if test="s.beginTime != null">
 				and order_time &gt;= #{s.beginTime}
 			</if>
@@ -37,6 +34,12 @@
 				order by order_time desc
 			</otherwise>
 		</choose>
-		limit #{s.index}, #{s.page}
+		limit #{s.index}, #{s.size}
+	</select>
+
+	<select id="setOrderStatus">
+		update order
+		set status = 1
+		where order_id = #{order_id} and status = 0
 	</select>
 </mapper>

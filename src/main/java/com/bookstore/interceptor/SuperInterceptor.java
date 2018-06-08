@@ -10,7 +10,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  * 超级管理员拦截器
- * 拦截超级管理员对于 /super/*.do 的请求
+ * 拦截非超级管理员对于 /super/*.do 的请求
  * @author ME495
  *
  */
