@@ -38,7 +38,7 @@
 	</select>
 
 	<select id="setOrderStatus">
-		update order
+		update `order`
 		set status = 1
 		where order_id = #{order_id} and status = 0
 	</select>

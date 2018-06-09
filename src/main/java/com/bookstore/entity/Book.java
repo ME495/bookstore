@@ -6,7 +6,7 @@ package com.bookstore.entity;
 public class Book {
     private String isbn, title, author, publisher, summary, imgUrl;
     private int num;
-    private double originalPrice, actualPrice;
+    private double originalPrice;
 
     public String getIsbn() {
         return isbn;
@@ -72,11 +72,4 @@ public class Book {
         this.originalPrice = originalPrice;
     }
 
-    public double getActualPrice() {
-        return actualPrice;
-    }
-
-    public void setActualPrice(double actualPrice) {
-        this.actualPrice = actualPrice;
-    }
 }

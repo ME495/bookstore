@@ -5,8 +5,8 @@ package com.bookstore.entity;
  * @Author ME495
  */
 public class OrderDetail {
-    private String isbn, title, auther;
-    private double price;
+    private String isbn, title, author;
+    private double unitPrice;
     private int num;
 
     public String getIsbn() {
@@ -25,20 +25,20 @@ public class OrderDetail {
         this.title = title;
     }
 
-    public String getAuther() {
-        return auther;
+    public String getAuthor() {
+        return author;
     }
 
-    public void setAuther(String auther) {
-        this.auther = auther;
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
-    public double getPrice() {
-        return price;
+    public double getUnitPrice() {
+        return unitPrice;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public void setUnitPrice(double unitPrice) {
+        this.unitPrice = unitPrice;
     }
 
     public int getNum() {

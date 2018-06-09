@@ -14,7 +14,7 @@ public class Order {
 	@JSONField(format = "yyyy-MM-dd HH:mm:ss")
 	private Date orderTime;
 	private int status;
-	private double price;
+	private double money;
 
 	public String getOrderId() {
 		return orderId;
@@ -56,11 +56,11 @@ public class Order {
 		this.status = status;
 	}
 
-	public double getPrice() {
-		return price;
+	public double getMoney() {
+		return money;
 	}
 
-	public void setPrice(double price) {
-		this.price = price;
+	public void setMoney(double money) {
+		this.money = money;
 	}
 }

@@ -91,7 +91,7 @@ public class OrderManagerControllerTest extends LoginJUnit {
      */
     @Test
     public void testMyOrder1() throws Exception {
-        userLogin("brtlnuis", "123456");
+        userLogin("qedauzrf", "123456");
         MvcResult result = getMockMvc().perform(post("/user/my_order.do")
                 .param("status0", "true")
                 .param("status1", "true")
@@ -184,9 +184,9 @@ public class OrderManagerControllerTest extends LoginJUnit {
      */
     @Test
     public void testUserOrderDetail1() throws Exception {
-        userLogin("jgiblzwh", "123456");
+        userLogin("qedauzrf", "123456");
         MvcResult result = getMockMvc().perform(post("/user/order_detail.do")
-                .param("order_id", "457")
+                .param("order_id", "103")
                 .session(getMockHttpSession())
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
         ).andExpect(status().isOk()).andReturn();
@@ -201,9 +201,9 @@ public class OrderManagerControllerTest extends LoginJUnit {
      */
     @Test
     public void testUserOrderDetail2() throws Exception {
-        userLogin("jgiblzwh", "123456");
+        userLogin("qedauzrf", "123456");
         MvcResult result = getMockMvc().perform(post("/user/order_detail.do")
-                .param("order_id", "458")
+                .param("order_id", "101")
                 .session(getMockHttpSession())
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
         ).andExpect(status().isOk()).andReturn();
@@ -219,7 +219,7 @@ public class OrderManagerControllerTest extends LoginJUnit {
     @Test
     public void testUserOrderDetail3() throws Exception {
         MvcResult result = getMockMvc().perform(post("/user/order_detail.do")
-                .param("order_id", "457")
+                .param("order_id", "103")
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
         ).andExpect(status().isOk()).andReturn();
         String st = result.getResponse().getContentAsString();
