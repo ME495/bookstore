@@ -86,4 +86,22 @@ public class OrderManagerController {
 			return orderManagerService.orderDetail(orderId);
 		}
 	}
+
+	@RequestMapping(value = "/admin/allocate_order.do", produces = "text/json;charset=UTF-8")
+	@ResponseBody
+	public String allocateOrder(@RequestParam("order_id") int orderId) {
+		return orderManagerService.allocateOrder(orderId);
+	}
+
+	@RequestMapping(value = "/user/confirm_order.do", produces = "text/json;charset=UTF-8")
+	@ResponseBody
+	public String confirmOrder(@RequestParam("order_id") int orderId, HttpSession httpSession) {
+		String userName = (String) httpSession.getAttribute("name");
+		Order order = orderMapper.getOrder(orderId);
+		if (userName.equals(order.getUserName())) {
+			return orderManagerService.confirmOrder(orderId);
+		} else {
+			return new ResponseMes(ResponseMes.FAIL, null).toJsonString();
+		}
+	}
 }

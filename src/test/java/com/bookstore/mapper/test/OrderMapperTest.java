@@ -41,7 +41,7 @@ public class OrderMapperTest extends BaseJUnit {
 
 	@Test
 	public void testSetOrderStatus() {
-		orderMapper.setOrderStatus(103);
+		orderMapper.setOrderStatus(103, 1);
 	}
 
 	@Test
