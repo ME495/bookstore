@@ -4,9 +4,27 @@
 	<delete id="deleteUser" parameterType="string">
 		delete from user where user_name = #{userName}
 	</delete>
+	
 	<update id="modifyUserPwd" >
 		update user
 			set password = MD5(#{password})
 			where user_name = #{userName} 
+	</update>
+	
+	<insert id="addBook">
+		insert into book values(#{book.isbn},#{book.title},#{book.author},#{book.publisher},#{book.summary},#{book.originalPrice},#{book.imgUrl});	
+		insert into book_price values(#{bookPrice.isbn},#{bookPrice.degree},#{bookPrice.actualPrice},#{bookPrice.num});
+	</insert>
+	
+	<update id="updateBookNum">
+		update book_price
+			set num = num +#{num}
+			where isbn = #{isbn} and degree = #{degree}
+	</update>
+	
+	<update id="deleteBook">
+		update book_price
+			set num = 0
+			where isbn = #{isbn} and degree = #{degree}
 	</update>
 </mapper>

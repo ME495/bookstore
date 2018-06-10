@@ -41,9 +41,9 @@ public class UserServiceImpl implements UserService {
 	public ResponseMes getUser(String userName) {
 		ResponseMes responseMes;
 		User user = userMapper.getUser(userName);
-		if (user == null) {
+		if (user == null) {//账号不存在,则返回错误信息
 			responseMes = new ResponseMes(ResponseMes.FAIL, "用户账号不存在");
-		} else {
+		} else {//账号存在,则返回用户信息
 			responseMes = new ResponseMes(ResponseMes.SUCCESS, user);
 		}
 		return responseMes;

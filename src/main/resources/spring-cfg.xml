@@ -18,7 +18,7 @@
 
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
-		<property name="url" value="jdbc:mysql://120.78.138.112:3306/bookstore"></property>
+		<property name="url" value="jdbc:mysql://120.78.138.112:3306/bookstore?allowMultiQueries=true"></property>
 		<property name="username" value="test"></property>
 		<property name="password" value="Test20180517!"></property>
 		<property name="maxActive" value="255"></property>
