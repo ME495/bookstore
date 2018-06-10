@@ -4,14 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bookstore.entity.Admin;
-import com.bookstore.mapper.AdminMapper;
+import com.bookstore.mapper.SuperMapper;
 import com.bookstore.message.ResponseMes;
 import com.bookstore.service.SuperService;
 
 @Service
 public class SuperServiceImpl implements SuperService {
 	@Autowired
-	private AdminMapper adminMapper;
+	private SuperMapper adminMapper;
 	@Autowired
 	private Admin admin;
 

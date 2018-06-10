@@ -32,6 +32,8 @@ public class UserMapperTest extends BaseJUnit {
 		user.setUserName("xiaoxiong");
 		user.setPassword("123456");
 		user.setPhone("18880207329");
+		user.setRealName("张三");
+		user.setAddress("湘潭大学琴湖18栋");
 		assertEquals(1, userMapper.insertUser(user));
 	}
 }

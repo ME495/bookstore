@@ -23,7 +23,6 @@ import org.springframework.web.context.WebApplicationContext;
 @TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true)
 public class SuperControllerTest extends LoginJUnit {
 
-	@Ignore
 	@Test
 	public void testInsertAdmin() throws Exception {
 		superLogin("Bookstore!");

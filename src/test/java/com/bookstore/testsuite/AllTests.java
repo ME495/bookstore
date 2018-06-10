@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
-import com.bookstore.mapper.test.AdminMapperTest;
+import com.bookstore.mapper.test.SuperMapperTest;
 import com.bookstore.mapper.test.OrderMapperTest;
 import com.bookstore.mapper.test.UserMapperTest;
 import com.bookstore.message.test.ResponseMesTest;
@@ -22,7 +22,7 @@ import com.bookstore.service.test.LoginServiceTest;
     OrderManagerControllerTest.class,
     SuperControllerTest.class,
     UserControllerTest.class,
-    AdminMapperTest.class,
+    SuperMapperTest.class,
     OrderDetailMapperTest.class,
     OrderMapperTest.class,
     UserMapperTest.class,

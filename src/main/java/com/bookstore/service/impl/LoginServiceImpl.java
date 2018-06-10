@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.bookstore.entity.Admin;
 import com.bookstore.entity.User;
-import com.bookstore.mapper.AdminMapper;
+import com.bookstore.mapper.SuperMapper;
 import com.bookstore.mapper.UserMapper;
 import com.bookstore.service.LoginService;
 
@@ -25,7 +25,7 @@ public class LoginServiceImpl implements LoginService {
 	private UserMapper userMapper;
 	
 	@Autowired
-	private AdminMapper adminMapper;
+	private SuperMapper adminMapper;
 	
 	@Override
 	public boolean checkUser(String userName, String password) {
