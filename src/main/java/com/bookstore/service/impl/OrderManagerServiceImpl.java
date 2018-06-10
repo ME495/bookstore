@@ -2,6 +2,7 @@ package com.bookstore.service.impl;
 
 import java.util.List;
 
+import com.bookstore.entity.ErrorMessage;
 import com.bookstore.entity.OrderDetail;
 import com.bookstore.mapper.OrderDetailMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,28 @@ public class OrderManagerServiceImpl implements OrderManagerService {
 		List<OrderDetail> list = orderDetailMapper.getOrderDetail(orderId);
 		ResponseMes mes = new ResponseMes(ResponseMes.SUCCESS, list);
 		return mes.toJsonString();
+	}
+
+	@Override
+	public String allocateOrder(int orderId) {
+		Order order = orderMapper.getOrder(orderId);
+		if (order.getStatus() == 0) {
+			orderMapper.setOrderStatus(orderId, 1);
+			return new ResponseMes(ResponseMes.SUCCESS, null).toJsonString();
+		} else {
+			return new ResponseMes(ResponseMes.FAIL, null).toJsonString();
+		}
+	}
+
+	@Override
+	public String confirmOrder(int orderId) {
+		Order order = orderMapper.getOrder(orderId);
+		if (order.getStatus() == 1) {
+			orderMapper.setOrderStatus(orderId, 2);
+			return new ResponseMes(ResponseMes.SUCCESS, null).toJsonString();
+		} else {
+			return new ResponseMes(ResponseMes.FAIL, null).toJsonString();
+		}
 	}
 
 

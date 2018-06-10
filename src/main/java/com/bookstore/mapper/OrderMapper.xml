@@ -39,8 +39,8 @@
 
 	<select id="setOrderStatus">
 		update `order`
-		set status = 1
-		where order_id = #{order_id} and status = 0
+		set status = #{status}
+		where order_id = #{order_id}
 	</select>
 
     <select id="getOrder" resultType="com.bookstore.entity.Order">

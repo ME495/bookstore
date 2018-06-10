@@ -5,5 +5,6 @@ import com.bookstore.entity.OrderSelector;
 public interface OrderManagerService {
 	public String orderQuery(OrderSelector s, boolean isAsc);
 	public String orderDetail(int orderId);
-//	public String allocateOrder()
+	public String allocateOrder(int orderId);
+	public String confirmOrder(int orderId);
 }

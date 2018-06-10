@@ -42,4 +42,32 @@ public class OrderManagerServiceTest extends BaseJUnit {
         JSONObject jsonObject = JSONObject.parseObject(st);
         assertEquals(ResponseMes.SUCCESS, jsonObject.getString("status"));
     }
+
+    @Test
+    public void testAllocateOrder1() {
+        String st = orderManagerService.allocateOrder(103);
+        JSONObject jsonObject = JSONObject.parseObject(st);
+        assertEquals(ResponseMes.SUCCESS, jsonObject.getString("status"));
+    }
+
+    @Test
+    public void testAllocateOrder2() {
+        String st = orderManagerService.allocateOrder(102);
+        JSONObject jsonObject = JSONObject.parseObject(st);
+        assertEquals(ResponseMes.FAIL, jsonObject.getString("status"));
+    }
+
+    @Test
+    public void testConfirmOrder1() {
+        String st = orderManagerService.confirmOrder(101);
+        JSONObject jsonObject = JSONObject.parseObject(st);
+        assertEquals(ResponseMes.SUCCESS, jsonObject.getString("status"));
+    }
+
+    @Test
+    public void testConfirmOrder22() {
+        String st = orderManagerService.confirmOrder(102);
+        JSONObject jsonObject = JSONObject.parseObject(st);
+        assertEquals(ResponseMes.FAIL, jsonObject.getString("status"));
+    }
 }
