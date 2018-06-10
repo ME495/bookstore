@@ -37,11 +37,11 @@
 		limit #{s.index}, #{s.size}
 	</select>
 
-	<select id="setOrderStatus">
+	<update id="setOrderStatus">
 		update `order`
 		set status = #{status}
 		where order_id = #{order_id}
-	</select>
+	</update>
 
     <select id="getOrder" resultType="com.bookstore.entity.Order">
 		select * from `order`
