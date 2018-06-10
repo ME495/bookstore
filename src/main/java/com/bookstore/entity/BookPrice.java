@@ -2,7 +2,8 @@ package com.bookstore.entity;
 
 public class BookPrice {
 	private String isbn;
-	private int degree, num;
+	private int degree;
+	private int num;
 	private double actualPrice;
 
 	public BookPrice() {
