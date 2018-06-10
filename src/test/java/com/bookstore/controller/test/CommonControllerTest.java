@@ -11,7 +11,7 @@ import com.bookstore.utils.MockMvcJUnit;
 
 public class CommonControllerTest extends MockMvcJUnit {
 
-	@Ignore
+
 	@Test
 	public void testGetDegreesByIsbn() throws Exception{
 		String responseStr = getMockMvc().perform(
@@ -19,10 +19,10 @@ public class CommonControllerTest extends MockMvcJUnit {
 					.param("isbn", "9787100155724")
 				).andReturn().getResponse().getContentAsString();
 //		System.out.println(responseStr);
-		assertEquals(3, JSON.parseObject(responseStr).get("status"));
+		assertEquals("success", JSON.parseObject(responseStr).get("status"));
 	}
-	
-	@Ignore
+
+
 	@Test
 	public void testGetBooks() throws Exception{
 		String responseStr = getMockMvc().perform(
