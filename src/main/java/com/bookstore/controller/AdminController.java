@@ -25,14 +25,29 @@ public class AdminController {
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/get_user.do", produces = "text/plain;charset=utf-8")
+	@RequestMapping(value = "/get_user.do", produces = "application/json;charset=utf-8")
 	public String getUser(@RequestParam("user_name") String userName) {
 		return JSON.toJSONString(userService.getUser(userName));
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/pwdModify.do", produces = "text/plain;charset=utf-8")
+	@RequestMapping(value = "/pwdModify.do", produces = "application/json;charset=utf-8")
 	public String modifyUserPwd(@RequestParam("user_name") String userName, String password) {
 		return JSON.toJSONString(adminService.modifyUserPwd(userName, password));
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/add_book.do", produces = "application/json;charset=utf-8")
+	public String addBook(String isbn, String title, String author, String publisher, String summary,
+			@RequestParam("img_url") String imgUrl, @RequestParam("original_price") double originalPrice, int degree,
+			int num) {
+		return JSON.toJSONString(
+				adminService.addBook(isbn, title, author, publisher, summary, imgUrl, originalPrice, degree, num));
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/delete_book.do", produces = "application/json;charset=utf-8")
+	public String deleteBook(String isbn, int degree) {
+		return JSON.toJSONString(adminService.deleteBook(isbn, degree));
 	}
 }

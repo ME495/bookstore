@@ -1,6 +1,5 @@
 package com.bookstore.mapper;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import com.bookstore.entity.User;
