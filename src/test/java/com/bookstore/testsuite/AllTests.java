@@ -33,5 +33,4 @@ import com.bookstore.service.test.LoginServiceTest;
     UserServiceTest.class
 })
 public class AllTests {
-	
 }
