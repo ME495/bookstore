@@ -1,10 +1,30 @@
 package com.bookstore.entity;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 /**
  * @Author ME495
  */
 public class Book {
-	private String isbn, title, author, publisher, summary, imgUrl;
+	@JSONField(ordinal = 1)
+	private String isbn;
+	
+	@JSONField(ordinal = 2)
+	private String title;
+	
+	@JSONField(ordinal = 3)
+	private String author;
+	
+	@JSONField(ordinal = 4)
+	private String publisher;
+	
+	@JSONField(ordinal = 5)
+	private String summary;
+	
+	@JSONField(ordinal = 6)
+	private String imgUrl;
+	
+	@JSONField(ordinal = 7)
 	private double originalPrice;
 
 	public Book() {
