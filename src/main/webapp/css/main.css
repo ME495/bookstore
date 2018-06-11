@@ -90,7 +90,7 @@ body {
 	margin-top: 20px;
 	padding: 0 20px;
 }
-#signButton {
+#loginButton, #registerButton {
 	margin-top: 50px;
 	margin-bottom: 50px;
 }

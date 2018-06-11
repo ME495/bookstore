@@ -45,8 +45,11 @@ public class OrderManagerServiceImpl implements OrderManagerService {
 	public String allocateOrder(int orderId) {
 		Order order = orderMapper.getOrder(orderId);
 		if (order.getStatus() == 0) {
-			orderMapper.setOrderStatus(orderId, 1);
-			return new ResponseMes(ResponseMes.SUCCESS, null).toJsonString();
+			if (1 == orderMapper.setOrderStatus(orderId, 1)) {
+				return new ResponseMes(ResponseMes.SUCCESS, null).toJsonString();
+			} else {
+				return new ResponseMes(ResponseMes.FAIL, null).toJsonString();
+			}
 		} else {
 			return new ResponseMes(ResponseMes.FAIL, null).toJsonString();
 		}
@@ -56,8 +59,11 @@ public class OrderManagerServiceImpl implements OrderManagerService {
 	public String confirmOrder(int orderId) {
 		Order order = orderMapper.getOrder(orderId);
 		if (order.getStatus() == 1) {
-			orderMapper.setOrderStatus(orderId, 2);
-			return new ResponseMes(ResponseMes.SUCCESS, null).toJsonString();
+			if (1 == orderMapper.setOrderStatus(orderId, 2)) {
+				return new ResponseMes(ResponseMes.SUCCESS, null).toJsonString();
+			} else {
+				return new ResponseMes(ResponseMes.FAIL, null).toJsonString();
+			}
 		} else {
 			return new ResponseMes(ResponseMes.FAIL, null).toJsonString();
 		}

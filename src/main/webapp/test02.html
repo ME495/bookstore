@@ -6,7 +6,7 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.3.1/dist/semantic.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.3.1/dist/semantic.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="main.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
 <body>
 	<div class="xob-header">
@@ -23,7 +23,7 @@
 					<span class="sign-actions" id="toLogin">登录</span>
 				</li>
 				<li>
-					<span class="sign-actions">注册</span>
+					<span class="sign-actions" id="toRegister">注册</span>
 				</li>
 			</ul>
 		</div>
@@ -35,32 +35,65 @@
 			</div>
 		</div>
 
-		<div class="ui modal tiny" id="signModal">
+		<div class="ui modal tiny" id="loginModal">
 			<div class="content">
 				<div class="signmodal-title">登录湘大旧书店</div>
 				<div class="signmodal-subtitle">发现更多特价好书</div>
 				<div class="signform-container">
-					<form class="ui form">
+					<form class="ui form" id="loginForm">
 						<div class="field">
 							<label>用户名</label>
-							<input type="text" name="" >
+							<input type="text" name="user_name">
 						</div>
 						<div class="field">
 							<label>密码</label>
-							<input type="password" name="">
+							<input type="password" name="password">
 						</div>
-						<div class="field">
+						<!-- <div class="field">
 							<label>输入验证码</label>
 							<input type="text" name="">
-						</div>
+						</div> -->
 					</form>
 					<div class="ui message error raised hidden">
-						<p>请填入完整信息</p>
+						<i class="icon close"></i>
+						<div class="header">Error</div>
+						<p id="">asdfdf</p>
 					</div>
-					<button class="ui button primary fluid" id="signButton">登 录</button>
+					<button class="ui button primary fluid" id="loginButton">登 录</button>
 				</div>
 			</div>
 		</div>
+
+		<div class="ui modal tiny" id="registerModal">
+			<div class="content">
+				<div class="signmodal-title">注册湘大旧书店</div>
+				<div class="signmodal-subtitle">发现更多特价好书</div>
+				<div class="signform-container">
+					<form class="ui form" id="registerForm">
+						<div class="field">
+							<label>用户名</label>
+							<input type="text" name="user_name" >
+						</div>
+						<div class="field">
+							<label>密码</label>
+							<input type="password" name="password">
+						</div>
+						<div class="field">
+							<label>输入邮箱</label>
+							<input type="text" name="email">
+						</div>
+					</form>
+					<div class="ui message error raised hidden"  id="registerErrorMsg">
+						<i class="icon close"></i>
+						<div class="header">Error</div>
+						<p></p>
+					</div>
+					<button class="ui button primary fluid" id="registerButton">注 册</button>
+				</div>
+			</div>
+		</div>
+
+
 	</div>
 
 	<div class="ui divider hidden">
@@ -274,5 +307,5 @@
 
 	
 </body>
-<script type="text/javascript" src="main.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
 </html>
