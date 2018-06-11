@@ -20,7 +20,6 @@ import com.bookstore.service.impl.SuperServiceImpl;
 public class SuperServiceTest {
 	@Autowired
 	private SuperServiceImpl superService;
-	@Ignore
 	@Test
 	public void testInsertAdmin() {
 		ResponseMes responseMes = superService.insertAdmin("hzx","123456");
@@ -30,7 +29,6 @@ public class SuperServiceTest {
 		responseMes = superService.insertAdmin("asbadfasdfasdfasdfasdf", "asdf");
 		System.out.println(responseMes.getMessage());
 	}
-	@Ignore
 	@Test
 	public void testDeleteAdmin() {
 		superService.insertAdmin("xiaoxiong", "123456");

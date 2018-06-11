@@ -17,24 +17,20 @@ public class CommonMapperTest extends BaseJUnit {
 	@Autowired
 	private CommonMapper commonMapper;
 
-	@Ignore
 	@Test
 	public void testGetBookByIsbn() {
 		assertNotNull(commonMapper.getBookByIsbn("9787100155724"));
 	}
 
-	@Ignore
 	@Test
 	public void testGetBookByIsbnAndDegree() {
 		assertNotNull(commonMapper.getBookByIsbnAndDegree("9787100155724", 1));
 	}
 
-	@Ignore
 	@Test
 	public void testGetBookDegreesByIsbn() {
-		assertEquals(3, commonMapper.getBookDegreesByIsbn("9787100155724"));
+		assertEquals(3, commonMapper.getBookDegreesByIsbn("9787100155724").size());
 	}
-	@Ignore
 	@Test
 	public void testGetBooks() {
 		ArrayList<Book> books = commonMapper.getBooks(1, 8);

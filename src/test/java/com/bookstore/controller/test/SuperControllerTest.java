@@ -15,7 +15,6 @@ import com.bookstore.utils.LoginJUnit;
 @Transactional
 @TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true)
 public class SuperControllerTest extends LoginJUnit {
-	@Ignore
 	@Test
 	public void testInsertAdmin() throws Exception {
 		superLogin("Bookstore!");
@@ -25,7 +24,6 @@ public class SuperControllerTest extends LoginJUnit {
 		assertTrue(responseString.contains("创建成功"));
 	}
 
-	@Ignore
 	@Test
 	public void testDeleteAdmin() throws Exception {
 		testInsertAdmin();

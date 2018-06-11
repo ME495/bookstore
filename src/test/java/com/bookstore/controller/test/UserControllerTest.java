@@ -39,7 +39,6 @@ public class UserControllerTest extends LoginJUnit{
 	 * 用户注册测试
 	 * @throws Exception
 	 */
-	@Ignore
 	@Test
 	public void testInsertUser() throws Exception {
 		String resposneStr = getMockMvc().perform(
@@ -50,6 +49,7 @@ public class UserControllerTest extends LoginJUnit{
 					.param("real_name", "黄趾雄")
 					.param("address", "湘潭大学琴湖18栋")
 				).andReturn().getResponse().getContentAsString();
+//		System.out.println(resposneStr);
 		assertTrue(resposneStr.contains("注册成功"));
 	}
 
@@ -57,15 +57,16 @@ public class UserControllerTest extends LoginJUnit{
 	 * 获得已存在用户
 	 * @throws Exception
 	 */
-	@Ignore
 	@Test
 	public void testGetUser() throws Exception {
-		userLogin("xiyou", "asdf3456");
+		testInsertUser();
+		userLogin("xiaoxiong", "123456");
 		String responseStr = getMockMvc().perform(
 					post("/user/get_user.do")
-					.param("user_name", "xiyou")
+					.param("user_name", "xiaoxiong")
 					.session(getMockHttpSession())
 				).andReturn().getResponse().getContentAsString();
+//		System.out.println(responseStr);
 		assertEquals("success", JSON.parseObject(responseStr).get("status"));
 	}
 	
@@ -83,7 +84,7 @@ public class UserControllerTest extends LoginJUnit{
 				.param("address", "湘潭大学琴湖18栋")
 				.session(getMockHttpSession())
 			).andReturn().getResponse().getContentAsString();
-		System.out.println(resposneStr);
+//		System.out.println(resposneStr);
 		assertEquals("success", JSON.parseObject(resposneStr).get("status"));
 	}
 }

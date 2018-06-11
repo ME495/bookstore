@@ -18,14 +18,12 @@ public class UserMapperTest extends BaseJUnit {
 	@Autowired
 	private UserMapper userMapper;
 
-	@Ignore
 	@Test
 	public void test() {
 		User user = userMapper.getUser("chengjian");
 		assertEquals(user.getPassword(), DigestUtils.md5Hex("123456"));
 		assertEquals(user.getPhone(), "15616381480");
 	}
-	@Ignore
 	@Test
 	public void testInsertUser() {
 		User user = new User();

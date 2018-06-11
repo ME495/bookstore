@@ -3,14 +3,12 @@ package com.bookstore.controller.test;
 import static org.junit.Assert.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import com.alibaba.fastjson.JSON;
 import com.bookstore.utils.MockMvcJUnit;
 
 public class CommonControllerTest extends MockMvcJUnit {
-	@Ignore
 	@Test
 	public void testGetDegreesByIsbn() throws Exception{
 		String responseStr = getMockMvc().perform(
@@ -20,8 +18,7 @@ public class CommonControllerTest extends MockMvcJUnit {
 //		System.out.println(responseStr);
 		assertEquals("success", JSON.parseObject(responseStr).get("status"));
 	}
-
-	@Ignore
+	
 	@Test
 	public void testGetBooks() throws Exception{
 		String responseStr = getMockMvc().perform(
@@ -32,7 +29,7 @@ public class CommonControllerTest extends MockMvcJUnit {
 //		System.out.println(responseStr);
 		assertEquals("success",JSON.parseObject(responseStr).get("status"));
 	}
-	@Ignore
+	
 	@Test
 	public void testGetBooksByKeyWord() throws Exception{
 		String responseStr = getMockMvc().perform(
@@ -43,16 +40,5 @@ public class CommonControllerTest extends MockMvcJUnit {
 			).andReturn().getResponse().getContentAsString();
 	System.out.println(responseStr);
 	assertEquals("success",JSON.parseObject(responseStr).get("status"));
-	}
-	
-	@Test
-	public void testGetBookDetailInfo()  throws Exception{
-		String responseStr = getMockMvc().perform(
-					post("/detail_info.do")
-					.param("isbn", "9787100155724")
-					.param("degree", "1")
-				).andReturn().getResponse().getContentAsString();
-		System.out.println(responseStr);
-		assertEquals("success",JSON.parseObject(responseStr).get("status"));
 	}
 }

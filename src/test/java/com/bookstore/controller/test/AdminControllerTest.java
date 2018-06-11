@@ -124,7 +124,6 @@ public class AdminControllerTest extends LoginJUnit {
 	 * 
 	 * @throws Exception
 	 */
-	@Ignore
 	@Test
 	public void testAddBook1() throws Exception {
 		testAddBook();
@@ -137,7 +136,6 @@ public class AdminControllerTest extends LoginJUnit {
 		// System.out.println(responseStr);
 		assertEquals("success", JSON.parseObject(responseStr).get("status"));
 	}
-	@Ignore
 	@Test
 	public void testDeleteBook() throws Exception {
 		testAddBook();

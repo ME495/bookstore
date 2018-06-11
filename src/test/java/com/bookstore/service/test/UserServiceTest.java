@@ -15,7 +15,6 @@ public class UserServiceTest extends BaseJUnit{
 	@Autowired
 	private UserService userService;
 
-	@Ignore
 	@Test
 	public void testInsetUser() {
 		ResponseMes responseMes = userService.insertUser("xiaoxiong", "123456", "18880191929", "张三", "湘潭大学琴湖18栋");
@@ -25,7 +24,6 @@ public class UserServiceTest extends BaseJUnit{
 	/**
 	 * 测试不存在的用户
 	 */
-	@Ignore
 	@Test
 	public void testGetUser1() {
 		ResponseMes responseMes = userService.getUser("testGetUser1");
@@ -35,7 +33,6 @@ public class UserServiceTest extends BaseJUnit{
 	/**
 	 * 测试存在的用户
 	 */
-	@Ignore
 	@Test
 	public void testGetUser2() {
 		testInsetUser();
