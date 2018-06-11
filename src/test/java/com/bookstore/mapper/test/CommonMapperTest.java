@@ -10,6 +10,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.bookstore.entity.Book;
+import com.bookstore.entity.BookDetailInfo;
 import com.bookstore.mapper.CommonMapper;
 import com.bookstore.utils.BaseJUnit;
 
@@ -24,13 +25,16 @@ public class CommonMapperTest extends BaseJUnit {
 
 	@Test
 	public void testGetBookByIsbnAndDegree() {
-		assertNotNull(commonMapper.getBookByIsbnAndDegree("9787100155724", 1));
+		BookDetailInfo bookDetailInfo = commonMapper.getBookByIsbnAndDegree("9787100155724", 1);
+		System.out.println(bookDetailInfo.getBook().getAuthor());
+//		assertNotNull(bookDetailInfo);
 	}
 
 	@Test
 	public void testGetBookDegreesByIsbn() {
 		assertEquals(3, commonMapper.getBookDegreesByIsbn("9787100155724").size());
 	}
+
 	@Test
 	public void testGetBooks() {
 		ArrayList<Book> books = commonMapper.getBooks(1, 8);

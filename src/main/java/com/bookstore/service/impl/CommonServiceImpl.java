@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bookstore.entity.Book;
+import com.bookstore.entity.BookDetailInfo;
 import com.bookstore.entity.BookPrice;
 import com.bookstore.mapper.CommonMapper;
 import com.bookstore.message.ResponseMes;
@@ -16,9 +17,12 @@ public class CommonServiceImpl implements CommonService {
 	@Autowired
 	private CommonMapper commonMapper;
 
+	/* (non-Javadoc)
+	 * @see com.bookstore.service.CommonService#getBookByIsbnAndDegree(java.lang.String, int)
+	 */
 	@Override
 	public ResponseMes getBookByIsbnAndDegree(String isbn, int degree) {
-		BookPrice classfiedBook = commonMapper.getBookByIsbnAndDegree(isbn, degree);
+		BookDetailInfo classfiedBook = commonMapper.getBookByIsbnAndDegree(isbn, degree);
 		ResponseMes responseMes;
 		if (classfiedBook == null) {// 若书籍不存在,则返回"该图书不存在"
 			responseMes = new ResponseMes(ResponseMes.FAIL, "该图书不存在");
@@ -62,6 +66,9 @@ public class CommonServiceImpl implements CommonService {
 		return responseMes;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.bookstore.service.CommonService#getBooksByKeyWord(java.lang.String, int, int)
+	 */
 	@Override
 	public ResponseMes getBooksByKeyWord(String keyWord, int index, int size) {
 		int count = commonMapper.getBookCount();

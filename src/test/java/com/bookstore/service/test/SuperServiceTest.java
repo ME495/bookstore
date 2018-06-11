@@ -20,14 +20,14 @@ import com.bookstore.service.impl.SuperServiceImpl;
 public class SuperServiceTest {
 	@Autowired
 	private SuperServiceImpl superService;
+	/**
+	 *测试新增管理员 
+	 */
 	@Test
 	public void testInsertAdmin() {
-		ResponseMes responseMes = superService.insertAdmin("hzx","123456");
-		System.out.println(responseMes.getMessage());
-		responseMes = superService.insertAdmin("abcd", "aajklasd");
-		System.out.println(responseMes.getMessage());
-		responseMes = superService.insertAdmin("asbadfasdfasdfasdfasdf", "asdf");
-		System.out.println(responseMes.getMessage());
+		ResponseMes responseMes = superService.insertAdmin("xiaoxiong","123456");
+//		System.out.println(responseMes.getMessage());
+		assertEquals("success", responseMes.getStatus());
 	}
 	@Test
 	public void testDeleteAdmin() {
