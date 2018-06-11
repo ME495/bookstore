@@ -13,5 +13,7 @@
 		delete from admin where admin_name = #{adminName}
 	</delete>
 	
-
+	<select id="listAdmins" resultType="com.bookstore.entity.Admin">
+		select * from admin;
+	</select>
 </mapper>

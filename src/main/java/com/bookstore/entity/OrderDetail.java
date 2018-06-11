@@ -7,7 +7,7 @@ package com.bookstore.entity;
 public class OrderDetail {
     private String isbn, title, author;
     private double unitPrice;
-    private int num;
+    private int degree, num;
 
     public String getIsbn() {
         return isbn;
@@ -47,5 +47,13 @@ public class OrderDetail {
 
     public void setNum(int num) {
         this.num = num;
+    }
+
+    public int getDegree() {
+        return degree;
+    }
+
+    public void setDegree(int degree) {
+        this.degree = degree;
     }
 }

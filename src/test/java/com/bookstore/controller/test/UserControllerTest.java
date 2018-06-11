@@ -35,17 +35,21 @@ import com.mysql.fabric.xmlrpc.base.Param;
 @Transactional
 @TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true)
 public class UserControllerTest extends LoginJUnit{
-	@Ignore
+	/**
+	 * 用户注册测试
+	 * @throws Exception
+	 */
 	@Test
 	public void testInsertUser() throws Exception {
 		String resposneStr = getMockMvc().perform(
 					post("/add_user.do")
 					.param("user_name", "xiaoxiong")
-					.param("password", "asdf3456")
+					.param("password", "123456")
 					.param("phone", "18890321949")
 					.param("real_name", "黄趾雄")
 					.param("address", "湘潭大学琴湖18栋")
 				).andReturn().getResponse().getContentAsString();
+//		System.out.println(resposneStr);
 		assertTrue(resposneStr.contains("注册成功"));
 	}
 
@@ -55,12 +59,32 @@ public class UserControllerTest extends LoginJUnit{
 	 */
 	@Test
 	public void testGetUser() throws Exception {
-		userLogin("xiyou", "asdf3456");
+		testInsertUser();
+		userLogin("xiaoxiong", "123456");
 		String responseStr = getMockMvc().perform(
 					post("/user/get_user.do")
-					.param("user_name", "xiyou")
+					.param("user_name", "xiaoxiong")
 					.session(getMockHttpSession())
 				).andReturn().getResponse().getContentAsString();
+//		System.out.println(responseStr);
 		assertEquals("success", JSON.parseObject(responseStr).get("status"));
+	}
+	
+	@Test
+	public void testModifyUserInfo() throws Exception{
+		testInsertUser();
+		userLogin("xiaoxiong", "123456");
+		String resposneStr = getMockMvc().perform(
+				post("/user/modify_info.do")
+				.param("user_name", "xiaoxiong")
+				.param("old_password", "123456")
+				.param("new_password", "654321")
+				.param("phone", "12345678910")
+				.param("real_name", "呵呵")
+				.param("address", "湘潭大学琴湖18栋")
+				.session(getMockHttpSession())
+			).andReturn().getResponse().getContentAsString();
+//		System.out.println(resposneStr);
+		assertEquals("success", JSON.parseObject(resposneStr).get("status"));
 	}
 }

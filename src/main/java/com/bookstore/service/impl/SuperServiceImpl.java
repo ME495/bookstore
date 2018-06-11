@@ -1,5 +1,8 @@
 package com.bookstore.service.impl;
 
+import java.util.ArrayList;
+
+import org.springframework.aop.aspectj.AspectJAdviceParameterNameDiscoverer.AmbiguousBindingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +14,7 @@ import com.bookstore.service.SuperService;
 @Service
 public class SuperServiceImpl implements SuperService {
 	@Autowired
-	private SuperMapper adminMapper;
+	private SuperMapper superMapper;
 	@Autowired
 	private Admin admin;
 
@@ -22,8 +25,8 @@ public class SuperServiceImpl implements SuperService {
 		if (adminName.matches("[a-zA-Z][a-zA-Z0-9_]{3,15}") && password.matches("[a-zA-Z0-9_]{6,16}")) {
 			admin.setAdminName(adminName);
 			admin.setPassword(password);
-			if (adminMapper.getAdminByName(adminName) == null) { // 若账户不存在，则添加,否则，返回错误信息
-				adminMapper.insertAdmin(admin);
+			if (superMapper.getAdminByName(adminName) == null) { // 若账户不存在，则添加,否则，返回错误信息
+				superMapper.insertAdmin(admin);
 				responseMes = new ResponseMes("success", "创建成功");
 			} else {
 				responseMes = new ResponseMes("fail", "账号已存在");
@@ -36,7 +39,15 @@ public class SuperServiceImpl implements SuperService {
 	
 	@Override
 	public ResponseMes deleteAdmin(String adminName) {
-		adminMapper.deleteAdmin(adminName);
+		superMapper.deleteAdmin(adminName);
 		return new ResponseMes(ResponseMes.SUCCESS, "删除成功");
 	}
+
+	@Override
+	public ResponseMes listAdmins() {
+		ArrayList<Admin> adminList = superMapper.listAdmins();
+		return new ResponseMes(ResponseMes.SUCCESS,adminList);
+	}
+	
+	
 }

@@ -12,6 +12,19 @@ public class User {
 	private String realName;
 	private String address;
 
+	public User() {
+		super();
+	}
+
+	public User(String userName, String password, String phone, String realName, String address) {
+		super();
+		this.userName = userName;
+		this.password = password;
+		this.phone = phone;
+		this.realName = realName;
+		this.address = address;
+	}
+
 	public String getRealName() {
 		return realName;
 	}
