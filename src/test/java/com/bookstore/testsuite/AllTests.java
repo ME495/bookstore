@@ -30,23 +30,24 @@ import com.bookstore.service.test.UserServiceTest;
     LogoutControllerTest.class,
     OrderManagerControllerTest.class,
     SuperControllerTest.class,
+    AdminControllerTest.class,
     UserControllerTest.class,
     CommonControllerTest.class,
-    AdminControllerTest.class,
-    SuperMapperTest.class,
+    
+    LoginServiceTest.class,
+    SuperServiceTest.class,
+    AdminServiceTest.class,
+    UserServiceTest.class,
+    CommonServiceTest.class,
+    
     OrderDetailMapperTest.class,
     OrderMapperTest.class,
-    UserMapperTest.class,
     SuperMapperTest.class,
     AdminMapperTest.class,
+    UserMapperTest.class,
     CommonMapperTest.class,
-    ResponseMesTest.class,
-    LoginServiceTest.class,
-    OrderManagerControllerTest.class,
-    SuperServiceTest.class,
-    UserServiceTest.class,
-    AdminServiceTest.class,
-    CommonServiceTest.class
+    
+    ResponseMesTest.class
 })
 public class AllTests {
 }
