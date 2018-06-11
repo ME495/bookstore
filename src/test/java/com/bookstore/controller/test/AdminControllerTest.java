@@ -16,8 +16,6 @@ import com.bookstore.mapper.UserMapper;
 import com.bookstore.message.ResponseMes;
 import com.bookstore.utils.LoginJUnit;
 
-@Transactional
-@TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true)
 public class AdminControllerTest extends LoginJUnit {
 	@Autowired
 	private UserMapper userMapper;
@@ -27,7 +25,6 @@ public class AdminControllerTest extends LoginJUnit {
 	 * 
 	 * @throws Exception
 	 */
-	@Ignore
 	@Test
 	public void testDeleteUser1() throws Exception {
 		User user = new User();
@@ -49,7 +46,6 @@ public class AdminControllerTest extends LoginJUnit {
 	 * 
 	 * @throws Exception
 	 */
-	@Ignore
 	@Test
 	public void testDeleteUser2() throws Exception {
 		adminLogin("chengjian", "123456");
@@ -64,7 +60,6 @@ public class AdminControllerTest extends LoginJUnit {
 	 * 
 	 * @throws Exception
 	 */
-	@Ignore
 	@Test
 	public void testGetUser1() throws Exception {
 		adminLogin("chengjian", "123456");
@@ -79,7 +74,6 @@ public class AdminControllerTest extends LoginJUnit {
 	 * 
 	 * @throws Exception
 	 */
-	@Ignore
 	@Test
 	public void testGetUser2() throws Exception {
 		adminLogin("chengjian", "123456");
@@ -94,7 +88,6 @@ public class AdminControllerTest extends LoginJUnit {
 	 * 
 	 * @throws Exception
 	 */
-	@Ignore
 	@Test
 	public void testModifyUserPwd() throws Exception {
 		adminLogin("chengjian", "123456");
@@ -106,15 +99,18 @@ public class AdminControllerTest extends LoginJUnit {
 	}
 
 	/**
-	 * 测试插入未录入的书籍
+	 * 测试录入未录入的书籍
 	 * 
 	 * @throws Exception
 	 */
 	@Test
 	public void testAddBook() throws Exception {
 		adminLogin("chengjian", "123456");
-		String responseStr = getMockMvc().perform(post("/admin/add_book.do").param("isbn", "9787506391542")
-				.param("title", "我喜欢生命本来的样子").param("author", "周国平").param("summary", "测试一下")
+		String responseStr = getMockMvc().perform(post("/admin/add_book.do")
+				.param("isbn", "9787506391542")
+				.param("title", "我喜欢生命本来的样子")
+				.param("author", "周国平")
+				.param("summary", "测试一下")
 				.param("publisher", "作家出版社")
 				.param("img_url", "https://img3.doubanio.com/view/subject/s/public/s29417905.jpg")
 				.param("original_price", "45.0").param("degree", "1").param("num", "88").session(getMockHttpSession()))
@@ -141,7 +137,7 @@ public class AdminControllerTest extends LoginJUnit {
 		// System.out.println(responseStr);
 		assertEquals("success", JSON.parseObject(responseStr).get("status"));
 	}
-
+	@Ignore
 	@Test
 	public void testDeleteBook() throws Exception {
 		testAddBook();
@@ -151,7 +147,22 @@ public class AdminControllerTest extends LoginJUnit {
 					.param("degree", "1")
 					.session(getMockHttpSession())
 				).andReturn().getResponse().getContentAsString();
-		System.out.println(responseStr);
+//		System.out.println(responseStr);
+		assertEquals("success", JSON.parseObject(responseStr).get("status"));
+	}
+	
+	@Test
+	public void testUpdateBookInfo() throws Exception{
+		testAddBook();
+		String responseStr = getMockMvc().perform(
+					post("/admin/modify_book.do")
+					.param("isbn", "9787506391542")
+					.param("degree", "1")
+					.param("num", "15")
+					.param("actual_price", "16.5")
+					.session(getMockHttpSession())
+				).andReturn().getResponse().getContentAsString();
+//		System.out.println(responseStr);
 		assertEquals("success", JSON.parseObject(responseStr).get("status"));
 	}
 }

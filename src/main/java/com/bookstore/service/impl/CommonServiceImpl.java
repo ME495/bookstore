@@ -1,7 +1,5 @@
 package com.bookstore.service.impl;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.cookie;
-
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +10,6 @@ import com.bookstore.entity.BookPrice;
 import com.bookstore.mapper.CommonMapper;
 import com.bookstore.message.ResponseMes;
 import com.bookstore.service.CommonService;
-import com.mysql.fabric.xmlrpc.base.Array;
 
 @Service
 public class CommonServiceImpl implements CommonService {

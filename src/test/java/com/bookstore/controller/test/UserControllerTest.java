@@ -35,13 +35,17 @@ import com.mysql.fabric.xmlrpc.base.Param;
 @Transactional
 @TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true)
 public class UserControllerTest extends LoginJUnit{
+	/**
+	 * 用户注册测试
+	 * @throws Exception
+	 */
 	@Ignore
 	@Test
 	public void testInsertUser() throws Exception {
 		String resposneStr = getMockMvc().perform(
 					post("/add_user.do")
 					.param("user_name", "xiaoxiong")
-					.param("password", "asdf3456")
+					.param("password", "123456")
 					.param("phone", "18890321949")
 					.param("real_name", "黄趾雄")
 					.param("address", "湘潭大学琴湖18栋")
@@ -53,6 +57,7 @@ public class UserControllerTest extends LoginJUnit{
 	 * 获得已存在用户
 	 * @throws Exception
 	 */
+	@Ignore
 	@Test
 	public void testGetUser() throws Exception {
 		userLogin("xiyou", "asdf3456");
@@ -62,5 +67,23 @@ public class UserControllerTest extends LoginJUnit{
 					.session(getMockHttpSession())
 				).andReturn().getResponse().getContentAsString();
 		assertEquals("success", JSON.parseObject(responseStr).get("status"));
+	}
+	
+	@Test
+	public void testModifyUserInfo() throws Exception{
+		testInsertUser();
+		userLogin("xiaoxiong", "123456");
+		String resposneStr = getMockMvc().perform(
+				post("/user/modify_info.do")
+				.param("user_name", "xiaoxiong")
+				.param("old_password", "123456")
+				.param("new_password", "654321")
+				.param("phone", "12345678910")
+				.param("real_name", "呵呵")
+				.param("address", "湘潭大学琴湖18栋")
+				.session(getMockHttpSession())
+			).andReturn().getResponse().getContentAsString();
+		System.out.println(resposneStr);
+		assertEquals("success", JSON.parseObject(resposneStr).get("status"));
 	}
 }

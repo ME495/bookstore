@@ -39,5 +39,7 @@ public interface AdminService {
 	 * @return 删除书籍的成功或失败信息
 	 */
 	public ResponseMes deleteBook(String isbn,int degree);
+	
+	public ResponseMes updateBookInfo(String isbn,int degree,int num,Double actualPrice);
 
 }

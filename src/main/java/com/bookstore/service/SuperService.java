@@ -15,4 +15,9 @@ public interface SuperService {
 	 * @return 成功或失败信息
 	 */
 	public ResponseMes deleteAdmin(String adminName);
+	
+	/** 获得所有管理员
+	 * @return 成功或失败的信息,包含管理员列表
+	 */
+	public ResponseMes listAdmins();
 }

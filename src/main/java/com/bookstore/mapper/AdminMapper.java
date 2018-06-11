@@ -14,7 +14,7 @@ public interface AdminMapper {
 
 	public int addBook(@Param("book") Book book, @Param("bookPrice") BookPrice bookPrice);
 
-	public int updateBookNum(@Param("isbn") String isbn,@Param("degree")int degree, @Param("num") int num);
+	public int updateBook(@Param("isbn") String isbn,@Param("degree")int degree, @Param("num") int num,@Param("actualPrice") Double actualPrice);
 	
 	public int deleteBook(@Param("isbn") String isbn,@Param("degree")int degree);
 }

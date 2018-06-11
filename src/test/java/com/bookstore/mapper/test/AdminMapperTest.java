@@ -21,7 +21,7 @@ public class AdminMapperTest extends BaseJUnit {
 	@Autowired
 	UserMapper userMapper;
 
-	@Ignore
+	
 	@Test
 	public void testDeleteUser() {
 		User user = new User();
@@ -34,7 +34,7 @@ public class AdminMapperTest extends BaseJUnit {
 		assertEquals(1, adminMapper.deleteUser("xiaoxiong"));
 	}
 
-	@Ignore
+	
 	@Test
 	public void testModifyUserPwd() {
 		assertEquals(1, adminMapper.modifyUserPwd("xiyou", "123456"));
@@ -61,11 +61,11 @@ public class AdminMapperTest extends BaseJUnit {
 		assertEquals(1, adminMapper.addBook(book, bookPrice));
 	}
 
-	@Ignore
+	
 	@Test
 	public void testUpdateBookNum() {
 		testAddBook();
-		assertEquals(1, adminMapper.updateBookNum("9787506391542", 1, 10));
+		assertEquals(1, adminMapper.updateBook("9787506391542", 1, 10,null));
 	}
 	
 	@Test

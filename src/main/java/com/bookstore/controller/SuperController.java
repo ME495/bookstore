@@ -26,4 +26,10 @@ public class SuperController {
 	public String deleteAdmin(@RequestParam("admin_name") String adminName) {
 		return JSON.toJSONString(superService.deleteAdmin(adminName));
 	}
+	
+	@ResponseBody
+	@RequestMapping("/admin_list.do")
+	public String listAdmins() {
+		return JSON.toJSONString(superService.listAdmins());
+	}
 }

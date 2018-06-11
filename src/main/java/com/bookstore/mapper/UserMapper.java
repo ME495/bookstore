@@ -10,4 +10,11 @@ public interface UserMapper {
 	
 	// 插入用户
 	public int insertUser(User user);
+	
+	/**
+	 * 根据用户账号,修改用户信息
+	 * @param user 用户实体
+	 * @return 成功返回1,失败返回0
+	 */
+	public int updateUserInfo(User user);
 }

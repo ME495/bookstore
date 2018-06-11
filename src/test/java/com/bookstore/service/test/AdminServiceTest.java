@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.bookstore.entity.User;
 import com.bookstore.mapper.UserMapper;
+import com.bookstore.message.ResponseMes;
 import com.bookstore.service.AdminService;
 import com.bookstore.utils.BaseJUnit;
 
@@ -17,7 +18,13 @@ public class AdminServiceTest extends BaseJUnit {
 	@Autowired
 	UserMapper userMapper;
 
-	@Ignore
+	private String isbn = "9787506391542";
+	private String title = "我喜欢生命本来的样子";
+	private String author = "周国平";
+	private String publisher = "作家出版社";
+	private String summary = "测试一下";
+	private String imgUrl = "https://img3.doubanio.com/view/subject/s/public/s29417905.jpg";
+	
 	@Test
 	public void testDeleteUser() {
 		User user = new User();
@@ -30,7 +37,7 @@ public class AdminServiceTest extends BaseJUnit {
 		assertEquals("success", adminService.deleteUser("xiaoxiong").getStatus());
 	}
 
-	@Ignore
+	
 	@Test
 	public void testModifyUserPwd() {
 		adminService.modifyUserPwd("xiyou", "xiyou");
@@ -40,28 +47,32 @@ public class AdminServiceTest extends BaseJUnit {
 	/**
 	 * 插入不存在的图书
 	 */
-	@Ignore
+	
 	@Test
 	public void testAddBook() {
-		adminService.addBook("9787506391542", "我喜欢生命本来的样子", "周国平", "作家出版社", "测试一下",
-				"https://img3.doubanio.com/view/subject/s/public/s29417905.jpg", 45.0, 1, 88);
+		ResponseMes responseMes = adminService.addBook(isbn, title, author, publisher, summary, imgUrl, 45.0, 1, 88);
+		assertEquals("success", responseMes.getStatus());
 	}
 
 	/**
 	 * 插入已有图书
 	 */
-	@Ignore
 	@Test
 	public void testAddBook2() {
-		adminService.addBook("9787506391542", "我喜欢生命本来的样子", "周国平", "作家出版社", "测试一下",
-				"https://img3.doubanio.com/view/subject/s/public/s29417905.jpg", 45.0, 1, 88);
-		adminService.addBook("9787506391542", "我喜欢生命本来的样子", "周国平", "作家出版社", "测试一下",
-				"https://img3.doubanio.com/view/subject/s/public/s29417905.jpg", 45.0, 1, 88);
+		testAddBook();
+		ResponseMes responseMes = adminService.addBook(isbn, title, author, publisher, summary, imgUrl, 45.0, 1, 88);
+		assertEquals("success", responseMes.getStatus());
 	}
-
+	
 	@Test
 	public void testDeleteBook() {
 		testAddBook();
-		assertEquals("success", adminService.deleteBook("9787506391542", 1).getStatus());
+		assertEquals("success", adminService.deleteBook(isbn, 1).getStatus());
+	}
+	
+	@Test
+	public void testUpdateBookInfo() {
+		testAddBook();
+		adminService.updateBookInfo(isbn, 1, 10, 16.0);
 	}
 }
