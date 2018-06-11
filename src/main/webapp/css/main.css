@@ -360,3 +360,9 @@ body {
 .book-detail-actions button {
 	width: 160px;
 }
+.loader-pannel {
+	height: 600px;
+}
+.not-show {
+	display: none;
+}

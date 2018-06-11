@@ -29,9 +29,10 @@
 		</div>
 
 		<div class="search-container">
+			<!-- <div class="ui label right pointing red">请输入要查找的图书</div> -->
 			<div class="ui input icon">
 				<input type="text" name="" placeholder="查找图书" id="searchBook">
-				<i class="icon search link"></i>
+				<i class="icon search link" id="toSearch"></i>
 			</div>
 		</div>
 
@@ -54,7 +55,7 @@
 							<input type="text" name="">
 						</div> -->
 					</form>
-					<div class="ui message error raised hidden">
+					<div class="ui message error raised hidden" id="loginErrorMsg">
 						<i class="icon close"></i>
 						<div class="header">Error</div>
 						<p id="">asdfdf</p>
@@ -208,8 +209,14 @@
 		<div class="segment">
 			<h3>为你推荐 /</h3>
 			<div class="ui divider"></div>
+
+			<div class="ui segment loader-pannel">
+				<div class="ui inverted dimmer active">
+					<div class="ui text loader large" id="loader">正在加载</div>
+				</div>
+			</div>
 			
-			<div class="books-container">
+			<div class="books-container not-show">
 				<div class="book-item">
 					<a href="">
 						<img src="https://img13.360buyimg.com/n2/jfs/t658/193/368125886/17075/4b1428b8/546335b8Naab48023.jpg" class="book-image-normal">
@@ -307,5 +314,6 @@
 
 	
 </body>
+<script type="text/javascript" src="js/common.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
 </html>
