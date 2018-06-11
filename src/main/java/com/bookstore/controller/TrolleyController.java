@@ -43,7 +43,7 @@ public class TrolleyController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value="/trolley_check.do")
+	@RequestMapping(value="/trolley_check.do", produces="application/json;charset=utf-8")
 	public String selectTrolley(HttpSession httpSession) {
 		String userName = (String) httpSession.getAttribute("name");
 		return JSON.toJSONString(trolleyService.selectTrolley(userName));

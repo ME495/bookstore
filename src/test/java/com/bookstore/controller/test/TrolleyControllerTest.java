@@ -1,6 +1,6 @@
 package com.bookstore.controller.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -14,7 +14,7 @@ import com.bookstore.message.ResponseMes;
 import com.bookstore.utils.LoginJUnit;
 
 public class TrolleyControllerTest extends LoginJUnit {
-
+	
 	@Test
 	public void testInsertTrolley() throws Exception {
 		userLogin("jinqi", "123456");
@@ -29,6 +29,7 @@ public class TrolleyControllerTest extends LoginJUnit {
         JSONObject jsonObject = JSON.parseObject(st);
         assertEquals(ResponseMes.SUCCESS, jsonObject.getString("status"));
 	}
+	
 	
 	@Test
 	public void testDeleteTrolley() throws Exception {
@@ -81,11 +82,9 @@ public class TrolleyControllerTest extends LoginJUnit {
                 .param("degree", "0")
                 .param("num", "1")
                 .session(getMockHttpSession())
-                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
         ).andExpect(status().isOk()).andReturn();
 		MvcResult result = getMockMvc().perform(post("/user/trolley_check.do")
                 .session(getMockHttpSession())
-                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
         ).andExpect(status().isOk()).andReturn();
 		String st = result.getResponse().getContentAsString();
         JSONObject jsonObject = JSON.parseObject(st);

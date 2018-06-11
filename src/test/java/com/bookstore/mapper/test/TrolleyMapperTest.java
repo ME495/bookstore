@@ -7,6 +7,7 @@ import java.util.List;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.alibaba.fastjson.JSON;
 import com.bookstore.entity.Trolley;
 import com.bookstore.mapper.TrolleyMapper;
 import com.bookstore.utils.BaseJUnit;
@@ -34,6 +35,7 @@ public class TrolleyMapperTest extends BaseJUnit {
 	@Test
 	public void testSelectTrolley() {
 		List<Trolley> list = trolleyMapper.selectTrolley("auybnwem");
+		System.out.println(JSON.toJSON(list));
 		assertEquals(3, list.size());
 		
 	}
