@@ -1,5 +1,6 @@
 $(function() {
 
+	console.log(sessionStorage['abc']);
 	//通过当前url获取查找的关键字
 	var url = window.location.href;
 	var keywordReg = /keyword=(.+?)&/g;
