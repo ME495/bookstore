@@ -37,4 +37,12 @@ public class CommonController {
 	public String getBookDetailInfo(String isbn, int degree) {
 		return JSON.toJSONString(commonService.getBookByIsbnAndDegree(isbn, degree));
 	}
+	
+
+    @ResponseBody
+    @RequestMapping(value = "/signup.do", produces = "text/plain;charset=utf-8")
+    public String insertUser(@RequestParam("user_name") String userName, String password, String phone,
+            @RequestParam("real_name") String realName, String address) {
+        return JSON.toJSONString(commonService.insertUser(userName, password, phone, realName, address));
+    }
 }

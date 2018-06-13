@@ -3,13 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>管理员登陆</title>
+    <script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+    <script type="application/javascript">
+        $(document).ready(function () {
+            $("#submit").click(function () {
+                var admin_name = $("#admin_name").val()
+                var password = $("#password").val()
+                $.post("./admin_login.do", {admin_name: admin_name, password: password}, function (data, status) {
+                    if (status == "success") {
+                        var json = $.parseJSON(data)
+                        if (json.status == "success") {
+                            location.href = "./admin/index.jsp";
+                        }
+                    }
+                })
+            });
+        });
+    </script>
 </head>
 <body>
     <h1>管理员登陆界面</h1>
-    <form action="admin_login.do" method="post">
-        <input type="text" name="admin_name">
-        <input type="password" name="password">
-        <input type="submit">
-    </form>
+    <input type="text" name="admin_name" id="admin_name">
+    <input type="password" name="password" id="password">
+    <input type="submit" name="submit" id="submit">
 </body>
 </html>

@@ -42,7 +42,7 @@ public class UserControllerTest extends LoginJUnit{
 	@Test
 	public void testInsertUser() throws Exception {
 		String resposneStr = getMockMvc().perform(
-					post("/add_user.do")
+					post("/signup.do")
 					.param("user_name", "xiaoxiong")
 					.param("password", "123456")
 					.param("phone", "18890321949")

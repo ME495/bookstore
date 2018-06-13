@@ -2,6 +2,7 @@ package com.bookstore.controller;
 
 import javax.servlet.http.HttpSession;
 
+import com.bookstore.entity.Identity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -82,14 +83,26 @@ public class LoginController {
 	 */
 	@RequestMapping(value = "/super_login.do", method = RequestMethod.POST)
 	@ResponseBody
-	public String superAdmin(@RequestParam("password") String password,
-			HttpSession httpSession) {
+	public String superLogin(@RequestParam("password") String password,
+							 HttpSession httpSession) {
 		if (loginService.checkSuper(password)) {
 			httpSession.setAttribute("role", "super");
 			httpSession.setAttribute("name", "super");
 			return new ResponseMes(ResponseMes.SUCCESS, null).toJsonString();
 		} else {
 			return new ResponseMes(ResponseMes.FAIL, null).toJsonString();
+		}
+	}
+
+	@RequestMapping(value = "/check_login.do", method = RequestMethod.POST)
+	@ResponseBody
+	public String checkLogin(HttpSession httpSession) {
+		String name = (String) httpSession.getAttribute("name");
+		String role = (String) httpSession.getAttribute("role");
+		if (name == null || role == null) {
+			return new ResponseMes(ResponseMes.FAIL, null).toJsonString();
+		} else {
+			return new ResponseMes(ResponseMes.SUCCESS, new Identity(name, role)).toJsonString();
 		}
 	}
 }
