@@ -95,12 +95,12 @@
             var begin_time = $("#begin_time").val();
             var end_time = $("#end_time").val();
             var url = "./order_result.jsp";
-            url = add_url_param(url, "status0", status0);
-            url = add_url_param(url, "status1", status1);
-            url = add_url_param(url, "status2", status2);
-            if (user_name) url = add_url_param(url, "user_name", user_name);
-            if (begin_time) url = add_url_param(url, "begin_time", begin_time);
-            if (end_time) url = add_url_param(url, "end_time", end_time);
+            url = addUrlParam(url, "status0", status0);
+            url = addUrlParam(url, "status1", status1);
+            url = addUrlParam(url, "status2", status2);
+            if (user_name) url = addUrlParam(url, "user_name", user_name);
+            if (begin_time) url = addUrlParam(url, "begin_time", begin_time);
+            if (end_time) url = addUrlParam(url, "end_time", end_time);
             location.href = url;
         });
     });

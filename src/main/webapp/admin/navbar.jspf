@@ -48,7 +48,7 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a href="./query_order.jsp">订单查询</a></li>
-                        <li><a href="#">分配订单</a></li>
+                        <li><a href="./allocate_order.jsp">分配订单</a></li>
                     </ul>
                 </li>
                 <li class="navbar-right"><a href="#" id="logout"><span class="glyphicon glyphicon-log-in"></span>注销</a></li>

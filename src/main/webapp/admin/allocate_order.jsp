@@ -2,16 +2,16 @@
   Created by IntelliJ IDEA.
   User: ME495
   Date: 2018/6/13
-  Time: 16:53
+  Time: 21:14
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>查询结果</title>
+    <title>分配订单</title>
 </head>
 <body>
-<%@include file="navbar.jspf" %>
+<%@include file="navbar.jspf"%>
 <div class="container">
     <div class="text-center">
         <ul id="pagination" class="pagination pagination4"></ul>
@@ -23,7 +23,6 @@
             <th>下单人</th>
             <th>地址</th>
             <th>下单时间</th>
-            <th>状态</th>
             <th>金额</th>
         </tr>
         </thead>
@@ -31,35 +30,41 @@
         </tbody>
     </table>
     <div id="info" class="alert alert-warning hidden">
-        没有找到相应的订单！
+        此页没有为分配的订单！
     </div>
 </div>
 </body>
 <script src="../js/url_utils.js"></script>
 <script src="../js/jqPaginator.js"></script>
 <script type="application/javascript">
+    var element;
     function show_data(data) {
         $("tbody").empty();
         $("#info").attr("class", "alert alert-warning hidden");
         $.each(data, function (i, value) {
-            var status = null;
-            if (value.status == "0") status = "未发货";
-            else if (value.status == "1") status = "已发货";
-            else status = "确认收货";
             var $e = $("<tr></tr>");
-            $e.append("<td><a class='order' href='#'>" + value.orderId + "</a></td>");
+            $e.append("<td>" + value.orderId + "</td>");
             $e.append("<td>" + value.userName + "</td>");
             $e.append("<td>" + value.address + "</td>");
             $e.append("<td>" + value.orderTime + "</td>");
-            $e.append("<td>" + status + "</td>");
             $e.append("<td>" + value.money + "</td>");
+            $e.append("<td><span class='allocate btn btn-primary' title='"+ value.orderId +"'>分配订单</span></td>");
             $("tbody").append($e);
         });
-        $(".order").click(function () {
-            var order_id = $(this).html();
-            var url = "./order_detail.jsp";
-            url = addUrlParam(url, "order_id", order_id);
-            location.href = url;
+        $(".allocate").click(function () {
+            var order_id = $(this).attr("title");
+            element = $(this);
+            $.post("./allocate_order.do", {"order_id": order_id}, function (data, status) {
+                if (status == "success") {
+                    console.log(data + order_id);
+                    if (data.status == "success") {
+                        element.parent().html("<span class='btn btn-default' disabled='disabled'>分配成功</span>");
+                    } else {
+                        alert("分配失败！");
+                    }
+                }
+            });
+            $(this).html("已分配");
         });
     }
 
@@ -81,21 +86,12 @@
     }
 
     $(document).ready(function () {
-        var status0 = getUrlParam("status0");
-        var status1 = getUrlParam("status1");
-        var status2 = getUrlParam("status2");
-        var user_name = getUrlParam("user_name");
-        var begin_time = getUrlParam("begin_time");
-        var end_time = getUrlParam("end_time");
         var index = 0;
         var size = 20;
         var json = JSON.parse("{}");
-        json["status0"] = status0;
-        json["status1"] = status1;
-        json["status2"] = status2;
-        if (user_name) json["user_name"] = user_name;
-        if (begin_time) json["begin_time"] = begin_time;
-        if (end_time) json["end_time"] = end_time;
+        json["status0"] = "true";
+        json["status1"] = "false";
+        json["status2"] = "false";
         json["index"] = index;
         json["size"] = size;
         // query(json);
