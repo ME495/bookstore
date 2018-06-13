@@ -49,4 +49,5 @@ public class OrderMapperTest extends BaseJUnit {
 		Order order = orderMapper.getOrder(103);
 		System.out.println(JSONObject.toJSONString(order));
 	}
+	
 }

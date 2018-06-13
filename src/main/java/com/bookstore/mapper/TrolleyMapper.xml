@@ -28,4 +28,20 @@
 		JOIN `user` u USING(user_name)
 		WHERE t.user_name = #{user_name}
 	</select>
+	
+	<select id="getActualPrice" resultType="double">
+		SELECT actual_price 
+		FROM book_price
+		WHERE isbn = #{isbn} AND degree = #{degree}
+	</select>
+	
+	<insert id="insertOrder" keyProperty="orderId" useGeneratedKeys="true">
+		INSERT INTO `order`(user_name, address, order_time, status, money)
+		VALUES(#{userName}, #{address}, #{orderTime}, #{status}, #{money})
+	</insert>
+	
+	<insert id="insertOrderBook">
+		INSERT INTO order_book
+		VALUES(#{)
+	</insert>
 </mapper>

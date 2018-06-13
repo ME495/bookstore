@@ -52,5 +52,21 @@ public interface TrolleyService {
 	 * 失败返回“{“status”: “fail”}”
 	 */
 	public ResponseMes selectTrolley(String userName);
+	
+	/**
+	 * 获取待支付总价
+	 * @param trolleyMsg
+	 * @return double
+	 */
+	public double getPrice2Pay(String trolleyMsg);
+	
+	/**
+	 * 支付
+	 * @param paymentMsg
+	 * 成功应接收“{“status”:“success”, msg: “Approved”}”
+	 * 支付被取消则接收“{"status":“fail”, msg:“paymentCancelled”}”
+	 * 支付出错则接收“{“status”:“fail”, msg:“paymentError”}”
+	 */
+	public void recvPaymentStatus(String userName, int paymentStatus);
 
 }
