@@ -4,9 +4,13 @@
 	<select id="getBookByIsbn" parameterType="string" resultType="com.bookstore.entity.Book">
 		select * from book where isbn = #{isbn};
 	</select>
-	
-	<select id="getBookByIsbnAndDegree" resultType="com.bookstore.entity.BookPrice">
-		select isbn,degree,actual_price,num from book_price where isbn = #{isbn} and degree = #{degree};
+
+	<resultMap type="com.bookstore.entity.BookDetailInfo" id="bookdetailMap" autoMapping="true">
+		<association property="book" column="isbn" select="getBookByIsbn" autoMapping="true">
+		</association>
+	</resultMap>
+	<select id="getBookByIsbnAndDegree" resultMap="bookdetailMap">
+		select isbn,degree,num,actual_price from book_price where isbn = #{isbn} and degree = #{degree}
 	</select>
 	
 	<select id="getBookDegreesByIsbn" parameterType="string" resultType="integer">
@@ -27,4 +31,8 @@
 			where title like concat('%',#{keyWord},'%') or summary like concat('%',#{keyWord},'%')
 			limit #{index},#{size}
 	</select>
+	
+	<insert id="insertUser" parameterType="com.bookstore.entity.User">
+		insert into user values(#{userName},MD5(#{password}),#{phone},#{realName},#{address})
+	</insert>
 </mapper>

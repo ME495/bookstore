@@ -31,4 +31,18 @@ public class CommonController {
 	public String getBooksByKeyWord(@RequestParam("key_word")String keyWord,int index,int size) {
 		return JSON.toJSONString(commonService.getBooksByKeyWord(keyWord,index, size));
 	}
+	
+	@ResponseBody
+	@RequestMapping(value="/book_detail.do",produces="application/json;charset=utf-8")
+	public String getBookDetailInfo(String isbn, int degree) {
+		return JSON.toJSONString(commonService.getBookByIsbnAndDegree(isbn, degree));
+	}
+	
+
+    @ResponseBody
+    @RequestMapping(value = "/signup.do", produces = "text/plain;charset=utf-8")
+    public String insertUser(@RequestParam("user_name") String userName, String password, String phone,
+            @RequestParam("real_name") String realName, String address) {
+        return JSON.toJSONString(commonService.insertUser(userName, password, phone, realName, address));
+    }
 }

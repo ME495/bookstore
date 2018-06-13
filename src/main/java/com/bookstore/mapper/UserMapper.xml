@@ -5,9 +5,6 @@
 		select * from user where user_name = #{userName}
 	</select>
 			
-	<insert id="insertUser" parameterType="com.bookstore.entity.User">
-		insert into user values(#{userName},MD5(#{password}),#{phone},#{realName},#{address})
-	</insert>
 	
 	<update id="updateUserInfo" parameterType="com.bookstore.entity.User">
 		update user

@@ -53,9 +53,10 @@ public class OrderManagerControllerTest extends LoginJUnit {
     public void testOrderQuery2() throws Exception {
         adminLogin(ADMINAME, PASSWORD);
         MvcResult result = getMockMvc().perform(post("/admin/order_query.do")
-                .param("status0", "true")
+                .param("status0", "false")
                 .param("status1", "true")
-                .param("status2", "true")
+                .param("status2", "false")
+                .param("begin_time", "2008-06-05 00:00:00")
                 .param("index", "0")
                 .param("size", "20")
                 .session(getMockHttpSession())

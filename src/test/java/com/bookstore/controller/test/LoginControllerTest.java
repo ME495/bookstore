@@ -58,4 +58,35 @@ public class LoginControllerTest extends LoginJUnit {
 		String role = (String) getMockHttpSession().getAttribute("role");
 		assertEquals("super", role);
 	}
+
+	@Test
+	public void testLoginCheck1() throws Exception {
+		userLogin("chengjian", "123456");
+		MvcResult result = getMockMvc().perform(post("/check_login.do")
+				.session(getMockHttpSession())
+				.contentType(MediaType.APPLICATION_FORM_URLENCODED)
+		).andExpect(status().isOk()).andReturn();
+		String st = result.getResponse().getContentAsString();
+		JSONObject jsonObject = JSON.parseObject(st);
+		assertEquals(ResponseMes.SUCCESS, jsonObject.getString("status"));
+		JSONObject jsonObject2 = jsonObject.getJSONObject("message");
+		assertEquals("chengjian", jsonObject2.getString("name"));
+		assertEquals("user", jsonObject2.getString("role"));
+	}
+
+	@Test
+	public void testLoginCheck2() throws Exception {
+		superLogin("Bookstore!");
+		MvcResult result = getMockMvc().perform(post("/check_login.do")
+				.session(getMockHttpSession())
+				.contentType(MediaType.APPLICATION_FORM_URLENCODED)
+		).andExpect(status().isOk()).andReturn();
+		String st = result.getResponse().getContentAsString();
+		JSONObject jsonObject = JSON.parseObject(st);
+		assertEquals(ResponseMes.SUCCESS, jsonObject.getString("status"));
+		JSONObject jsonObject2 = jsonObject.getJSONObject("message");
+		assertEquals("super", jsonObject2.getString("name"));
+		assertEquals("super", jsonObject2.getString("role"));
+		System.out.println(result.getResponse().getContentAsString());
+	}
 }
