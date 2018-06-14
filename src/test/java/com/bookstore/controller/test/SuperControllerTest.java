@@ -18,7 +18,7 @@ public class SuperControllerTest extends LoginJUnit {
 	@Test
 	public void testInsertAdmin() throws Exception {
 		superLogin("Bookstore!");
-		String responseString = getMockMvc().perform(post("/super/add.do").param("admin_name", "a2145")
+		String responseString = getMockMvc().perform(post("/super/add_admin.do").param("admin_name", "a2145")
 				.param("password", "123456").session(getMockHttpSession())).andReturn().getResponse()
 				.getContentAsString();
 		assertTrue(responseString.contains("创建成功"));
@@ -28,7 +28,7 @@ public class SuperControllerTest extends LoginJUnit {
 	public void testDeleteAdmin() throws Exception {
 		testInsertAdmin();
 		String responseString = getMockMvc()
-				.perform(post("/super/delete.do").param("admin_name", "a2145").session(getMockHttpSession()))
+				.perform(post("/super/delete_admin.do").param("admin_name", "a2145").session(getMockHttpSession()))
 				.andReturn().getResponse().getContentAsString();
 		assertTrue(responseString.contains("删除成功"));
 	}

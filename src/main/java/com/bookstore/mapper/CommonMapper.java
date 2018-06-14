@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.bookstore.entity.Book;
 import com.bookstore.entity.BookDetailInfo;
+import com.bookstore.entity.User;
 
 /**
  * 管理员,用户都可以使用的功能,主要是指获取图书信息
@@ -27,5 +28,7 @@ public interface CommonMapper {
 			@Param("size") int size);
 	
 	public int getBookCount();
-	
+	   // 插入用户
+    public int insertUser(User user);
+
 }

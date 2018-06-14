@@ -10,17 +10,6 @@ public interface UserService {
 	 */
 	public ResponseMes getUser(String userName);
 
-	/**
-	 * 用户注册
-	 * @param userName 账号
-	 * @param password 密码
-	 * @param phone 联系方式
-	 * @param realName 真实名字
-	 * @param address 地址
-	 * @return 注册成功或失败信息
-	 */
-	public ResponseMes insertUser(String userName, String password, String phone, String realName, String address);
-	
 	
 	/**
 	 * 修改用户个人信息

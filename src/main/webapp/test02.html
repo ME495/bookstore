@@ -15,21 +15,26 @@
 			<span>湘大旧书店</span>
 		</a>
 
-		
 
 		<div class="login-area">
 			<ul>
 				<li>
-					<span class="sign-actions" id="toLogin">登录</span>
+					<a href="" class="ui button basic blue">
+						<i class="icon shop"></i>
+						购物车
+					</a>
 				</li>
 				<li>
-					<span class="sign-actions" id="toRegister">注册</span>
+					<a class="sign-actions" id="toLogin">登录</a>
+				</li>
+				<li>
+					<a class="sign-actions" id="toRegister">注册</a>
 				</li>
 			</ul>
 		</div>
 
 		<div class="search-container">
-			<!-- <div class="ui label right pointing red">请输入要查找的图书</div> -->
+			<div class="ui label right pointing red hidden">请输入要查找的图书</div>
 			<div class="ui input icon">
 				<input type="text" name="" placeholder="查找图书" id="searchBook">
 				<i class="icon search link" id="toSearch"></i>
@@ -218,7 +223,7 @@
 			
 			<div class="books-container not-show">
 				<div class="book-item">
-					<a href="">
+					<a href="/bookDetail.html?bookId=123456">
 						<img src="https://img13.360buyimg.com/n2/jfs/t658/193/368125886/17075/4b1428b8/546335b8Naab48023.jpg" class="book-image-normal">
 						<div class="book-name">如何阅读一本书</div>
 					</a>

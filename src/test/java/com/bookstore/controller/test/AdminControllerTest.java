@@ -12,14 +12,14 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.alibaba.fastjson.JSON;
 import com.bookstore.entity.User;
+import com.bookstore.mapper.CommonMapper;
 import com.bookstore.mapper.UserMapper;
 import com.bookstore.message.ResponseMes;
 import com.bookstore.utils.LoginJUnit;
 
 public class AdminControllerTest extends LoginJUnit {
 	@Autowired
-	private UserMapper userMapper;
-
+	private CommonMapper commonMapper;
 	/**
 	 * 测试删除存在的用户
 	 * 
@@ -34,7 +34,7 @@ public class AdminControllerTest extends LoginJUnit {
 		user.setPhone("18880207329");
 		user.setRealName("张三");
 		user.setAddress("湘潭大学琴湖18栋");
-		userMapper.insertUser(user);
+		commonMapper.insertUser(user);
 		adminLogin("chengjian", "123456");
 		String resStr = getMockMvc()
 				.perform(post("/admin/delete_user.do").param("user_name", "xiaoxiong").session(getMockHttpSession()))
@@ -68,6 +68,7 @@ public class AdminControllerTest extends LoginJUnit {
 		String responseStr = getMockMvc()
 				.perform(post("/admin/get_user.do").param("user_name", "xiyou").session(getMockHttpSession()))
 				.andReturn().getResponse().getContentAsString();
+//		System.out.println(responseStr);
 		assertEquals("success", JSON.parseObject(responseStr).get("status"));
 	}
 
@@ -98,7 +99,7 @@ public class AdminControllerTest extends LoginJUnit {
 		String responseStr = getMockMvc().perform(post("/admin/pwdModify.do").param("user_name", "xiyou")
 				.param("password", "xiyou").session(getMockHttpSession())).andReturn().getResponse()
 				.getContentAsString();
-		// System.out.println(responseStr);
+//		 System.out.println(responseStr);
 		assertEquals("success", JSON.parseObject(responseStr).get("status"));
 	}
 
@@ -120,7 +121,7 @@ public class AdminControllerTest extends LoginJUnit {
 				.param("img_url", "https://img3.doubanio.com/view/subject/s/public/s29417905.jpg")
 				.param("original_price", "45.0").param("degree", "1").param("num", "88").session(getMockHttpSession()))
 				.andReturn().getResponse().getContentAsString();
-		// System.out.println(responseStr);
+		 System.out.println(responseStr);
 		assertEquals("success", JSON.parseObject(responseStr).get("status"));
 	}
 
@@ -167,7 +168,7 @@ public class AdminControllerTest extends LoginJUnit {
 					.param("actual_price", "16.5")
 					.session(getMockHttpSession())
 				).andReturn().getResponse().getContentAsString();
-//		System.out.println(responseStr);
+		System.out.println(responseStr);
 		assertEquals("success", JSON.parseObject(responseStr).get("status"));
 	}
 }

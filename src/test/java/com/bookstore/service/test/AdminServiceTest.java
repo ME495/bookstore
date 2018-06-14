@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.bookstore.entity.User;
+import com.bookstore.mapper.CommonMapper;
 import com.bookstore.mapper.UserMapper;
 import com.bookstore.message.ResponseMes;
 import com.bookstore.service.AdminService;
@@ -16,7 +17,7 @@ public class AdminServiceTest extends BaseJUnit {
 	@Autowired
 	AdminService adminService;
 	@Autowired
-	UserMapper userMapper;
+	CommonMapper commonMapper;
 
 	private String isbn = "9787506391542";
 	private String title = "我喜欢生命本来的样子";
@@ -33,7 +34,7 @@ public class AdminServiceTest extends BaseJUnit {
 		user.setPhone("18880207329");
 		user.setRealName("张三");
 		user.setAddress("湘潭大学琴湖18栋");
-		userMapper.insertUser(user);
+		commonMapper.insertUser(user);
 		assertEquals("success", adminService.deleteUser("xiaoxiong").getStatus());
 	}
 

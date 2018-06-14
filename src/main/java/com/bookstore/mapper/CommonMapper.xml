@@ -31,4 +31,8 @@
 			where title like concat('%',#{keyWord},'%') or summary like concat('%',#{keyWord},'%')
 			limit #{index},#{size}
 	</select>
+	
+	<insert id="insertUser" parameterType="com.bookstore.entity.User">
+		insert into user values(#{userName},MD5(#{password}),#{phone},#{realName},#{address})
+	</insert>
 </mapper>

@@ -28,7 +28,7 @@ public class CommonControllerTest extends MockMvcJUnit {
 		String responseStr = getMockMvc().perform(
 					post("/browse_book.do")
 					.param("index", "4")
-					.param("size","8")
+					.param("size","3")
 				).andReturn().getResponse().getContentAsString();
 //		System.out.println(responseStr);
 		assertEquals("success",JSON.parseObject(responseStr).get("status"));
@@ -43,7 +43,7 @@ public class CommonControllerTest extends MockMvcJUnit {
 				.param("index", "1")
 				.param("size","8")
 			).andReturn().getResponse().getContentAsString();
-	System.out.println(responseStr);
+//	System.out.println(responseStr);
 	assertEquals("success",JSON.parseObject(responseStr).get("status"));
 	}
 	

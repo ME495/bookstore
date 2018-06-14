@@ -2,25 +2,21 @@ package com.bookstore.mapper.test;
 
 import static org.junit.Assert.assertEquals;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.transaction.TransactionConfiguration;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.bookstore.entity.Book;
 import com.bookstore.entity.BookPrice;
 import com.bookstore.entity.User;
 import com.bookstore.mapper.AdminMapper;
-import com.bookstore.mapper.UserMapper;
+import com.bookstore.mapper.CommonMapper;
 import com.bookstore.utils.BaseJUnit;
 
 public class AdminMapperTest extends BaseJUnit {
 	@Autowired
 	private AdminMapper adminMapper;
 	@Autowired
-	UserMapper userMapper;
-
+	private CommonMapper commonMapper;
 	
 	@Test
 	public void testDeleteUser() {
@@ -30,7 +26,7 @@ public class AdminMapperTest extends BaseJUnit {
 		user.setPhone("18880207329");
 		user.setRealName("张三");
 		user.setAddress("湘潭大学琴湖18栋");
-		userMapper.insertUser(user);
+		commonMapper.insertUser(user);
 		assertEquals(1, adminMapper.deleteUser("xiaoxiong"));
 	}
 
