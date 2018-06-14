@@ -45,7 +45,7 @@
             var status = null;
             if (value.status == "0") status = "未发货";
             else if (value.status == "1") status = "已发货";
-            else status = "确认收货";
+            else status = "已收货";
             var $e = $("<tr></tr>");
             $e.append("<td><a class='order' href='#'>" + value.orderId + "</a></td>");
             $e.append("<td>" + value.userName + "</td>");
@@ -84,6 +84,7 @@
         var status0 = getUrlParam("status0");
         var status1 = getUrlParam("status1");
         var status2 = getUrlParam("status2");
+        var order_id = getUrlParam("order_id");
         var user_name = getUrlParam("user_name");
         var begin_time = getUrlParam("begin_time");
         var end_time = getUrlParam("end_time");
@@ -93,6 +94,7 @@
         json["status0"] = status0;
         json["status1"] = status1;
         json["status2"] = status2;
+        if (order_id) json["order_id"] = order_id;
         if (user_name) json["user_name"] = user_name;
         if (begin_time) json["begin_time"] = begin_time;
         if (end_time) json["end_time"] = end_time;
