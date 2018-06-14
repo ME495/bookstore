@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bookstore.mapper.TrolleyMapper">
+	<insert id="insertTrolley">
+		INSERT INTO trolley 
+		VALUES(#{user_name}, #{isbn}, #{degree}, #{num})
+	</insert>
+	
+	<delete id="deleteTrolley">
+		DELETE FROM trolley 
+		WHERE user_name = #{user_name} 
+		AND isbn = #{isbn} 
+		AND degree = #{degree} 
+	</delete>
+	
+	<update id="updateTrolley">
+		UPDATE trolley
+		SET num = #{num}
+		WHERE user_name = #{user_name}
+		AND isbn = #{isbn}
+		AND degree = #{degree}
+	</update>
+	
+	<select id="selectTrolley" resultType="com.bookstore.entity.Trolley">
+		SELECT user_name, isbn, title, img_url, bp.degree, t.num, bp.actual_price
+		FROM ((trolley t JOIN book_price bp USING(isbn, degree))
+		JOIN book k USING(isbn)) 
+		JOIN `user` u USING(user_name)
+		WHERE t.user_name = #{user_name}
+	</select>
+</mapper>
