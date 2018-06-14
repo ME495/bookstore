@@ -16,18 +16,8 @@
 		insert into book_price values(#{bookPrice.isbn},#{bookPrice.degree},#{bookPrice.actualPrice},#{bookPrice.num});
 	</insert>
 	
-	<update id="updateBook">
-		update book_price
-			<choose>
-				<when test="actualPrice == null">
-					set num = num +#{num}
-				</when>
-				<otherwise>
-					set num = #{num}
-						,actual_price = #{actualPrice}
-				</otherwise>
-			</choose>
-			where isbn = #{isbn} and degree = #{degree}
+	<update id="updateBook" statementType="CALLABLE">
+		call update_book(#{isbn},#{degree},#{num},#{actualPrice})
 	</update>
 	
 	<update id="deleteBook">
