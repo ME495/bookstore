@@ -16,13 +16,13 @@ public class SuperController {
 	private SuperService superService;
 
 	@ResponseBody
-	@RequestMapping("/add.do")
+	@RequestMapping("/add_admin.do")
 	public String insertAdmin(@RequestParam("admin_name") String adminName, @RequestParam("password") String password) {
 		return JSON.toJSONString(superService.insertAdmin(adminName, password));
 	}
 
 	@ResponseBody
-	@RequestMapping("/delete.do")
+	@RequestMapping("/delete_admin.do")
 	public String deleteAdmin(@RequestParam("admin_name") String adminName) {
 		return JSON.toJSONString(superService.deleteAdmin(adminName));
 	}
