@@ -25,6 +25,7 @@ public class AdminControllerTest extends LoginJUnit {
 	 * 
 	 * @throws Exception
 	 */
+	@Ignore
 	@Test
 	public void testDeleteUser1() throws Exception {
 		User user = new User();
@@ -46,6 +47,7 @@ public class AdminControllerTest extends LoginJUnit {
 	 * 
 	 * @throws Exception
 	 */
+	@Ignore
 	@Test
 	public void testDeleteUser2() throws Exception {
 		adminLogin("chengjian", "123456");
@@ -60,6 +62,7 @@ public class AdminControllerTest extends LoginJUnit {
 	 * 
 	 * @throws Exception
 	 */
+	@Ignore
 	@Test
 	public void testGetUser1() throws Exception {
 		adminLogin("chengjian", "123456");
@@ -75,6 +78,7 @@ public class AdminControllerTest extends LoginJUnit {
 	 * 
 	 * @throws Exception
 	 */
+	@Ignore
 	@Test
 	public void testGetUser2() throws Exception {
 		adminLogin("chengjian", "123456");
@@ -89,6 +93,7 @@ public class AdminControllerTest extends LoginJUnit {
 	 * 
 	 * @throws Exception
 	 */
+	@Ignore
 	@Test
 	public void testModifyUserPwd() throws Exception {
 		adminLogin("chengjian", "123456");
@@ -104,6 +109,7 @@ public class AdminControllerTest extends LoginJUnit {
 	 * 
 	 * @throws Exception
 	 */
+
 	@Test
 	public void testAddBook() throws Exception {
 		adminLogin("chengjian", "123456");
@@ -114,7 +120,7 @@ public class AdminControllerTest extends LoginJUnit {
 				.param("summary", "测试一下")
 				.param("publisher", "作家出版社")
 				.param("img_url", "https://img3.doubanio.com/view/subject/s/public/s29417905.jpg")
-				.param("original_price", "45.0").param("degree", "1").param("num", "88").session(getMockHttpSession()))
+				.param("original_price", "45.0").param("degree", "2").param("num", "88").session(getMockHttpSession()))
 				.andReturn().getResponse().getContentAsString();
 		 System.out.println(responseStr);
 		assertEquals("success", JSON.parseObject(responseStr).get("status"));
@@ -125,6 +131,7 @@ public class AdminControllerTest extends LoginJUnit {
 	 * 
 	 * @throws Exception
 	 */
+	@Ignore
 	@Test
 	public void testAddBook1() throws Exception {
 		testAddBook();
@@ -137,6 +144,7 @@ public class AdminControllerTest extends LoginJUnit {
 		// System.out.println(responseStr);
 		assertEquals("success", JSON.parseObject(responseStr).get("status"));
 	}
+	@Ignore
 	@Test
 	public void testDeleteBook() throws Exception {
 		testAddBook();
@@ -149,7 +157,7 @@ public class AdminControllerTest extends LoginJUnit {
 //		System.out.println(responseStr);
 		assertEquals("success", JSON.parseObject(responseStr).get("status"));
 	}
-	
+	@Ignore
 	@Test
 	public void testUpdateBookInfo() throws Exception{
 		testAddBook();

@@ -7,4 +7,5 @@ public interface OrderManagerService {
 	public String orderDetail(int orderId);
 	public String allocateOrder(int orderId);
 	public String confirmOrder(int orderId);
+	public String approveOrder(int orderId);
 }

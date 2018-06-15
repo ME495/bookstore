@@ -2,6 +2,7 @@ package com.bookstore.mapper.test;
 
 import static org.junit.Assert.assertEquals;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -30,12 +31,10 @@ public class AdminMapperTest extends BaseJUnit {
 		assertEquals(1, adminMapper.deleteUser("xiaoxiong"));
 	}
 
-	
 	@Test
 	public void testModifyUserPwd() {
 		assertEquals(1, adminMapper.modifyUserPwd("xiyou", "123456"));
 	}
-
 	@Test
 	public void testAddBook() {
 		Book book = new Book();
@@ -56,14 +55,25 @@ public class AdminMapperTest extends BaseJUnit {
 		bookPrice.setNum(88);
 		assertEquals(1, adminMapper.addBook(book, bookPrice));
 	}
-
 	
+	/**
+	 * 测试插入book表已有isbn,但是book_price表里没有的书籍
+	 */
 	@Test
-	public void testUpdateBookNum() {
+	public void testAddBook2() {
 		testAddBook();
-		assertEquals(1, adminMapper.updateBook("9787506391542", 1, 10,null));
+		assertEquals(1, adminMapper.updateBook("9787506391542", 2, 40,28.8));
 	}
-	
+
+	/**
+	 * 更新书籍数量和价格
+	 */
+	@Test
+	public void testUpdateBook() {
+		testAddBook();
+		assertEquals(1, adminMapper.updateBook("9787506391542", 1, 10,18.8));
+	}
+
 	@Test
 	public void testDeleteBook() {
 		testAddBook();

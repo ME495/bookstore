@@ -29,6 +29,14 @@
     </div>
     <div class="form-horizontal col-xs-offset-2">
         <div class="form-group">
+            <label class="col-xs-2 control-label">订单号：</label>
+            <div class="col-xs-6">
+                <input class="form-control" type="text" id="order_id">
+            </div>
+        </div>
+    </div>
+    <div class="form-horizontal col-xs-offset-2">
+        <div class="form-group">
             <label class="col-xs-2 control-label">下单用户：</label>
             <div class="col-xs-6">
                 <input class="form-control" type="text" id="user_name">
@@ -91,6 +99,7 @@
             if ($("#status0").is(":checked")) status0 = "true";
             if ($("#status1").is(":checked")) status1 = "true";
             if ($("#status2").is(":checked")) status2 = "true";
+            var order_id = $("#order_id").val();
             var user_name = $("#user_name").val();
             var begin_time = $("#begin_time").val();
             var end_time = $("#end_time").val();
@@ -98,6 +107,7 @@
             url = addUrlParam(url, "status0", status0);
             url = addUrlParam(url, "status1", status1);
             url = addUrlParam(url, "status2", status2);
+            if (order_id) url = addUrlParam(url, "order_id", order_id);
             if (user_name) url = addUrlParam(url, "user_name", user_name);
             if (begin_time) url = addUrlParam(url, "begin_time", begin_time);
             if (end_time) url = addUrlParam(url, "end_time", end_time);

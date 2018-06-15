@@ -69,5 +69,19 @@ public class OrderManagerServiceImpl implements OrderManagerService {
 		}
 	}
 
+	@Override
+	public String approveOrder(int orderId) {
+		Order order = orderMapper.getOrder(orderId);
+		if (order.getStatus() == -1) {
+			if (1 == orderMapper.setOrderStatus(orderId, 0)) {
+				return new ResponseMes(ResponseMes.SUCCESS, null).toJsonString();
+			} else {
+				return new ResponseMes(ResponseMes.FAIL, null).toJsonString();
+			}
+		} else {
+			return new ResponseMes(ResponseMes.FAIL, null).toJsonString();
+		}
+	}
+
 
 }
