@@ -9,12 +9,13 @@
 <html>
 <head>
     <title>确认添加图书</title>
+    <meta name="referrer" content="no-referrer">
 </head>
 <body>
 <%@include file="navbar.jspf"%>
 <div class="container">
     <div class="text-center">
-        <span id="image_kill_referrer" class="img-thumbnail"></span>
+        <img>
     </div>
     <div class="form-horizontal col-xs-offset-2">
         <div class="form-group">
@@ -107,7 +108,8 @@
         original_price = data.price.replace(/(\d+.\d+)[元￥$]/, '$1');
         img_url = data.images.small;
         // document.getElementById('image_kill_referrer').innerHTML = ReferrerKiller.imageHtml(img_url);
-        $("#image_kill_referrer").html(ReferrerKiller.imageHtml(img_url));
+        // $("#image_kill_referrer").html(ReferrerKiller.imageHtml(img_url));
+        $("img").attr("src", img_url);
         $("#isbn").val(isbn);
         $("#title").val(title);
         $("#author").val(author);

@@ -30,7 +30,7 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a href="./add_book.jsp">添加图书</a></li>
-                        <li><a href="#">修改图书</a></li>
+                        <li><a href="./modify_book.jsp">修改图书</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
