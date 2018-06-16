@@ -1,6 +1,6 @@
 package com.bookstore.entity;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 import com.alibaba.fastjson.annotation.JSONField;
 
@@ -12,9 +12,22 @@ import com.alibaba.fastjson.annotation.JSONField;
 public class Order {
 	private String orderId, userName, address;
 	@JSONField(format = "yyyy-MM-dd HH:mm:ss")
-	private Date orderTime;
+	private Timestamp orderTime;
 	private int status;
 	private double money;
+
+	public Order() {
+		super();
+	}
+
+	public Order(String userName, String address, Timestamp orderTime, int status, double money) {
+		super();
+		this.userName = userName;
+		this.address = address;
+		this.orderTime = orderTime;
+		this.status = status;
+		this.money = money;
+	}
 
 	public String getOrderId() {
 		return orderId;
@@ -40,11 +53,11 @@ public class Order {
 		this.address = address;
 	}
 
-	public Date getOrderTime() {
+	public Timestamp getOrderTime() {
 		return orderTime;
 	}
 
-	public void setOrderTime(Date orderTime) {
+	public void setOrderTime(Timestamp orderTime) {
 		this.orderTime = orderTime;
 	}
 
