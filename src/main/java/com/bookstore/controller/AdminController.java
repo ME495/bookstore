@@ -54,7 +54,8 @@ public class AdminController {
 	
 	@ResponseBody
 	@RequestMapping(value="/modify_book.do")
-	public String updateBookInfo(String isbn, int degree, int num, @Param("actual_price")Double actualPrice) {
+	public String updateBookInfo(String isbn, int degree, int num, @RequestParam("actual_price")Double actualPrice) {
+//		System.out.print(actualPrice+"########");
 		return JSON.toJSONString(adminService.updateBookInfo(isbn, degree, num, actualPrice));
 	}
 }
