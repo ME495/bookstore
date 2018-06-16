@@ -5,10 +5,8 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.bookstore.controller.TrolleyController;
+import com.bookstore.entity.Order;
 import com.bookstore.entity.Trolley;
 import com.bookstore.entity.Trolley4Pay;
 import com.bookstore.mapper.TrolleyMapper;
@@ -55,6 +53,11 @@ public class TrolleyServiceImpl implements TrolleyService {
 	}
 	
 	@Override
+	public double getActualPrice(String isbn, int degree) {
+		return trolleyMapper.getActualPrice(isbn, degree);
+	}
+	
+	@Override
 	public double getPrice2Pay(String trolleyMsg) {
 		ArrayList<Trolley4Pay> trolleyMsgList = new ArrayList<Trolley4Pay>();
         trolleyMsgList = (ArrayList<Trolley4Pay>) JSONObject.parseArray(trolleyMsg, Trolley4Pay.class);
@@ -68,10 +71,40 @@ public class TrolleyServiceImpl implements TrolleyService {
 	}
 
 	@Override
-	public void recvPaymentStatus(String userName, int paymentStatus) {
-		if(paymentStatus == TrolleyController.PAYMENT_APPROVED) {
-			
+	public ResponseMes insertOrder(Order order) {
+		if(trolleyMapper.insertOrder(order) == 1) {
+			return new ResponseMes(ResponseMes.SUCCESS, "");
+		} else {
+			return new ResponseMes(ResponseMes.FAIL, "");
 		}
+	}
+
+	@Override
+	public ResponseMes insertOrderBook(int orderId, int degree, String isbn, double unitPrice, int num) {
+		if(trolleyMapper.insertOrderBook(orderId, degree, isbn, unitPrice, num) == 1) {
+			return new ResponseMes(ResponseMes.SUCCESS, "");
+		} else {
+			return new ResponseMes(ResponseMes.FAIL, "");
+		}
+	}
+	
+	@Override
+	public ArrayList<Trolley4Pay> getOrderBook(int orderId) {
+		return(trolleyMapper.getOrderBook(orderId));
+	}
+
+	@Override
+	public ResponseMes insertOrderPayment(int orderId, String paymentId) {
+		if(trolleyMapper.insertOrderPayment(orderId, paymentId) == 1) {
+			return new ResponseMes(ResponseMes.SUCCESS, "");
+		} else {
+			return new ResponseMes(ResponseMes.FAIL, "");
+		}
+	}
+
+	@Override
+	public int getOrderId(String paymentId) {
+		return trolleyMapper.getOrderId(paymentId);
 	}
 
 }

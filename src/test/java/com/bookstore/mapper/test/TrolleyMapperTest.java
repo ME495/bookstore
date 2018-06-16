@@ -56,8 +56,36 @@ public class TrolleyMapperTest extends BaseJUnit {
         String nowTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date); // 将时间格式转换成符合Timestamp要求的格式
         Timestamp orderDatetime = Timestamp.valueOf(nowTime);
 		Order order = new Order("jinqi","琴湖18栋", orderDatetime, 1, 18.8);
-		trolleyMapper.insertOrder(order);
-		System.out.println(order.getOrderTime());
+		assertEquals(1, trolleyMapper.insertOrder(order));
+		//System.out.println(order.getOrderTime());
+	}
+	
+	@Test
+	public void testInsertOrderBook() {
+		double unitPrice = trolleyMapper.getActualPrice("9787533951665", 1);
+		assertEquals(1, trolleyMapper.insertOrderBook(150, 1, "9787533951665", unitPrice, 2));
+	}
+	
+	@Test
+	public void testGetOrderBook() {
+		assertEquals(5, trolleyMapper.getOrderBook(150).size());
+	}
+	
+	@Test
+	public void testInsertOrderBookPayment() {
+		assertEquals(1, trolleyMapper.insertOrderPayment(149, "test-payment-id"));
+	}
+	
+	@Test
+	public void testGetOrderId() {
+		trolleyMapper.insertOrderPayment(149, "test-payment-id2");
+		assertEquals(149, trolleyMapper.getOrderId("test-payment-id2"));
+	}
+	
+	@Test
+	public void testGetPaymentId() {
+		trolleyMapper.insertOrderPayment(149, "test-payment-id2");
+		assertEquals("test-payment-id2", trolleyMapper.getPaymentId(149));
 	}
 
 }

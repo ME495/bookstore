@@ -42,6 +42,27 @@
 	
 	<insert id="insertOrderBook">
 		INSERT INTO order_book
-		VALUES(#{)
+		VALUES(#{order_id}, #{degree}, #{isbn}, #{unit_price}, #{num})
 	</insert>
+	
+	<select id="getOrderBook" resultType="com.bookstore.entity.Trolley4Pay">
+		SELECT isbn, degree, num
+		FROM order_book
+		WHERE order_id = #{order_id}
+	</select>
+	
+	<insert id="insertOrderPayment">
+		INSERT INTO order_payment
+		VALUES(#{order_id}, #{payment_id})
+	</insert>
+	
+	<select id="getOrderId" resultType="integer">
+		SELECT order_id FROM order_payment 
+		WHERE payment_id = #{payment_id}
+	</select>
+	
+	<select id="getPaymentId" resultType="string">
+		SELECT payment_id FROM order_payment
+		WHERE order_id = #{order_id}
+	</select>
 </mapper>

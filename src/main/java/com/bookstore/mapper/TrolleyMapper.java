@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.bookstore.entity.Order;
 import com.bookstore.entity.Trolley;
+import com.bookstore.entity.Trolley4Pay;
 
 @Repository
 public interface TrolleyMapper {
@@ -26,7 +27,15 @@ public interface TrolleyMapper {
 	
 	public int insertOrder(Order order);
 	
-	public int insertOrderBook(@Param("order_id")String orderId, @Param("degree")int degree, 
-			@Param("isbn")String isbn, @Param("unit_price")String unitPrice, @Param("num")int num);
+	public int insertOrderBook(@Param("order_id")int orderId, @Param("degree")int degree, 
+			@Param("isbn")String isbn, @Param("unit_price")double unitPrice, @Param("num")int num);
+	
+	public ArrayList<Trolley4Pay> getOrderBook(@Param("order_id")int orderId);
+	
+	public int insertOrderPayment(@Param("order_id")int orderId, @Param("payment_id")String paymentId);
+	
+	public int getOrderId(@Param("payment_id")String paymentId);
+	
+	public String getPaymentId(@Param("order_id")int orderId);
 
 }

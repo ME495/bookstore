@@ -95,14 +95,26 @@ public class TrolleyControllerTest extends LoginJUnit {
         trolleyList = (ArrayList<Trolley>) JSONObject.parseArray(jsonObject.getString("message"), Trolley.class);
         int post = 0;
         for(int i = 0; i < trolleyList.size(); i++) {
-        	System.out.println(trolleyList.get(i).getIsbn());
+//        	System.out.println(trolleyList.get(i).getIsbn());
         	if(trolleyList.get(i).getIsbn().equals("9787108061119")) {
         		post = i;
         		break;
         	}
         }
-        System.out.println("post=" + post + ", title=" + trolleyList.get(post).getTitle());
+//        System.out.println("post=" + post + ", title=" + trolleyList.get(post).getTitle());
         assertEquals(trolleyList.get(post).getTitle(), "南极洲");
+	}
+	
+	@Test
+	public void testDoPayment() throws Exception {
+		userLogin("jinqi", "123456");
+		MvcResult result = getMockMvc().perform(post("/user/payment.do")
+				.param("trolleyMsg", "[{\"isbn\":\"9787108061119\", degree:0, num:2}, {\"isbn\":\"9787100155724\", degree:2, num:3}]")
+                .session(getMockHttpSession())
+                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+        ).andExpect(status().isOk()).andReturn();
+		String st = result.getResponse().getContentAsString();
+		System.out.println("testDoPayment said: " + st);
 	}
 
 }
