@@ -3,6 +3,7 @@
 <head>
 	<title>test03</title>
 	<meta charset="utf-8">
+	<meta name="referrer" content="no-referrer"/>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.3.1/dist/semantic.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.3.1/dist/semantic.min.js"></script>
@@ -10,7 +11,7 @@
 </head>
 <body>
 	<div class="xob-header">
-		<a class="xob-logo">
+		<a class="xob-logo" href="/">
 			<i class="icon book"></i>
 			<span>湘大旧书店</span>
 		</a>
@@ -20,44 +21,82 @@
 		<div class="login-area">
 			<ul>
 				<li>
+					<a href="" class="ui button basic blue">
+						<i class="icon shop"></i>
+						购物车
+					</a>
+				</li>
+				<li>
 					<span class="sign-actions" id="toLogin">登录</span>
 				</li>
 				<li>
-					<span class="sign-actions">注册</span>
+					<span class="sign-actions" id="toRegister">注册</span>
 				</li>
 			</ul>
 		</div>
 
 		<div class="search-container">
+			<div class="ui label right pointing red hidden">请输入要查找的图书</div>
 			<div class="ui input icon">
 				<input type="text" name="" placeholder="查找图书" id="searchBook">
 				<i class="icon search link"></i>
 			</div>
 		</div>
 
-		<div class="ui modal tiny" id="signModal">
+		<div class="ui modal tiny" id="loginModal">
 			<div class="content">
 				<div class="signmodal-title">登录湘大旧书店</div>
 				<div class="signmodal-subtitle">发现更多特价好书</div>
 				<div class="signform-container">
-					<form class="ui form">
+					<form class="ui form" id="loginForm">
 						<div class="field">
 							<label>用户名</label>
-							<input type="text" name="" >
+							<input type="text" name="user_name">
 						</div>
 						<div class="field">
 							<label>密码</label>
-							<input type="password" name="">
+							<input type="password" name="password">
 						</div>
-						<div class="field">
+						<!-- <div class="field">
 							<label>输入验证码</label>
 							<input type="text" name="">
+						</div> -->
+					</form>
+					<div class="ui message error raised hidden" id="loginErrorMsg">
+						<i class="icon close"></i>
+						<div class="header">Error</div>
+						<p id="">asdfdf</p>
+					</div>
+					<button class="ui button primary fluid" id="loginButton">登 录</button>
+				</div>
+			</div>
+		</div>
+
+		<div class="ui modal tiny" id="registerModal">
+			<div class="content">
+				<div class="signmodal-title">注册湘大旧书店</div>
+				<div class="signmodal-subtitle">发现更多特价好书</div>
+				<div class="signform-container">
+					<form class="ui form" id="registerForm">
+						<div class="field">
+							<label>用户名</label>
+							<input type="text" name="user_name" >
+						</div>
+						<div class="field">
+							<label>密码</label>
+							<input type="password" name="password">
+						</div>
+						<div class="field">
+							<label>输入邮箱</label>
+							<input type="text" name="email">
 						</div>
 					</form>
-					<div class="ui message error raised hidden">
-						<p>请填入完整信息</p>
+					<div class="ui message error raised hidden"  id="registerErrorMsg">
+						<i class="icon close"></i>
+						<div class="header">Error</div>
+						<p></p>
 					</div>
-					<button class="ui button primary fluid" id="signButton">登 录</button>
+					<button class="ui button primary fluid" id="registerButton">注 册</button>
 				</div>
 			</div>
 		</div>
@@ -72,22 +111,22 @@
 		<div class="book-info-container">
 			<div class="book-image-box">
 				<div class="book-image-container">
-					<img class="book-image-large" src="https://img.alicdn.com/imgextra/i2/2220483884/TB1sTmFb.UIL1JjSZFrXXb3xFXa_!!0-item_pic.jpg_430x430q90.jpg">
+					<img class="book-image-large" src="" id="bookImage"/>
 				</div>
 			</div>
 
 			<div class="book-detail-box">
-				<div class="book-detail-name">基督山伯爵</div>
-				<div class="book-summary">基督山伯爵正版包邮 (上下)无删节全译本 原版原著中文版</div>
+				<div class="book-detail-name" id="bookName"></div>
+				<div class="book-summary" id="bookSummary"></div>
 				<div class="book-author mt10">
-					<span>大仲马</span>
+					<span id="authorName"></span>
 					<span> 著</span>
 				</div>
 				<div class="book-price-box">
 					<div class="box-title">超值价</div>
 					<strong class="book-detail-price">
 						￥
-						<span >60.80</span>
+						<span id="bookPrice"></span>
 					</strong>
 				</div>
 				<div class="choose-amount-box">
@@ -95,13 +134,13 @@
 					<div class="amount-wigets">
 						<button class="ui button gray basic" id="amountSub">-</button>
 						<div class="ui input amount-input">
-							<input type="text" name="" id="amount" value="1" />
+							<input type="text" name="" id="amount" value="1"/>
 						</div>
 						<button class="ui button basic gray" id="amountAdd">+</button>
 					</div>
 				</div>
 				<div class="book-detail-actions">
-					<button class="ui button basic red large">立即购买</button>
+					<!-- <button class="ui button basic red large">立即购买</button> -->
 					<button class="ui button red large">
 						<i class="icon shopping cart"></i>
 						加入购物车
@@ -134,5 +173,6 @@
 
 	
 </body>
-<script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/bookDetail.js"></script>
 </html>
