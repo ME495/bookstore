@@ -11,8 +11,7 @@
                 var password = $("#password").val()
                 $.post("./admin_login.do", {admin_name: admin_name, password: password}, function (data, status) {
                     if (status == "success") {
-                        var json = $.parseJSON(data)
-                        if (json.status == "success") {
+                        if (data.status == "success") {
                             location.href = "./admin/index.jsp";
                         }
                     }

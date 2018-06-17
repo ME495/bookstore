@@ -14,6 +14,7 @@ import com.bookstore.message.ResponseMes;
  *
  */
 @Controller
+@RequestMapping(produces = "application/json;charset=utf-8")
 public class LogoutController {
 	
 	/**
@@ -23,7 +24,7 @@ public class LogoutController {
 	 * 如果注销成功，则返回 {"status":"success"}
 	 * 否则，返回 {"status":"fail"}
 	 */
-	@RequestMapping("/logout.do")
+	@RequestMapping(value = "/logout.do")
 	@ResponseBody
 	public String logout(HttpSession httpSession) {
 		String role = (String) httpSession.getAttribute("role");

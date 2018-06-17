@@ -11,7 +11,7 @@
                 var password = $("#password").val()
                 $.post("./user_login.do", {user_name: user_name, password: password}, function (data, status) {
                     if (status == "success") {
-                        var json = $.parseJSON(data)
+                        var json = data;
                         if (json.status == "success") {
                             location.href = "./user/index.html";
                         }

@@ -21,6 +21,7 @@ import javax.servlet.http.HttpSession;
  *
  */
 @Controller
+@RequestMapping(produces = "application/json;charset=utf-8")
 public class OrderManagerController {
 	
 	@Autowired
@@ -29,7 +30,7 @@ public class OrderManagerController {
 	@Autowired
 	OrderMapper orderMapper;
 	
-	@RequestMapping(value="/admin/order_query.do", produces="text/json;charset=UTF-8")
+	@RequestMapping(value="/admin/order_query.do")
 	@ResponseBody
 	public String orderQuery(@RequestParam boolean status0,
 			@RequestParam boolean status1,
@@ -54,7 +55,7 @@ public class OrderManagerController {
 		return orderManagerService.orderQuery(s, true);
 	}
 
-	@RequestMapping(value = "/user/my_order.do", produces = "text/json;charset=UTF-8")
+	@RequestMapping(value = "/user/my_order.do")
 	@ResponseBody
 	public String myOrder(@RequestParam boolean status0, @RequestParam boolean status1, @RequestParam boolean status2,
 						  @RequestParam int index, @RequestParam int size, HttpSession httpSession) {
@@ -69,13 +70,13 @@ public class OrderManagerController {
 		return orderManagerService.orderQuery(s, false);
 	}
 
-	@RequestMapping(value = "/admin/order_detail.do", produces = "text/json;charset=UTF-8")
+	@RequestMapping(value = "/admin/order_detail.do")
 	@ResponseBody
 	public String adminOrderDetail(@RequestParam("order_id") int orderId) {
 		return orderManagerService.orderDetail(orderId);
 	}
 
-	@RequestMapping(value = "/user/order_detail.do", produces = "text/json;charset=UTF-8")
+	@RequestMapping(value = "/user/order_detail.do")
 	@ResponseBody
 	public String userOrderDetail(@RequestParam("order_id") int orderId, HttpSession httpSession) {
 		Order order = orderMapper.getOrder(orderId);
@@ -87,13 +88,13 @@ public class OrderManagerController {
 		}
 	}
 
-	@RequestMapping(value = "/admin/allocate_order.do", produces = "text/json;charset=UTF-8")
+	@RequestMapping(value = "/admin/allocate_order.do")
 	@ResponseBody
 	public String allocateOrder(@RequestParam("order_id") int orderId) {
 		return orderManagerService.allocateOrder(orderId);
 	}
 
-	@RequestMapping(value = "/user/confirm_order.do", produces = "text/json;charset=UTF-8")
+	@RequestMapping(value = "/user/confirm_order.do")
 	@ResponseBody
 	public String confirmOrder(@RequestParam("order_id") int orderId, HttpSession httpSession) {
 		String userName = (String) httpSession.getAttribute("name");

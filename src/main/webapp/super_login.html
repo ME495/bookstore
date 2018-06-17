@@ -3,8 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <title>超级管理员登陆</title>
+    <script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+    <script type="application/javascript">
+        $(document).ready(function () {
+            $("#submit").click(function () {
+                var password = $("#password").val()
+                $.post("./super_login.do", {password: password}, function (data, status) {
+                    if (status == "success") {
+                        if (data.status == "success") {
+                            location.href = "./super/index.jsp";
+                        }
+                    }
+                })
+            });
+        });
+    </script>
 </head>
 <body>
     <h1>超级管理员登陆界面</h1>
+    <input type="password" name="password" id="password">
+    <input type="submit" name="submit" id="submit">
 </body>
 </html>

@@ -20,6 +20,7 @@ import com.bookstore.service.LoginService;
  *
  */
 @Controller
+@RequestMapping(produces = "application/json;charset=utf-8")
 public class LoginController {
 	
 	@Autowired

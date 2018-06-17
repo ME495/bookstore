@@ -28,7 +28,7 @@ import com.paypal.api.payments.Payment;
 import com.paypal.base.rest.PayPalRESTException;
 
 @Controller
-@RequestMapping(value="/user")
+@RequestMapping(value="/user", produces = "application/json;charset=utf-8")
 public class TrolleyController {
 	
 	public final static int PAYMENT_APPROVED = 0;
@@ -67,7 +67,7 @@ public class TrolleyController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value="/trolley_check.do", produces="application/json;charset=utf-8")
+	@RequestMapping(value="/trolley_check.do")
 	public String selectTrolley(HttpSession httpSession) {
 		String userName = (String) httpSession.getAttribute("name");
 		return JSON.toJSONString(trolleyService.selectTrolley(userName));
@@ -96,7 +96,7 @@ public class TrolleyController {
 	}
 	*/
 	
-	@RequestMapping(value="/payment.do", produces="application/json;charset=UTF-8")
+	@RequestMapping(value="/payment.do")
 	@ResponseBody
 	public String doPayment(@RequestParam("trolleyMsg") String trolleyMsg, HttpSession httpSession) {
 		double totalMoney = getPrice2pay(trolleyMsg);
@@ -150,7 +150,7 @@ public class TrolleyController {
 	}
 	*/
 	
-	@RequestMapping(value="/paypalCancel.do", produces="application/json;charset=UTF-8")
+	@RequestMapping(value="/paypalCancel.do")
     public String cancelPay() {
 		return "system/pay/paypal/cancelUrl"; // TODO
     }

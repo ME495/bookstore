@@ -10,18 +10,19 @@ import com.alibaba.fastjson.JSON;
 import com.bookstore.service.UserService;
 
 @Controller
+@RequestMapping(produces = "application/json;charset=utf-8")
 public class UserController {
 	@Autowired
 	private UserService userService;
 
 	@ResponseBody
-	@RequestMapping(value = "/user/get_user.do", produces = "text/plain;charset=utf-8")
+	@RequestMapping(value = "/user/get_user.do")
 	public String getUser(@RequestParam("user_name") String userName) {
 		return JSON.toJSONString(userService.getUser(userName));
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/user/modify_info.do", produces = "text/plain;charset=utf-8")
+	@RequestMapping(value = "/user/modify_info.do")
 	public String updateUserInfo(@RequestParam("user_name") String userName,@RequestParam("old_password") String oldPassword,@RequestParam("new_password") String newPassword,String phone,@RequestParam("real_name") String realName,String address) {
 		return JSON.toJSONString(userService.updateUserInfo(userName, oldPassword, newPassword, phone, realName, address));
 	}
