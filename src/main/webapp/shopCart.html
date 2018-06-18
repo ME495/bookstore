@@ -3,6 +3,7 @@
 <head>
 	<title>test03</title>
 	<meta charset="utf-8">
+	<meta name="referrer" content="no-referrer" />
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.3.1/dist/semantic.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.3.1/dist/semantic.min.js"></script>
@@ -20,7 +21,7 @@
 		<div class="login-area">
 			<ul>
 				<li>
-					<a href="" class="ui button basic blue">
+					<a class="ui button basic blue" id="toShopCart">
 						<i class="icon shop"></i>
 						购物车
 					</a>
@@ -110,11 +111,17 @@
 
 	<div class="xob-body">
 
-		<div class="shopcart-container">
+		<div class="ui segment loader-pannel">
+			<div class="ui inverted dimmer active">
+				<div class="ui text loader large" id="loader">正在加载</div>
+			</div>
+		</div>
+
+		<div class="shopcart-container not-show">
 			<div class="shopcart-title">
 				<div class="item1">
 					<div class="ui checkbox">
-						<input type="checkbox" name="">
+						<input type="checkbox" name="" id="chooseAll" onchange="chooseAll()">
 						<label>全选</label>
 					</div>
 				</div>
@@ -125,15 +132,17 @@
 					操作
 				</div>
 				<div class="item4">
-					单价
+					数量
 				</div>
 			</div>
 
 			<div class="shopcart-body">
-				<div class="shopcart-row">
+
+
+				<!-- <div class="shopcart-row" data-bookisbn="1">
 					<div class="item1">
 						<div class="ui checkbox">
-							<input type="checkbox" name="">
+							<input type="checkbox" name="" onchange="chooseBook(event)">
 							<label></label>
 						</div>
 					</div>
@@ -148,21 +157,26 @@
 							<p class="">
 								基督山伯爵正版包邮 (上下)无删节全译本 原版原著中文版
 							</p>
+							<p class="shopcart-bookprice">
+								￥
+								<span>60.80</span>
+							</p>
 						</div>
 					</div>
 					<div class="item3">
-						<i class="icon close"></i>	
+						<i class="icon close" onclick="deleteBook(event)"></i>	
 					</div>
 					<div class="item4">
-						￥
-						<span>60.80</span>
+						<i class="icon minus" onclick="subCount(event)"></i>
+						<span class="shopcart-amount">1</span>
+						<i class="icon plus" onclick="addCount(event)"></i>
 					</div>
 				</div>
 
-				<div class="shopcart-row">
+				<div class="shopcart-row" data-bookisbn="2">
 					<div class="item1">
 						<div class="ui checkbox">
-							<input type="checkbox" name="">
+							<input type="checkbox" name="" onchange="chooseBook(event)">
 							<label></label>
 						</div>
 					</div>
@@ -177,21 +191,26 @@
 							<p class="">
 								基督山伯爵正版包邮 (上下)无删节全译本 原版原著中文版
 							</p>
+							<p class="shopcart-bookprice">
+								￥
+								<span>60.80</span>
+							</p>
 						</div>
 					</div>
 					<div class="item3">
-						<i class="icon close"></i>	
+						<i class="icon close" onclick="deleteBook(event)"></i>	
 					</div>
 					<div class="item4">
-						￥
-						<span>60.80</span>
+						<i class="icon minus" onclick="subCount(event)"></i>
+						<span class="shopcart-amount">1</span>
+						<i class="icon plus" onclick="addCount(event)"></i>
 					</div>
 				</div>
 
-				<div class="shopcart-row">
+				<div class="shopcart-row" data-bookisbn="3">
 					<div class="item1">
 						<div class="ui checkbox">
-							<input type="checkbox" name="">
+							<input type="checkbox" name="" onchange="chooseBook(event)">
 							<label></label>
 						</div>
 					</div>
@@ -203,27 +222,35 @@
 							<h5>
 								基督山伯爵
 							</h5>
-							<p class="">
+							<p>
 								基督山伯爵正版包邮 (上下)无删节全译本 原版原著中文版
+							</p>
+							<p class="shopcart-bookprice">
+								￥
+								<span>60.80</span>
 							</p>
 						</div>
 					</div>
 					<div class="item3">
-						<i class="icon close"></i>	
+						<i class="icon close" onclick="deleteBook(event)"></i>	
 					</div>
 					<div class="item4">
-						￥
-						<span>60.80</span>
+						<i class="icon minus" onclick="subCount(event)"></i>
+						<span class="shopcart-amount">1</span>
+						<i class="icon plus" onclick="addCount(event)"></i>
 					</div>
-				</div>
+				</div> -->
 
 
 			</div>
 
 			<div class="shopcart-footer">
-				<div class="total-count">
-					<p>总计金额：</p>
-					<span>￥1000</span>
+				<div>
+					<span class="total-count-title">总计金额：</span>
+					<div class="total-count">
+						￥
+						<span id="totalCount">0</span>
+					</div>
 				</div>
 				<div class="confirm-button">
 					<button class="ui button red">支 付</button>

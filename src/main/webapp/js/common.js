@@ -21,6 +21,7 @@ $(function() {
 		if (result.status === "success") {
 			$("#userinfo").text(result.message.name).parent().show();
 			$("#toLogin, #toRegister").hide();
+			sessionStorage['logined'] = true;
 		}
 	})
 
@@ -72,7 +73,7 @@ $(function() {
     			address: '大三发斯蒂芬'
     		};
     		$.post("/signup.do", data, function(result) {
-    			result = JSON.parse(result);
+    			// result = JSON.parse(result);
     			alert(result.status);
     			if (result.status === "fail") {
     				$("#registerErrorMsg p").text(result.message);
@@ -100,14 +101,14 @@ $(function() {
     			password: password
     		};
     		$.post("/user_login.do", data, function(result) {
-    			result = JSON.parse(result);
+    			// result = JSON.parse(result);
     			if (result.status == "fail") {
     				$("#registerErrorMsg p").text("用户名或密码错误");
     				$("#registerErrorMsg").transition("show");
     			} else {
     				showToast("登录成功");
     				setTimeout(function() {
-    					window.location.refresh();
+    					window.location.reload();
     				}, 1000);
     			}
     		})
@@ -156,6 +157,15 @@ $(function() {
     	sessionStorage['book'] = JSON.stringify(books[index]);
     	window.location.href = "/bookDetail.html?isbn=" + books[index].isbn;
     }
+
+
+    $("#toShopCart").click(function() {
+    	// console.log(sessionStorage['logined']);
+    	if (sessionStorage['logined']) {
+    		// console.log("jump");
+    		window.location.href = "/shopCart.html";
+    	}
+    })
 
 
 })
