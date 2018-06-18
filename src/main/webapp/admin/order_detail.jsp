@@ -39,7 +39,6 @@
         var json = JSON.parse("{}");
         json["order_id"] = order_id;
         $.post("./order_detail.do", json, function (data, status) {
-            console.log(data);
             if (status == "success") {
                 console.log(data);
                 if (data.status == "success") {

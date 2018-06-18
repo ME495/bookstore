@@ -10,25 +10,25 @@ import com.alibaba.fastjson.JSON;
 import com.bookstore.service.SuperService;
 
 @Controller
-@RequestMapping(value="/super",produces= "text/html;charset=UTF-8")
+@RequestMapping(value="/super", produces = "application/json;charset=utf-8")
 public class SuperController {
 	@Autowired
 	private SuperService superService;
 
 	@ResponseBody
-	@RequestMapping("/add_admin.do")
+	@RequestMapping(value = "/add_admin.do")
 	public String insertAdmin(@RequestParam("admin_name") String adminName, @RequestParam("password") String password) {
 		return JSON.toJSONString(superService.insertAdmin(adminName, password));
 	}
 
 	@ResponseBody
-	@RequestMapping("/delete_admin.do")
+	@RequestMapping(value = "/delete_admin.do")
 	public String deleteAdmin(@RequestParam("admin_name") String adminName) {
 		return JSON.toJSONString(superService.deleteAdmin(adminName));
 	}
 	
 	@ResponseBody
-	@RequestMapping("/admin_list.do")
+	@RequestMapping(value = "/admin_list.do")
 	public String listAdmins() {
 		return JSON.toJSONString(superService.listAdmins());
 	}

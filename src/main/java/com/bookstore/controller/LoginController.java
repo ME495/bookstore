@@ -20,6 +20,7 @@ import com.bookstore.service.LoginService;
  *
  */
 @Controller
+@RequestMapping(produces = "application/json;charset=utf-8")
 public class LoginController {
 	
 	@Autowired
@@ -46,7 +47,7 @@ public class LoginController {
 			System.out.println("login success!");
 			return new ResponseMes(ResponseMes.SUCCESS, null).toJsonString();
 		} else {
-			return new ResponseMes(ResponseMes.FAIL, null).toJsonString();
+			return new ResponseMes(ResponseMes.FAIL, "用户名或密码错误！").toJsonString();
 		}
 	}
 	
@@ -69,7 +70,7 @@ public class LoginController {
 			httpSession.setAttribute("name", adminName);
 			return new ResponseMes(ResponseMes.SUCCESS, null).toJsonString();
 		} else {
-			return new ResponseMes(ResponseMes.FAIL, null).toJsonString();
+			return new ResponseMes(ResponseMes.FAIL, "用户名或密码错误！").toJsonString();
 		}
 	}
 	
@@ -90,7 +91,7 @@ public class LoginController {
 			httpSession.setAttribute("name", "super");
 			return new ResponseMes(ResponseMes.SUCCESS, null).toJsonString();
 		} else {
-			return new ResponseMes(ResponseMes.FAIL, null).toJsonString();
+			return new ResponseMes(ResponseMes.FAIL, "密码错误！").toJsonString();
 		}
 	}
 

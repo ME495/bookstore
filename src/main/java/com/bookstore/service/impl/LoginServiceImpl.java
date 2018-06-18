@@ -1,5 +1,6 @@
 package com.bookstore.service.impl;
 
+import com.bookstore.mapper.AdminMapper;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,7 +26,7 @@ public class LoginServiceImpl implements LoginService {
 	private UserMapper userMapper;
 	
 	@Autowired
-	private SuperMapper adminMapper;
+	private AdminMapper adminMapper;
 	
 	@Override
 	public boolean checkUser(String userName, String password) {

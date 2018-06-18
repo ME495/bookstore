@@ -60,7 +60,7 @@
     $(document).ready(function () {
         $.post("../check_login.do", function (data, status) {
             if (status == "success") {
-                var json = $.parseJSON(data)
+                var json = data;
                 var st = "<span class=\"glyphicon glyphicon-user\"></span>"
                 if (json.status == "success") {
                     $("#name").html(st + json.message.name);
@@ -70,7 +70,7 @@
         $("#logout").click(function () {
             $.post("../logout.do", function (data, status) {
                 if (status == "success") {
-                    var json = $.parseJSON(data);
+                    var json = data;
                     if (json.status == "success") {
                         location.href = "../admin_login.html";
                     } else {
