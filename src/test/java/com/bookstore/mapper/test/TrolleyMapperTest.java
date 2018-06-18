@@ -15,6 +15,7 @@ import com.bookstore.entity.Order;
 import com.bookstore.entity.Trolley;
 import com.bookstore.mapper.TrolleyMapper;
 import com.bookstore.utils.BaseJUnit;
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 
 public class TrolleyMapperTest extends BaseJUnit {
 
@@ -23,7 +24,7 @@ public class TrolleyMapperTest extends BaseJUnit {
 	
 	@Ignore
 	@Test
-	public void testInsertTrolley() {
+	public void testInsertTrolley() throws Exception {
 		assertEquals(1, trolleyMapper.insertTrolley("jinqi", "9787100155724", 0, 1));
 	}
 	@Ignore
