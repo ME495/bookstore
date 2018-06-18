@@ -22,7 +22,7 @@
 			limit #{index},#{size}
 	</select>
 	
-	<select id="getBookCount" resultType="_int">
+	<select id="getBookCount" resultType="int">
 		select count(*) from book
 	</select>
 	
