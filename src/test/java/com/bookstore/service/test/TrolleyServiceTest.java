@@ -5,7 +5,6 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.alibaba.fastjson.JSONObject;
 import com.bookstore.message.ResponseMes;
 import com.bookstore.service.TrolleyService;
 import com.bookstore.utils.BaseJUnit;

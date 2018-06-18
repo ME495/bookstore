@@ -33,19 +33,21 @@ public class TrolleyServiceImpl implements TrolleyService {
 
 	@Override
 	public ResponseMes deleteTrolley(String userName, String isbn, int degree) {
-		if(trolleyMapper.deleteTrolley(userName, isbn, degree) == 1) {
-			return new ResponseMes(ResponseMes.SUCCESS, "");
-		} else {
-			return new ResponseMes(ResponseMes.FAIL, "");
+		try {
+			trolleyMapper.deleteTrolley(userName, isbn, degree);
+			return new ResponseMes(ResponseMes.SUCCESS, null);
+		} catch(Exception e) {
+			return new ResponseMes(ResponseMes.FAIL, e.getMessage());
 		}
 	}
 
 	@Override
 	public ResponseMes updateTrolley(String userName, String isbn, int degree, int num) {
-		if(trolleyMapper.updateTrolley(userName, isbn, degree, num) == 1) {
-			return new ResponseMes(ResponseMes.SUCCESS, "");
-		} else {
-			return new ResponseMes(ResponseMes.FAIL, "");
+		try {
+			trolleyMapper.updateTrolley(userName, isbn, degree, num);
+			return new ResponseMes(ResponseMes.SUCCESS, null);
+		} catch(Exception e) {
+			return new ResponseMes(ResponseMes.FAIL, e.getMessage());
 		}
 	}
 
@@ -59,9 +61,15 @@ public class TrolleyServiceImpl implements TrolleyService {
 		}
 	}
 	
+	@SuppressWarnings("null")
 	@Override
 	public double getActualPrice(String isbn, int degree) {
-		return trolleyMapper.getActualPrice(isbn, degree);
+		try {
+			return trolleyMapper.getActualPrice(isbn, degree);
+		} catch(Exception e) {
+			e.printStackTrace();
+			return (Double) null;
+		}
 	}
 	
 	@Override
@@ -83,19 +91,21 @@ public class TrolleyServiceImpl implements TrolleyService {
 
 	@Override
 	public ResponseMes insertOrder(Order order) {
-		if(trolleyMapper.insertOrder(order) == 1) {
-			return new ResponseMes(ResponseMes.SUCCESS, "");
-		} else {
-			return new ResponseMes(ResponseMes.FAIL, "");
+		try {
+			trolleyMapper.insertOrder(order);
+			return new ResponseMes(ResponseMes.SUCCESS, null);
+		} catch(Exception e) {
+			return new ResponseMes(ResponseMes.FAIL, e.getMessage());
 		}
 	}
 
 	@Override
 	public ResponseMes insertOrderBook(int orderId, int degree, String isbn, double unitPrice, int num) {
-		if(trolleyMapper.insertOrderBook(orderId, degree, isbn, unitPrice, num) == 1) {
-			return new ResponseMes(ResponseMes.SUCCESS, "");
-		} else {
-			return new ResponseMes(ResponseMes.FAIL, "");
+		try {
+			trolleyMapper.insertOrderBook(orderId, degree, isbn, unitPrice, num);
+			return new ResponseMes(ResponseMes.SUCCESS, null);
+		} catch(Exception e) {
+			return new ResponseMes(ResponseMes.FAIL, e.getMessage());
 		}
 	}
 	
@@ -106,10 +116,11 @@ public class TrolleyServiceImpl implements TrolleyService {
 
 	@Override
 	public ResponseMes insertOrderPayment(int orderId, String paymentId) {
-		if(trolleyMapper.insertOrderPayment(orderId, paymentId) == 1) {
-			return new ResponseMes(ResponseMes.SUCCESS, "");
-		} else {
-			return new ResponseMes(ResponseMes.FAIL, "");
+		try {
+			trolleyMapper.insertOrderPayment(orderId, paymentId);
+			return new ResponseMes(ResponseMes.SUCCESS, null);
+		} catch(Exception e) {
+			return new ResponseMes(ResponseMes.FAIL, e.getMessage());
 		}
 	}
 
