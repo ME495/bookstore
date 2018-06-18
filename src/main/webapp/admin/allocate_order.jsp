@@ -26,11 +26,49 @@
             <th>金额</th>
         </tr>
         </thead>
-        <tbody>
+        <tbody id="order_list">
         </tbody>
     </table>
     <div id="info" class="alert alert-warning hidden">
         此页没有为分配的订单！
+    </div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">订单详情</h4>
+                </div>
+                <div class="modal-body">
+                    <label>下单人姓名：</label>
+                    <label id="show_name"></label>
+                    <br>
+                    <label >地址：</label>
+                    <label id="show_address"></label>
+                    <table class="table">
+                        <caption>购买书籍</caption>
+                        <thead>
+                        <tr>
+                            <th>isbn</th>
+                            <th>书名</th>
+                            <th>新旧程度</th>
+                            <th>作者</th>
+                            <th>单价</th>
+                            <th>数量</th>
+                        </tr>
+                        </thead>
+                        <tbody id="order_detail">
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="closs" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="confirm">确定分配</button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 </body>
@@ -39,7 +77,7 @@
 <script type="application/javascript">
     var element;
     function show_data(data) {
-        $("tbody").empty();
+        $("#order_list").empty();
         $("#info").attr("class", "alert alert-warning hidden");
         $.each(data, function (i, value) {
             var $e = $("<tr></tr>");
@@ -48,23 +86,42 @@
             $e.append("<td>" + value.address + "</td>");
             $e.append("<td>" + value.orderTime + "</td>");
             $e.append("<td>" + value.money + "</td>");
-            $e.append("<td><span class='allocate btn btn-primary' title='"+ value.orderId +"'>分配订单</span></td>");
-            $("tbody").append($e);
+            var $span = $("<span class='allocate btn btn-primary' data-toggle='modal' data-target='#myModal'>分配订单</span>");
+            $span.attr("title", value.orderId);
+            $span.attr("name", value.realName);
+            $span.attr("address", value.address);
+            $e.append($("<td></td>").append($span));
+            $("#order_list").append($e);
         });
         $(".allocate").click(function () {
-            var order_id = $(this).attr("title");
             element = $(this);
-            $.post("./allocate_order.do", {"order_id": order_id}, function (data, status) {
-                if (status == "success") {
-                    console.log(data + order_id);
-                    if (data.status == "success") {
-                        element.parent().html("<span class='btn btn-default' disabled='disabled'>分配成功</span>");
-                    } else {
-                        alert("分配失败！");
-                    }
+            var order_id = $(this).attr("title");
+            $("#show_name").html($(this).attr("name"));
+            $("#show_address").html($(this).attr("address"));
+            console.log(order_id);
+            $.post("./order_detail.do", {"order_id": order_id}, function (data, status) {
+                if (data.status == "success" && data.status == "success") {
+                    $("#order_detail").empty();
+                    $.each(data.message, function (i, value) {
+                        var degree = null;
+                        if (value.degree == 0) degree = "九成新";
+                        else if (value.degree == 1) degree = "七成新";
+                        else if (value.degree == 2) degree = "五成新";
+                        else degree = "三成新";
+                        var $e = $("<tr></tr>");
+                        $e.append("<td>" + value.isbn + "</a></td>");
+                        $e.append("<td>" + value.title + "</td>");
+                        $e.append("<td>" + degree + "</td>");
+                        $e.append("<td>" + value.author + "</td>");
+                        $e.append("<td>" + value.unitPrice + "</td>");
+                        $e.append("<td>" + value.num + "</td>");
+                        $("#order_detail").append($e);
+                    });
+                } else {
+                    alert("分配失败！");
+                    $("#closs").click();
                 }
             });
-            $(this).html("已分配");
         });
     }
 
@@ -108,6 +165,19 @@
                 json["index"] = index;
                 query(json);
             }
+        });
+
+        $("#confirm").click(function () {
+            $.post("./allocate_order.do", {"order_id": element.attr("title")}, function (data, status) {
+                if (status == "success") {
+                    if (data.status == "success") {
+                        element.parent().html("<span class='btn btn-default' disabled='disabled'>分配成功</span>");
+                        $("#closs").click();
+                    } else {
+                        alert("分配失败！");
+                    }
+                }
+            });
         });
     });
 </script>
