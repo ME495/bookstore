@@ -26,7 +26,9 @@ public class Trolley {
 		this.actualPrice = actualPrice;
 	}
 	
-	public Trolley() {}
+	public Trolley() {
+		super();
+	}
 
 	public String getUserName() {
 		return userName;
@@ -64,7 +66,7 @@ public class Trolley {
 	public void setNum(int num) {
 		this.num = num;
 	}
-	public double getActualPricePrice() {
+	public double getActualPrice() {
 		return actualPrice;
 	}
 	public void setUnitPrice(double actualPrice) {

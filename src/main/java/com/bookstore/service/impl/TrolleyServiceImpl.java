@@ -48,8 +48,12 @@ public class TrolleyServiceImpl implements TrolleyService {
 
 	@Override
 	public ResponseMes selectTrolley(String userName) {
-		ArrayList<Trolley> trolleyList = trolleyMapper.selectTrolley(userName);
-		return new ResponseMes(ResponseMes.SUCCESS, trolleyList);
+		try {
+			ArrayList<Trolley> trolleyList = trolleyMapper.selectTrolley(userName);
+			return new ResponseMes(ResponseMes.SUCCESS, trolleyList);
+		} catch(Exception e) {
+			return new ResponseMes(ResponseMes.FAIL, null);
+		}
 	}
 	
 	@Override
@@ -58,16 +62,20 @@ public class TrolleyServiceImpl implements TrolleyService {
 	}
 	
 	@Override
-	public double getPrice2Pay(String trolleyMsg) {
+	public ResponseMes getPrice2Pay(String trolleyMsg) {
 		ArrayList<Trolley4Pay> trolleyMsgList = new ArrayList<Trolley4Pay>();
-        trolleyMsgList = (ArrayList<Trolley4Pay>) JSONObject.parseArray(trolleyMsg, Trolley4Pay.class);
-        double price = 0.0;
-        for(int i = 0; i < trolleyMsgList.size(); i++) {
-        	Trolley4Pay trolley4Pay = trolleyMsgList.get(i);
-        	price += trolleyMapper.getActualPrice(trolley4Pay.getIsbn(), trolley4Pay.getDegree())
-        			* trolley4Pay.getNum();
-        }
-		return price;
+		try {
+		    trolleyMsgList = (ArrayList<Trolley4Pay>) JSONObject.parseArray(trolleyMsg, Trolley4Pay.class);
+		    double price = 0.0;
+		    for(int i = 0; i < trolleyMsgList.size(); i++) {
+		    	Trolley4Pay trolley4Pay = trolleyMsgList.get(i);
+		    	price += trolleyMapper.getActualPrice(trolley4Pay.getIsbn(), trolley4Pay.getDegree())
+		    			* trolley4Pay.getNum();
+		    }
+			return new ResponseMes(ResponseMes.SUCCESS, price);
+		} catch(Exception e) {
+			return new ResponseMes(ResponseMes.FAIL, null);
+		}
 	}
 
 	@Override
