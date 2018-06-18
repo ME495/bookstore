@@ -1,5 +1,6 @@
 package com.bookstore.mapper;
 
+import com.bookstore.entity.Admin;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -8,6 +9,8 @@ import com.bookstore.entity.BookPrice;
 
 @Repository
 public interface AdminMapper {
+	public Admin getAdminByName(String adminName);
+
 	public int deleteUser(String userName);
 
 	public int modifyUserPwd(@Param("userName") String userName, @Param("password") String password);
