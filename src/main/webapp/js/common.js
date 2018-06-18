@@ -14,6 +14,18 @@ $(function() {
 		$(this).closest(".message").transition("fade");
 	})
 
+	
+	//检查登录状态
+	$.post("/check_login.do", function(result) {
+		// result = JSON.parse(result);
+		if (result.status === "success") {
+			$("#userinfo").text(result.message.name).parent().show();
+			$("#toLogin, #toRegister").hide();
+			sessionStorage['logined'] = true;
+		}
+	})
+
+
 	//自己写的一个小插件，类似于Andriod中的Toast消息提示
 	var timer1, timer2;
 	$.charlieToast = function(message, type) {
@@ -55,11 +67,15 @@ $(function() {
     		var data = {
     			user_name: user_name,
     			password: password,
-    			email: email
+    			email: email,
+    			phone: '18373233677',
+    			real_name: '爱上嘎洒十多个',
+    			address: '大三发斯蒂芬'
     		};
-    		$.post("/user/signip.do", data, function(result) {
-    			result = JSON.parse(result);
-    			if (result.status == "fail") {
+    		$.post("/signup.do", data, function(result) {
+    			// result = JSON.parse(result);
+    			alert(result.status);
+    			if (result.status === "fail") {
     				$("#registerErrorMsg p").text(result.message);
     				$("#registerErrorMsg").transition("show");
     			} else {
@@ -84,36 +100,72 @@ $(function() {
     			user_name: user_name,
     			password: password
     		};
-    		$.post("/user/signip.do", data, function(result) {
-    			result = JSON.parse(result);
+    		$.post("/user_login.do", data, function(result) {
+    			// result = JSON.parse(result);
     			if (result.status == "fail") {
     				$("#registerErrorMsg p").text("用户名或密码错误");
     				$("#registerErrorMsg").transition("show");
     			} else {
     				showToast("登录成功");
     				setTimeout(function() {
-    					window.location.refresh();
-    				})
+    					window.location.reload();
+    				}, 1000);
     			}
     		})
     	}
     });
+
+    $("#searchBook").click(function() {
+    	$(".search-container .label").addClass("hidden");
+    })
 
     //查找图书
     $("#toSearch").click(function() {
     	var searchText = $("#searchBook").val().trim();
     	console.log(searchText);
     	if (searchText == "") {
-    		;
+    		$(".search-container .label").removeClass("hidden");
     	} else {
-    		var url = "./searchResult.html?keyword=" + searchText + "&index=0&size=15";
+    		var url = "/searchResult.html?keyword=" + searchText + "&index=0&size=15";
     		url = encodeURI(url);
     		window.location.href = url;
     	}
-    })
+    });
 
     showBooks = function(booklist) {
-    	
+    	for (var i = 0; i < booklist.length; i++) {
+    		var book = booklist[i];
+    		var div1 = $("<div class='book-item'></div>");
+	    	var a1 = $("<a class='book-link' data-bookindex=\'" + i + "\' onclick='toBookDetail(event)'></a>");
+    		var imgDiv = document.createElement("img");
+    		$(imgDiv).addClass("book-image-normal").attr("src", book.imgUrl);
+    		var bookNameDiv = document.createElement("div");
+    		$(bookNameDiv).addClass("book-name").text(book.title);
+    		var bookPriceDiv = document.createElement("div");
+    		$(bookPriceDiv).addClass("book-price").text("￥" + book.originalPrice);
+    		$(a1).append(imgDiv).append(bookNameDiv);
+    		$(div1).append(a1).append(bookPriceDiv);
+    		$(".books-container").append(div1);
+    	}
+
     }
+
+    toBookDetail = function(e) {
+    	var index = $($(e.target).parent()).attr("data-bookindex");
+    	var books = JSON.parse(sessionStorage['booklist']);
+    	console.log("books:" + books);
+    	sessionStorage['book'] = JSON.stringify(books[index]);
+    	window.location.href = "/bookDetail.html?isbn=" + books[index].isbn;
+    }
+
+
+    $("#toShopCart").click(function() {
+    	// console.log(sessionStorage['logined']);
+    	if (sessionStorage['logined']) {
+    		// console.log("jump");
+    		window.location.href = "/shopCart.html";
+    	}
+    })
+
 
 })

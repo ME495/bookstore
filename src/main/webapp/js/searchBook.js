@@ -20,17 +20,23 @@ $(function() {
 
 	var searchData = {
 		index: index,
-		keyword: keyword,
+		key_word: keyword,
 		size: size
 	};
 	$.post("/search_book.do", searchData, function(result) {
-		result = JSON.parse(result);
+		// result = JSON.parse(result);
 		if (result.status == "fail") {
 			$("#loader").removeClass("loader").text(result.message);
+			$(".pagination-container").hide();
+		} else if (result.message.length === 0) {
+			$("#loader").removeClass("loader").text("=_=! 没有数据");
+			$(".pagination-container").hide();
 		} else {
 			$("#loader").parent().removeClass("active");
+			$(".loader-pannel").hide();
 			showBooks(result.message);
 			$(".books-container").removeClass("not-show");
+			sessionStorage['booklist'] = JSON.stringify(result.message);
 		}
 	});
 
