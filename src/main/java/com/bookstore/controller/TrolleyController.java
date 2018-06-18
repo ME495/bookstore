@@ -20,9 +20,10 @@ import com.bookstore.Paypal.PaypalPayment;
 import com.bookstore.entity.Order;
 import com.bookstore.entity.Trolley4Pay;
 import com.bookstore.entity.User;
-import com.bookstore.mapper.UserMapper;
+import com.bookstore.message.ResponseMes;
 import com.bookstore.service.OrderManagerService;
 import com.bookstore.service.TrolleyService;
+import com.bookstore.service.UserService;
 import com.paypal.api.payments.Links;
 import com.paypal.api.payments.Payment;
 import com.paypal.base.rest.PayPalRESTException;
@@ -38,7 +39,7 @@ public class TrolleyController {
 	@Autowired
 	private TrolleyService trolleyService;
 	@Autowired
-	private UserMapper userMapper;
+	private UserService userService;
 	@Autowired
 	private OrderManagerService orderManagerService;
 	
@@ -75,8 +76,8 @@ public class TrolleyController {
 	
 	@ResponseBody
 	@RequestMapping(value="/get_price_to_pay.do")
-	public double getPrice2pay(String trolleyMsg) {
-		return trolleyService.getPrice2Pay(trolleyMsg);
+	public String getPrice2pay(String trolleyMsg) {
+		return JSON.toJSONString(trolleyService.getPrice2Pay(trolleyMsg));
 	}
 	
 	/*
@@ -99,16 +100,16 @@ public class TrolleyController {
 	@RequestMapping(value="/payment.do")
 	@ResponseBody
 	public String doPayment(@RequestParam("trolleyMsg") String trolleyMsg, HttpSession httpSession) {
-		double totalMoney = getPrice2pay(trolleyMsg);
+		JSONObject jsonObj = JSONObject.parseObject(getPrice2pay(trolleyMsg));
+		double totalMoney = jsonObj.getDoubleValue("message");
 		String total = ""+totalMoney;
 		Payment payment;
 		String userName = (String) httpSession.getAttribute("name");
-
 		try {
 			payment = PaypalPayment.createPayment(total);
 			for(Links link : payment.getLinks()) {
 				if(link.getRel().equals("approval_url")) {
-					User user = userMapper.getUser(userName);
+					User user = (User) userService.getUser(userName).getMessage();
 					String address = user.getAddress();
 					Date date = new Date(); // 获得系统时间
 			        String nowTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date); // 将时间格式转换成符合Timestamp要求的格式
@@ -125,14 +126,13 @@ public class TrolleyController {
 								unitPrice, tro4pay.getNum());
 					}
 					trolleyService.insertOrderPayment(orderId, paymentId); // 插入订单ID-支付ID映射
-					return link.getHref();
+					return new ResponseMes(ResponseMes.SUCCESS, link.getHref()).toJsonString();
 				}
 			}
 		} catch (PayPalRESTException e) {
 			e.printStackTrace();
 		}
-		
-		return "system/pay/paypal/failedUrl"; // TODO
+		return new ResponseMes(ResponseMes.FAIL, "paymentFailed").toJsonString();
 	}
 	
 	/*
@@ -152,7 +152,7 @@ public class TrolleyController {
 	
 	@RequestMapping(value="/paypalCancel.do")
     public String cancelPay() {
-		return "system/pay/paypal/cancelUrl"; // TODO
+		return new ResponseMes(ResponseMes.FAIL, "paymentCancelled").toJsonString(); // TODO
     }
 	
 	/**客户登陆付款后paypal返回路径参数示例
@@ -173,12 +173,12 @@ public class TrolleyController {
 	        		Trolley4Pay orderBook = orderBooks.get(i);
 	        		trolleyService.deleteTrolley(userName, orderBook.getIsbn(), orderBook.getDegree());
 	        	}
-	        	return "paymentSuccess";
+	        	return new ResponseMes(ResponseMes.SUCCESS, "paymentSucceed").toJsonString();
 			}
 		} catch (PayPalRESTException e) {
 			e.printStackTrace();
 		}
-		return "system/pay/paypal/failed";
+		return new ResponseMes(ResponseMes.FAIL, "paymentFailed").toJsonString();
 	}
 
 }

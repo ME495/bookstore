@@ -6,6 +6,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.util.ArrayList;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MvcResult;
@@ -32,7 +33,6 @@ public class TrolleyControllerTest extends LoginJUnit {
         JSONObject jsonObject = JSON.parseObject(st);
         assertEquals(ResponseMes.SUCCESS, jsonObject.getString("status"));
 	}
-	
 	
 	@Test
 	public void testDeleteTrolley() throws Exception {
@@ -90,6 +90,7 @@ public class TrolleyControllerTest extends LoginJUnit {
                 .session(getMockHttpSession())
         ).andExpect(status().isOk()).andReturn();
 		String st = result.getResponse().getContentAsString();
+		System.out.println("testSelectTrolley said: " + st);
         JSONObject jsonObject = JSON.parseObject(st);
         ArrayList<Trolley> trolleyList = new ArrayList<Trolley>();
         trolleyList = (ArrayList<Trolley>) JSONObject.parseArray(jsonObject.getString("message"), Trolley.class);
@@ -105,6 +106,19 @@ public class TrolleyControllerTest extends LoginJUnit {
         assertEquals(trolleyList.get(post).getTitle(), "南极洲");
 	}
 	
+	@Test
+	public void testGetPrice2Pay() throws Exception {
+		userLogin("jinqi", "123456");
+		MvcResult result = getMockMvc().perform(post("/user/get_price_to_pay.do")
+				.param("trolleyMsg", "[{\"isbn\":\"9787108061119\", degree:0, num:2}, {\"isbn\":\"9787100155724\", degree:2, num:3}]")
+				.session(getMockHttpSession())
+                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+        ).andExpect(status().isOk()).andReturn();
+		String st = result.getResponse().getContentAsString();
+		System.out.println("testGetPrice2Pay: " + st);
+	}
+	
+	@Ignore
 	@Test
 	public void testDoPayment() throws Exception {
 		userLogin("jinqi", "123456");

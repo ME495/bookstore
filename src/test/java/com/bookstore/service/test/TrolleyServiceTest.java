@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.alibaba.fastjson.JSONObject;
 import com.bookstore.message.ResponseMes;
 import com.bookstore.service.TrolleyService;
 import com.bookstore.utils.BaseJUnit;
@@ -34,8 +35,9 @@ public class TrolleyServiceTest extends BaseJUnit {
 	
 	@Test
 	public void testGetPrice2Pay() {
-		assertEquals(79.2, trolleyService.getPrice2Pay(
-				"[{\"isbn\":\"9787108061119\", degree:0, num:2}, {\"isbn\":\"9787100155724\", degree:2, num:3}]"), 0.01);
+		ResponseMes response = trolleyService.getPrice2Pay(
+				"[{\"isbn\":\"9787108061119\", degree:0, num:2}, {\"isbn\":\"9787100155724\", degree:2, num:3}]");
+		assertEquals(79.2, (double) response.getMessage(), 0.01);
 	}
 
 }
