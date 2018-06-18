@@ -27,7 +27,7 @@ public class TrolleyServiceImpl implements TrolleyService {
 		}  catch(org.springframework.dao.DuplicateKeyException e1) {
 			return new ResponseMes(ResponseMes.FAIL, "购物车中已存在该书本！");
 		} catch(Exception e2) {
-			return new ResponseMes(ResponseMes.FAIL, "添加购物车失败！");
+			return new ResponseMes(ResponseMes.FAIL, "添加购物车失败: "+e2.getMessage());
 		}
 	}
 
