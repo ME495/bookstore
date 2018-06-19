@@ -55,7 +55,7 @@ body {
 .search-container {
 	line-height: 72px;
 	float: right;
-	margin-right: 20%;
+	margin-right: 50px;
 }
 /*.search-container .search {
 	z-index: 99;
