@@ -19,6 +19,8 @@ public class TrolleyServiceTest extends BaseJUnit {
 		trolleyService.insertTrolley("jinqi", "9787100155724", 0, 2);
 		ResponseMes response = trolleyService.insertTrolley("jinqi", "9787100155724", 0, 2);
 		assertEquals("购物车中已存在该书本！", response.getMessage());
+		response = trolleyService.insertTrolley("jinqi", "9787100155724", 0, 999999999);
+		assertEquals("库存不够！", response.getMessage());
 	}
 	
 	@Test

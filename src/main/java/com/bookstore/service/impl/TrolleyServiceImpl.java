@@ -6,11 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSONObject;
+import com.bookstore.entity.BookDetailInfo;
 import com.bookstore.entity.Order;
 import com.bookstore.entity.Trolley;
 import com.bookstore.entity.Trolley4Pay;
 import com.bookstore.mapper.TrolleyMapper;
 import com.bookstore.message.ResponseMes;
+import com.bookstore.service.CommonService;
 import com.bookstore.service.TrolleyService;
 
 @Service
@@ -18,10 +20,17 @@ public class TrolleyServiceImpl implements TrolleyService {
 	
 	@Autowired
 	private TrolleyMapper trolleyMapper;
+	@Autowired
+	private CommonService commonService;
 
 	@Override
 	public ResponseMes insertTrolley(String userName, String isbn, int degree, int num) {
 		try {
+			BookDetailInfo classfiedBook = (BookDetailInfo) commonService.getBookByIsbnAndDegree(isbn, degree)
+					.getMessage();
+			if(num > classfiedBook.getNum()) {
+				return new ResponseMes(ResponseMes.FAIL, "库存不够！");
+			}
 			trolleyMapper.insertTrolley(userName, isbn, degree, num);
 			return new ResponseMes(ResponseMes.SUCCESS, null);
 		}  catch(org.springframework.dao.DuplicateKeyException e1) {
