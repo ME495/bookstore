@@ -15,7 +15,6 @@ import com.bookstore.entity.Order;
 import com.bookstore.entity.Trolley;
 import com.bookstore.mapper.TrolleyMapper;
 import com.bookstore.utils.BaseJUnit;
-import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 
 public class TrolleyMapperTest extends BaseJUnit {
 
