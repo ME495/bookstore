@@ -5,7 +5,7 @@ package com.bookstore.entity;
  * @Author ME495
  */
 public class OrderDetail {
-    private String isbn, title, author;
+    private String isbn, title, author,imgUrl;
     private double unitPrice;
     private int degree, num;
 
@@ -55,5 +55,13 @@ public class OrderDetail {
 
     public void setDegree(int degree) {
         this.degree = degree;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 }

@@ -3,7 +3,7 @@
 <mapper namespace="com.bookstore.mapper.OrderDetailMapper">
 
     <select id="getOrderDetail" resultType="com.bookstore.entity.OrderDetail">
-        select isbn, title, degree, author, unit_price, num
+        select isbn, title, degree, author, unit_price, num, img_url
         from order_book s join book t using (isbn)
         where order_id = #{orderId};
     </select>

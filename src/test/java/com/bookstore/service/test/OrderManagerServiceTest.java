@@ -40,6 +40,7 @@ public class OrderManagerServiceTest extends BaseJUnit {
     public void testOrderDetail() {
         String st = orderManagerService.orderDetail(103);
         JSONObject jsonObject = JSONObject.parseObject(st);
+        System.out.println(st);
         assertEquals(ResponseMes.SUCCESS, jsonObject.getString("status"));
     }
 
