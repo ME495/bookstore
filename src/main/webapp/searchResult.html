@@ -3,6 +3,7 @@
 <head>
 	<title>test03</title>
 	<meta charset="utf-8">
+	<meta name="referrer" content="no-referrer"/>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.3.1/dist/semantic.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.3.1/dist/semantic.min.js"></script>
@@ -10,54 +11,101 @@
 </head>
 <body>
 	<div class="xob-header">
-		<a class="xob-logo">
+		<a class="xob-logo" href="/">
 			<i class="icon book"></i>
 			<span>湘大旧书店</span>
 		</a>
 
-		
 
 		<div class="login-area">
 			<ul>
 				<li>
+					<a class="ui button basic blue"  id="toShopCart">
+						<i class="icon shop"></i>
+						购物车
+					</a>
+				</li>
+				<li>
+					<a class="ui button basic blue" id="toShopCart">
+						<i class="icon list"></i>
+						我的订单
+					</a>
+				</li>
+				<li style="display: none;">
+					<i class="icon user"></i>
+					<span class="sign-actions" id="userinfo"></span>
+				</li>
+				<li>
 					<span class="sign-actions" id="toLogin">登录</span>
 				</li>
 				<li>
-					<span class="sign-actions">注册</span>
+					<span class="sign-actions" id="toRegister">注册</span>
 				</li>
 			</ul>
 		</div>
 
 		<div class="search-container">
+			<div class="ui label right pointing red hidden">请输入要查找的图书</div>
 			<div class="ui input icon">
 				<input type="text" name="" placeholder="查找图书" id="searchBook">
-				<i class="icon search link"></i>
+				<i class="icon search link" id="toSearch"></i>
 			</div>
 		</div>
 
-		<div class="ui modal tiny" id="signModal">
+		<div class="ui modal tiny" id="loginModal">
 			<div class="content">
 				<div class="signmodal-title">登录湘大旧书店</div>
 				<div class="signmodal-subtitle">发现更多特价好书</div>
 				<div class="signform-container">
-					<form class="ui form">
+					<form class="ui form" id="loginForm">
 						<div class="field">
 							<label>用户名</label>
-							<input type="text" name="" >
+							<input type="text" name="user_name">
 						</div>
 						<div class="field">
 							<label>密码</label>
-							<input type="password" name="">
+							<input type="password" name="password">
 						</div>
-						<div class="field">
+						<!-- <div class="field">
 							<label>输入验证码</label>
 							<input type="text" name="">
+						</div> -->
+					</form>
+					<div class="ui message error raised hidden" id="loginErrorMsg">
+						<i class="icon close"></i>
+						<div class="header">Error</div>
+						<p id="">asdfdf</p>
+					</div>
+					<button class="ui button primary fluid" id="loginButton">登 录</button>
+				</div>
+			</div>
+		</div>
+
+		<div class="ui modal tiny" id="registerModal">
+			<div class="content">
+				<div class="signmodal-title">注册湘大旧书店</div>
+				<div class="signmodal-subtitle">发现更多特价好书</div>
+				<div class="signform-container">
+					<form class="ui form" id="registerForm">
+						<div class="field">
+							<label>用户名</label>
+							<input type="text" name="user_name" >
+						</div>
+						<div class="field">
+							<label>密码</label>
+							<input type="password" name="password">
+						</div>
+						<div class="field">
+							<label>输入邮箱</label>
+							<input type="text" name="email">
 						</div>
 					</form>
-					<div class="ui message error raised hidden">
-						<p>请填入完整信息</p>
+					<div class="ui message error raised hidden"  id="registerErrorMsg">
+						<i class="icon close"></i>
+						<div class="header">Error</div>
+						<p></p>
 					</div>
-					<button class="ui button primary fluid" id="signButton">登 录</button>
+					<button class="ui button primary fluid" id="registerButton">注 册</button>
 				</div>
 			</div>
 		</div>
@@ -69,7 +117,7 @@
 
 	<div class="xob-body">
 
-		<div class="book-kinds border-bottom">
+		<!-- <div class="book-kinds border-bottom">
 			<span class="book-kinds-title">大类:</span>
 			<ul class="fl">
 				<li>
@@ -102,11 +150,20 @@
 				</li>
 
 			</ul>
+		</div> -->
+
+		<h3>查询结果 / </h3>
+		<div class="ui divider"></div>
+
+		<div class="ui segment loader-pannel">
+			<div class="ui inverted dimmer active">
+				<div class="ui text loader large" id="loader">正在加载</div>
+			</div>
 		</div>
 
-		<div class="books-container">
-				<div class="book-item">
-					<a href="">
+		<div class="books-container not-show">
+				<!-- <div class="book-item">
+					<a href="javascript:;" data-bookid="123456">
 						<img src="https://img13.360buyimg.com/n2/jfs/t658/193/368125886/17075/4b1428b8/546335b8Naab48023.jpg" class="book-image-normal">
 						<div class="book-name">如何阅读一本书</div>
 					</a>
@@ -175,7 +232,7 @@
 						<div class="book-name">如何阅读一本书</div>
 					</a>
 					<div class="book-price">￥36.60</div>
-				</div>
+				</div> -->
 
 			</div>
 
@@ -184,15 +241,19 @@
 					<div class="item">
 						<i class="icon angle left"></i>
 					</div>
-					<div class="item active">1</div>
-					<div class="item">2</div>
-					<div class="item">3</div>
-					<div class="item">4</div>
-					<div class="item">5</div>
+					<div class="item page-num">1</div>
+					<div class="item page-num">2</div>
+					<div class="item page-num">3</div>
+					<div class="item page-num">4</div>
+					<div class="item page-num">5</div>
 					<div class="item">
 						<i class="icon angle right"></i>
 					</div>
 				</div>
+			</div>
+
+			<div class="">
+				
 			</div>
 		
 	</div>
@@ -215,5 +276,6 @@
 
 	
 </body>
-<script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/searchBook.js"></script>
 </html>

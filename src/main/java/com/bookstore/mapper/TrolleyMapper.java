@@ -13,7 +13,8 @@ import com.bookstore.entity.Trolley4Pay;
 public interface TrolleyMapper {
 	
 	public int insertTrolley(@Param("user_name")String userName, 
-			@Param("isbn")String isbn, @Param("degree")int degree, @Param("num")int num);
+			@Param("isbn")String isbn, @Param("degree")int degree, @Param("num")int num)
+				throws Exception;
 	
 	public int deleteTrolley(@Param("user_name")String userName, 
 			@Param("isbn")String isbn, @Param("degree")int degree);

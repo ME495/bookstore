@@ -13,7 +13,9 @@ public class Trolley4Pay {
 		this.num = num;
 	}
 	
-	public Trolley4Pay() {}
+	public Trolley4Pay() {
+		super();
+	}
 	
 	public String getIsbn() {
 		return isbn;

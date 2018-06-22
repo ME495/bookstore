@@ -23,7 +23,7 @@ public class TrolleyMapperTest extends BaseJUnit {
 	
 	@Ignore
 	@Test
-	public void testInsertTrolley() {
+	public void testInsertTrolley() throws Exception {
 		assertEquals(1, trolleyMapper.insertTrolley("jinqi", "9787100155724", 0, 1));
 	}
 	@Ignore

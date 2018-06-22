@@ -68,13 +68,16 @@ public interface TrolleyService {
 	/**
 	 * 获取待支付总价
 	 * @param trolleyMsg
-	 * @return double
+	 * @return ResponseMes
+	 * 成功返回“{“status”: “success”, price}”
+	 * 失败返回“{“status”: “fail”}”
 	 */
-	public double getPrice2Pay(String trolleyMsg);
+	public ResponseMes getPrice2Pay(String trolleyMsg);
 	
 	/**
 	 * 插入订单
 	 * @param order
+	 * @return ResponseMes
 	 * 成功返回“{“status”: “success”}”
 	 * 失败返回“{“status”: “fail”}”
 	 */

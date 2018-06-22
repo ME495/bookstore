@@ -48,17 +48,19 @@ $(function() {
     	size: 15
     };
     $.post("/browse_book.do", browse_data, function(result) {
-    	result = JSON.parse(result);
+    	// console.log(result);
+    	// result = JSON.parse(result);
     	if (result.status == "success") {
     		$("#loader").parent().removeClass("active");
+    		$(".loader-pannel").hide();
     		showBooks(result.message);
     		$(".books-container").removeClass("not-show");
+    		sessionStorage['booklist'] = JSON.stringify(result.message);
     	} else {
     		$("#loader").removeClass("loader").text("出错啦，刷新试试吧");
     	}
 
     });
-
 
     
 
