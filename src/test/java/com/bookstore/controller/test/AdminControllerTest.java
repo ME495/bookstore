@@ -16,7 +16,6 @@ import com.bookstore.mapper.CommonMapper;
 import com.bookstore.mapper.UserMapper;
 import com.bookstore.message.ResponseMes;
 import com.bookstore.utils.LoginJUnit;
-@TransactionConfiguration(defaultRollback=false)
 public class AdminControllerTest extends LoginJUnit {
 	@Autowired
 	private CommonMapper commonMapper;
@@ -39,6 +38,7 @@ public class AdminControllerTest extends LoginJUnit {
 		String resStr = getMockMvc()
 				.perform(post("/admin/delete_user.do").param("user_name", "xiaoxiong").session(getMockHttpSession()))
 				.andReturn().getResponse().getContentAsString();
+//		System.out.println(resStr);
 		assertTrue(resStr.contains("success"));
 	}
 
@@ -53,6 +53,7 @@ public class AdminControllerTest extends LoginJUnit {
 		String resStr = getMockMvc()
 				.perform(post("/admin/delete_user.do").param("user_name", "xiaoxiong").session(getMockHttpSession()))
 				.andReturn().getResponse().getContentAsString();
+//		System.out.println(resStr);
 		assertTrue(resStr.contains("fail"));
 	}
 
