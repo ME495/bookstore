@@ -109,7 +109,7 @@ public class AdminControllerTest extends LoginJUnit {
 	 * 
 	 * @throws Exception
 	 */
-
+	@Ignore
 	@Test
 	public void testAddBook() throws Exception {
 		adminLogin("chengjian", "123456");
@@ -157,7 +157,7 @@ public class AdminControllerTest extends LoginJUnit {
 //		System.out.println(responseStr);
 		assertEquals("success", JSON.parseObject(responseStr).get("status"));
 	}
-	@Ignore
+	
 	@Test
 	public void testUpdateBookInfo() throws Exception{
 		testAddBook();
@@ -169,7 +169,7 @@ public class AdminControllerTest extends LoginJUnit {
 					.param("actual_price", "16.5")
 					.session(getMockHttpSession())
 				).andReturn().getResponse().getContentAsString();
-		System.out.println(responseStr);
+//		System.out.println(responseStr);
 		assertEquals("success", JSON.parseObject(responseStr).get("status"));
 	}
 }

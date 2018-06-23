@@ -48,4 +48,6 @@
 	<tx:annotation-driven transaction-manager="transactionManager"/>
 	<context:component-scan base-package="com.bookstore.service"></context:component-scan>
 	<context:component-scan base-package="com.bookstore.entity"></context:component-scan>
+	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+	<bean id="adminLogAspect" class="com.bookstrore.aspects.AdminLogAspect"></bean>
 </beans>
