@@ -4,10 +4,10 @@
 	<title>test02</title>
 	<meta charset="utf-8">
 	<meta name="referrer" content="no-referrer"/>
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.3.1/dist/semantic.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.3.1/dist/semantic.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" href="/lib/semantic.min.css">
+    <script src="/lib/jquery.min.js"></script>
+    <script src="/lib/semantic.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
 </head>
 <body>
 	<div class="xob-header">
@@ -26,14 +26,24 @@
 					</a>
 				</li>
 				<li>
-					<a class="ui button basic blue" id="toShopCart">
+					<a class="ui button basic blue" id="toOrderList">
 						<i class="icon list"></i>
 						我的订单
 					</a>
 				</li>
 				<li style="display: none;">
-					<i class="icon user"></i>
-					<span class="sign-actions" id="userinfo"></span>
+					<div class="ui dropdown">
+						<div class="text">
+							<i class="icon user"></i>
+							<span class="sign-actions" id="userinfo"></span>
+						</div>
+						<i class="icon dropdown"></i>
+						<div class="menu">
+							<div class="item" onclick="logout()">
+								注 销 登 录
+							</div>
+						</div>
+					</div>
 				</li>
 				<li>
 					<a class="sign-actions" id="toLogin">登录</a>
@@ -330,14 +340,7 @@
 
 
 </body>
-<script src="./js/referrer-killer.js"></script>
-<script type="text/javascript" src="js/common.js"></script>
-<!-- <script type="application/javascript">
-    $(document).ready(function () {
-        var img_url = 'https://img13.360buyimg.com/n2/jfs/t658/193/368125886/17075/4b1428b8/546335b8Naab48023.jpg';
-        $("#image_kill_referrer").html(ReferrerKiller.imageHtml(img_url));
-    });
-</script> -->
-
-<script type="text/javascript" src="js/main.js"></script>
+<script src="/js/referrer-killer.js"></script>
+<script type="text/javascript" src="/js/common.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
 </html>

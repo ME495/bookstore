@@ -10,6 +10,8 @@ $(function() {
 
 	$(".button").popup();
 
+	$(".dropdown").dropdown();
+
 	$(".message .close").click(function() {
 		$(this).closest(".message").transition("fade");
 	})
@@ -19,7 +21,7 @@ $(function() {
 	$.post("/check_login.do", function(result) {
 		// result = JSON.parse(result);
 		if (result.status === "success") {
-			$("#userinfo").text(result.message.name).parent().show();
+			$("#userinfo").text(result.message.name).parents("li").show();
 			$("#toLogin, #toRegister").hide();
 			sessionStorage['logined'] = true;
 		}
@@ -163,7 +165,13 @@ $(function() {
     	// console.log(sessionStorage['logined']);
     	if (sessionStorage['logined']) {
     		// console.log("jump");
-    		window.location.href = "/shopCart.html";
+    		window.location.href = "/user/shopCart.html";
+    	}
+    });
+
+    $("#toOrderList").click(function() {
+    	if (sessionStorage['logined']) {
+    		window.location.href = "/user/orderList.html";
     	}
     })
 

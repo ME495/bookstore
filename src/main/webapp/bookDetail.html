@@ -5,10 +5,10 @@
     <title>test03</title>
     <meta charset="utf-8">
     <meta name="referrer" content="no-referrer" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.3.1/dist/semantic.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.3.1/dist/semantic.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" href="/lib/semantic.min.css">
+    <script src="/lib/jquery.min.js"></script>
+    <script src="/lib/semantic.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
 </head>
 
 <body>
@@ -26,7 +26,7 @@
 					</a>
                 </li>
                 <li>
-					<a class="ui button basic blue" id="toShopCart">
+					<a class="ui button basic blue" id="toOrderList">
 						<i class="icon list"></i>
 						我的订单
 					</a>
@@ -47,7 +47,7 @@
             <div class="ui label right pointing red hidden">请输入要查找的图书</div>
             <div class="ui input icon">
                 <input type="text" name="" placeholder="查找图书" id="searchBook">
-                <i class="icon search link"></i>
+                <i class="icon search link" id="toSearch"></i>
             </div>
         </div>
         <div class="ui modal tiny" id="loginModal">
@@ -180,7 +180,7 @@
         </div>
     </div>
 </body>
-<script type="text/javascript" src="js/common.js"></script>
-<script type="text/javascript" src="js/bookDetail.js"></script>
+<script type="text/javascript" src="/js/common.js"></script>
+<script type="text/javascript" src="/js/bookDetail.js"></script>
 
 </html>
