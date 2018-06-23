@@ -59,20 +59,23 @@ $(function() {
 
    	//注册和登录部分
     $("#registerButton").click(function() {
-    	var user_name = $("#registerModal [name='user_name']").val();
-    	var password = $("#registerModal [name='password']").val();
-    	var email = $("#registerModal [name='email']").val();
-    	if (user_name.trim() == "" || password.trim() == "" || email.trim() == "") {
+    	let user_name = $("#registerModal [name='user_name']").val();
+    	let password = $("#registerModal [name='password']").val();
+    	// var email = $("#registerModal [name='email']").val();
+    	let phone = $("#registerModal [name='phone']").val();
+    	let real_name = $("#registerModal [name='real_name']").val();
+    	let address = $("#registerModal [name='address']").val();
+    	if (user_name.trim() == "" || password.trim() == "" || phone.trim() == "" || real_name.trim() == "" || address.trim() == "") {
     		$("#registerErrorMsg p").text("请填入完整信息");
     		$("#registerErrorMsg").transition('show');
     	} else {
     		var data = {
     			user_name: user_name,
     			password: password,
-    			email: email,
-    			phone: '18373233677',
-    			real_name: '爱上嘎洒十多个',
-    			address: '大三发斯蒂芬'
+    			// email: email,
+    			phone: phone,
+    			real_name: real_name,
+    			address: address
     		};
     		$.post("/signup.do", data, function(result) {
     			// result = JSON.parse(result);
@@ -162,7 +165,7 @@ $(function() {
 
 
     $("#toShopCart").click(function() {
-    	// console.log(sessionStorage['logined']);
+    	// alert(sessionStorage['logined']);
     	if (sessionStorage['logined']) {
     		// console.log("jump");
     		window.location.href = "/user/shopCart.html";

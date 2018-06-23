@@ -226,7 +226,7 @@ body {
 }
 .footer-link {
 	margin: 0px 20px;
-	color: #99a1a6;
+	color: #99a1a6 !important;
 	transition: all 0.1s ease;
 }
 .footer-link:hover {
