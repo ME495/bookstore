@@ -21,6 +21,30 @@ $(function() {
 	// 	}
 	// ];
 
+	let url = window.location.href;
+	let paymentId = /paymentId=(.+?)&/g.exec(url);
+	let PayerID = /PayerID=(.+)/g.exec(url);
+	if (paymentId != null && PayerID != null) {
+		paymentId = paymentId[0];
+		PayerID = PayerID[0];
+		paymentId = paymentId.substring(paymentId.indexOf("=") + 1, paymentId.length - 1);
+		PayerID = PayerID.substring(PayerID.indexOf("=") + 1);
+		let data = {
+			paymentId: paymentId,
+			PayerID: PayerID
+		};
+		$.post("/user/paypalReturn.do", data, function(result) {
+			if (result.status == "success") {
+				alert("支付成功");
+				window.location.href = "/user/orderList.html";
+			} else {
+				alert("支付失败！");
+			}
+		})
+
+	}
+
+
 	var shopCart = [];
 
 	$.get("/user/trolley_check.do", function(result) {
@@ -59,10 +83,7 @@ $(function() {
 		};
 		$.post("/user/payment.do", json, function(result) {
 			if (result.status == "success") {
-				// let a = $("<a href='" + result.message + "' target='_blank'> </a>");
-				// a.click();
-				// alert(result.message);
-				window.open(result.message);
+				window.location.href = result.message;
 			} else {
 				alert("请稍后再试");
 			}
