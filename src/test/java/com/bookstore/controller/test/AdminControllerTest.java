@@ -16,7 +16,7 @@ import com.bookstore.mapper.CommonMapper;
 import com.bookstore.mapper.UserMapper;
 import com.bookstore.message.ResponseMes;
 import com.bookstore.utils.LoginJUnit;
-
+@TransactionConfiguration(defaultRollback=false)
 public class AdminControllerTest extends LoginJUnit {
 	@Autowired
 	private CommonMapper commonMapper;
@@ -47,7 +47,6 @@ public class AdminControllerTest extends LoginJUnit {
 	 * 
 	 * @throws Exception
 	 */
-	@Ignore
 	@Test
 	public void testDeleteUser2() throws Exception {
 		adminLogin("chengjian", "123456");
@@ -122,7 +121,7 @@ public class AdminControllerTest extends LoginJUnit {
 				.param("img_url", "https://img3.doubanio.com/view/subject/s/public/s29417905.jpg")
 				.param("original_price", "45.0").param("degree", "2").param("num", "88").session(getMockHttpSession()))
 				.andReturn().getResponse().getContentAsString();
-		 System.out.println(responseStr);
+//		 System.out.println(responseStr);
 		assertEquals("success", JSON.parseObject(responseStr).get("status"));
 	}
 
@@ -158,6 +157,7 @@ public class AdminControllerTest extends LoginJUnit {
 		assertEquals("success", JSON.parseObject(responseStr).get("status"));
 	}
 	
+	@Ignore
 	@Test
 	public void testUpdateBookInfo() throws Exception{
 		testAddBook();
