@@ -65,6 +65,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" id="closs" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="print">打印</button>
                     <button type="button" class="btn btn-primary" id="confirm">确定分配</button>
                 </div>
             </div>
@@ -74,6 +75,7 @@
 </body>
 <script src="../js/url_utils.js"></script>
 <script src="../js/jqPaginator.js"></script>
+<script src="../js/print.js"></script>
 <script type="application/javascript">
     var element;
     function show_data(data) {
@@ -166,6 +168,11 @@
                 query(json);
             }
         });
+        
+        $("#print").click(function () {
+            var text = $(".modal-body").html();
+            printConten(null, text);
+        });
 
         $("#confirm").click(function () {
             $.post("./allocate_order.do", {"order_id": element.attr("title")}, function (data, status) {
@@ -180,5 +187,7 @@
             });
         });
     });
+
+    
 </script>
 </html>
