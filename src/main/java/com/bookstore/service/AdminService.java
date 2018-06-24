@@ -1,7 +1,5 @@
 package com.bookstore.service;
 
-import org.junit.Ignore;
-
 import com.bookstore.message.ResponseMes;
 
 public interface AdminService {

@@ -4,10 +4,10 @@
 	<title>test03</title>
 	<meta charset="utf-8">
 	<meta name="referrer" content="no-referrer" />
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.3.1/dist/semantic.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.3.1/dist/semantic.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" href="/lib/semantic.min.css">
+    <script src="/lib/jquery.min.js"></script>
+    <script src="/lib/semantic.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
 </head>
 <body>
 	<div class="xob-header">
@@ -27,7 +27,7 @@
 					</a>
 				</li>
 				<li>
-					<a class="ui button basic blue" id="toShopCart">
+					<a class="ui button basic blue" id="toOrderList">
 						<i class="icon list"></i>
 						我的订单
 					</a>
@@ -52,7 +52,7 @@
 			<div class="ui label right pointing red hidden">请输入要查找的图书</div>
 			<div class="ui input icon">
 				<input type="text" name="" placeholder="查找图书" id="searchBook">
-				<i class="icon search link"></i>
+				<i class="icon search link" id="toSearch"></i>
 			</div>
 		</div>
 
@@ -148,109 +148,7 @@
 
 			<div class="shopcart-body">
 
-
-				<!-- <div class="shopcart-row" data-bookisbn="1">
-					<div class="item1">
-						<div class="ui checkbox">
-							<input type="checkbox" name="" onchange="chooseBook(event)">
-							<label></label>
-						</div>
-					</div>
-					<div class="item2">
-						<div class="shopcart-image fl">
-							<img src="https://img.alicdn.com/imgextra/i2/2220483884/TB1sTmFb.UIL1JjSZFrXXb3xFXa_!!0-item_pic.jpg_430x430q90.jpg" />
-						</div>
-						<div class="shopcart-summary fl">
-							<h5>
-								基督山伯爵
-							</h5>
-							<p class="">
-								基督山伯爵正版包邮 (上下)无删节全译本 原版原著中文版
-							</p>
-							<p class="shopcart-bookprice">
-								￥
-								<span>60.80</span>
-							</p>
-						</div>
-					</div>
-					<div class="item3">
-						<i class="icon close" onclick="deleteBook(event)"></i>	
-					</div>
-					<div class="item4">
-						<i class="icon minus" onclick="subCount(event)"></i>
-						<span class="shopcart-amount">1</span>
-						<i class="icon plus" onclick="addCount(event)"></i>
-					</div>
-				</div>
-
-				<div class="shopcart-row" data-bookisbn="2">
-					<div class="item1">
-						<div class="ui checkbox">
-							<input type="checkbox" name="" onchange="chooseBook(event)">
-							<label></label>
-						</div>
-					</div>
-					<div class="item2">
-						<div class="shopcart-image fl">
-							<img src="https://img.alicdn.com/imgextra/i2/2220483884/TB1sTmFb.UIL1JjSZFrXXb3xFXa_!!0-item_pic.jpg_430x430q90.jpg" />
-						</div>
-						<div class="shopcart-summary fl">
-							<h5>
-								基督山伯爵
-							</h5>
-							<p class="">
-								基督山伯爵正版包邮 (上下)无删节全译本 原版原著中文版
-							</p>
-							<p class="shopcart-bookprice">
-								￥
-								<span>60.80</span>
-							</p>
-						</div>
-					</div>
-					<div class="item3">
-						<i class="icon close" onclick="deleteBook(event)"></i>	
-					</div>
-					<div class="item4">
-						<i class="icon minus" onclick="subCount(event)"></i>
-						<span class="shopcart-amount">1</span>
-						<i class="icon plus" onclick="addCount(event)"></i>
-					</div>
-				</div>
-
-				<div class="shopcart-row" data-bookisbn="3">
-					<div class="item1">
-						<div class="ui checkbox">
-							<input type="checkbox" name="" onchange="chooseBook(event)">
-							<label></label>
-						</div>
-					</div>
-					<div class="item2">
-						<div class="shopcart-image fl">
-							<img src="https://img.alicdn.com/imgextra/i2/2220483884/TB1sTmFb.UIL1JjSZFrXXb3xFXa_!!0-item_pic.jpg_430x430q90.jpg" />
-						</div>
-						<div class="shopcart-summary fl">
-							<h5>
-								基督山伯爵
-							</h5>
-							<p>
-								基督山伯爵正版包邮 (上下)无删节全译本 原版原著中文版
-							</p>
-							<p class="shopcart-bookprice">
-								￥
-								<span>60.80</span>
-							</p>
-						</div>
-					</div>
-					<div class="item3">
-						<i class="icon close" onclick="deleteBook(event)"></i>	
-					</div>
-					<div class="item4">
-						<i class="icon minus" onclick="subCount(event)"></i>
-						<span class="shopcart-amount">1</span>
-						<i class="icon plus" onclick="addCount(event)"></i>
-					</div>
-				</div> -->
-
+				
 
 			</div>
 
@@ -281,6 +179,8 @@
 			<a href="" class="footer-link">常见问题</a>
 			<a href="" class="footer-link">意见反馈</a>
 			<a href="" class="footer-link">友情链接</a>
+			<a href="/admin_login.html" class="footer-link">管理员登录</a>
+			<a href="/super_login.html" class="footer-link">超级管理员登录</a>
 		</div>
 		<div class="footer-copyright">
 			copyright 2018 @ xtubooks开发团队
@@ -289,6 +189,6 @@
 
 	
 </body>
-<script type="text/javascript" src="js/common.js"></script>
-<script type="text/javascript" src="js/shopCart.js"></script>
+<script type="text/javascript" src="/js/common.js"></script>
+<script type="text/javascript" src="/js/shopCart.js"></script>
 </html>

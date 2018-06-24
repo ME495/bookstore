@@ -3,7 +3,7 @@
 <head>
 	<title>test03</title>
 	<meta charset="utf-8">
-	<meta name="referrer" content="no-referrer"/>
+	<meta name="referrer" content="no-referrer" />
 	<link rel="stylesheet" href="/lib/semantic.min.css">
     <script src="/lib/jquery.min.js"></script>
     <script src="/lib/semantic.min.js"></script>
@@ -16,18 +16,19 @@
 			<span>湘大旧书店</span>
 		</a>
 
+		
 
 		<div class="login-area">
 			<ul>
 				<li>
-					<a class="ui button basic blue"  id="toShopCart">
+					<a class="ui button basic blue" id="toShopCart">
 						<i class="icon shop"></i>
 						购物车
 					</a>
 				</li>
 				<li>
 					<a class="ui button basic blue" id="toOrderList">
-						<i class="icon list"></i>
+						<i class="icon list" id="toSearch"></i>
 						我的订单
 					</a>
 				</li>
@@ -48,7 +49,7 @@
 			<div class="ui label right pointing red hidden">请输入要查找的图书</div>
 			<div class="ui input icon">
 				<input type="text" name="" placeholder="查找图书" id="searchBook">
-				<i class="icon search link" id="toSearch"></i>
+				<i class="icon search link"></i>
 			</div>
 		</div>
 
@@ -66,7 +67,10 @@
 							<label>密码</label>
 							<input type="password" name="password">
 						</div>
-
+						<!-- <div class="field">
+							<label>输入验证码</label>
+							<input type="text" name="">
+						</div> -->
 					</form>
 					<div class="ui message error raised hidden" id="loginErrorMsg">
 						<i class="icon close"></i>
@@ -114,42 +118,18 @@
 
 	<div class="xob-body">
 
-
-
-		<h3>查询结果 / </h3>
-		<div class="ui divider"></div>
-
 		<div class="ui segment loader-pannel">
 			<div class="ui inverted dimmer active">
 				<div class="ui text loader large" id="loader">正在加载</div>
 			</div>
 		</div>
 
-		<div class="books-container not-show">
-	
+		<div class="orderlist-container">
 
+			
 
 		</div>
-
-			<div class="pagination-container">
-				<div class="ui menu pagination md">
-					<div class="item">
-						<i class="icon angle left"></i>
-					</div>
-					<div class="item page-num">1</div>
-					<div class="item page-num">2</div>
-					<div class="item page-num">3</div>
-					<div class="item page-num">4</div>
-					<div class="item page-num">5</div>
-					<div class="item">
-						<i class="icon angle right"></i>
-					</div>
-				</div>
-			</div>
-
-			<div class="">
-				
-			</div>
+		
 		
 	</div>
 
@@ -173,6 +153,6 @@
 
 	
 </body>
-<script type="text/javascript" src="js/common.js"></script>
-<script type="text/javascript" src="js/searchBook.js"></script>
+<script type="text/javascript" src="/js/common.js"></script>
+<script type="text/javascript" src="/js/orderList.js"></script>
 </html>

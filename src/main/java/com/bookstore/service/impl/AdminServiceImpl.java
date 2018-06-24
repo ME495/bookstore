@@ -29,12 +29,9 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public ResponseMes deleteUser(String userName) {
 		ResponseMes responseMes;
-		if (userMapper.getUser(userName) == null) {// 用户不存在,则返回错误信息
-			responseMes = new ResponseMes(ResponseMes.FAIL, "该用户不存在");
-		} else {// 用户已存在,则删除
-			adminMapper.deleteUser(userName);
-			responseMes = new ResponseMes(ResponseMes.SUCCESS, "删除成功");
-		}
+		// 用户已存在,则删除
+		adminMapper.deleteUser(userName);
+		responseMes = new ResponseMes(ResponseMes.SUCCESS, "删除成功");
 		return responseMes;
 	}
 
@@ -47,12 +44,9 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public ResponseMes modifyUserPwd(String userName, String password) {
 		ResponseMes responseMes;
-		if (userMapper.getUser(userName) == null) {// 用户不存在,则返回错误信息
-			responseMes = new ResponseMes(ResponseMes.FAIL, "该用户不存在");
-		} else {// 用户已存在,则修改密码
-			adminMapper.modifyUserPwd(userName, password);
-			responseMes = new ResponseMes(ResponseMes.SUCCESS, "修改成功");
-		}
+		// 用户已存在,则修改密码
+		adminMapper.modifyUserPwd(userName, password);
+		responseMes = new ResponseMes(ResponseMes.SUCCESS, "修改成功");
 		return responseMes;
 	}
 
