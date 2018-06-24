@@ -7,6 +7,8 @@ import com.bookstore.entity.OrderSelector;
 import com.bookstore.message.ResponseMes;
 import com.bookstore.service.OrderManagerService;
 import com.bookstore.utils.BaseJUnit;
+import com.bookstore.utils.MockMvcJUnit;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +22,7 @@ import static org.junit.Assert.*;
 /**
  * @Author ME495
  */
-public class OrderManagerServiceTest extends BaseJUnit {
+public class OrderManagerServiceTest extends MockMvcJUnit {
 
     @Autowired
     OrderManagerService orderManagerService;
@@ -71,4 +73,5 @@ public class OrderManagerServiceTest extends BaseJUnit {
         JSONObject jsonObject = JSONObject.parseObject(st);
         assertEquals(ResponseMes.FAIL, jsonObject.getString("status"));
     }
+    
 }
