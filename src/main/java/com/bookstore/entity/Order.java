@@ -1,6 +1,6 @@
 package com.bookstore.entity;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 import com.alibaba.fastjson.annotation.JSONField;
 
@@ -10,11 +10,24 @@ import com.alibaba.fastjson.annotation.JSONField;
  *
  */
 public class Order {
-	private String orderId, userName, adminName, isbn, address;
+	private String orderId, userName, address, realName;
 	@JSONField(format = "yyyy-MM-dd HH:mm:ss")
-	private Date orderTime;
+	private Timestamp orderTime;
 	private int status;
-	private double price;
+	private double money;
+
+	public Order() {
+		super();
+	}
+
+	public Order(String userName, String address, Timestamp orderTime, int status, double money) {
+		super();
+		this.userName = userName;
+		this.address = address;
+		this.orderTime = orderTime;
+		this.status = status;
+		this.money = money;
+	}
 
 	public String getOrderId() {
 		return orderId;
@@ -32,22 +45,6 @@ public class Order {
 		this.userName = userName;
 	}
 
-	public String getAdminName() {
-		return adminName;
-	}
-
-	public void setAdminName(String adminName) {
-		this.adminName = adminName;
-	}
-
-	public String getIsbn() {
-		return isbn;
-	}
-
-	public void setIsbn(String isbn) {
-		this.isbn = isbn;
-	}
-
 	public String getAddress() {
 		return address;
 	}
@@ -56,11 +53,11 @@ public class Order {
 		this.address = address;
 	}
 
-	public Date getOrderTime() {
+	public Timestamp getOrderTime() {
 		return orderTime;
 	}
 
-	public void setOrderTime(Date orderTime) {
+	public void setOrderTime(Timestamp orderTime) {
 		this.orderTime = orderTime;
 	}
 
@@ -72,11 +69,19 @@ public class Order {
 		this.status = status;
 	}
 
-	public double getPrice() {
-		return price;
+	public double getMoney() {
+		return money;
 	}
 
-	public void setPrice(double price) {
-		this.price = price;
+	public void setMoney(double money) {
+		this.money = money;
+	}
+
+	public String getRealName() {
+		return realName;
+	}
+
+	public void setRealName(String realName) {
+		this.realName = realName;
 	}
 }

@@ -2,6 +2,7 @@ package com.bookstore.message;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.annotation.JSONField;
 
 /**
  * 返回消息类.
@@ -12,7 +13,9 @@ import com.alibaba.fastjson.JSONObject;
 public class ResponseMes {
 	public final static String SUCCESS = "success";
 	public final static String FAIL = "fail";
+	@JSONField(ordinal=1)
 	private String status;
+	@JSONField(ordinal=2)
 	private Object message;
 	
 	public String getStatus() {

@@ -1,45 +1,79 @@
 package com.bookstore.service.test;
 
-import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
 
 import org.junit.Ignore;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.transaction.TransactionConfiguration;
-import org.springframework.transaction.annotation.Transactional;
 
-import com.bookstore.mapper.AdminMapper;
+import com.bookstore.entity.User;
+import com.bookstore.mapper.CommonMapper;
+import com.bookstore.mapper.UserMapper;
 import com.bookstore.message.ResponseMes;
-import com.bookstore.service.impl.AdminServiceImpl;
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "classpath:spring-cfg.xml" })
-@Transactional
-@TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true)
-public class AdminServiceTest {
+import com.bookstore.service.AdminService;
+import com.bookstore.utils.BaseJUnit;
+
+public class AdminServiceTest extends BaseJUnit {
 	@Autowired
-	private AdminServiceImpl adminService;
+	AdminService adminService;
+	@Autowired
+	CommonMapper commonMapper;
+
+	private String isbn = "9787506391542";
+	private String title = "我喜欢生命本来的样子";
+	private String author = "周国平";
+	private String publisher = "作家出版社";
+	private String summary = "测试一下";
+	private String imgUrl = "https://img3.doubanio.com/view/subject/s/public/s29417905.jpg";
 	@Ignore
 	@Test
-	public void testInsertAdmin() {
-		ResponseMes responseMes = adminService.insertAdmin("hzx","123456");
-		System.out.println(responseMes.getMessage());
-		responseMes = adminService.insertAdmin("abcd", "aajklasd");
-		System.out.println(responseMes.getMessage());
-		responseMes = adminService.insertAdmin("asbadfasdfasdfasdfasdf", "asdf");
-		System.out.println(responseMes.getMessage());
+	public void testDeleteUser() {
+		User user = new User();
+		user.setUserName("xiaoxiong");
+		user.setPassword("123456");
+		user.setPhone("18880207329");
+		user.setRealName("张三");
+		user.setAddress("湘潭大学琴湖18栋");
+		commonMapper.insertUser(user);
+		assertEquals("success", adminService.deleteUser("xiaoxiong").getStatus());
 	}
+
+	@Ignore
+	@Test
+	public void testModifyUserPwd() {
+		adminService.modifyUserPwd("xiyou", "xiyou");
+		assertEquals("success", adminService.modifyUserPwd("xiyou", "xiyou").getStatus());
+	}
+
+	/**
+	 * 插入不存在的图书
+	 */
 	
 	@Test
-	public void testDeleteAdmin() {
-		adminService.insertAdmin("xiaoxiong", "123456");
-		ResponseMes responseMes = adminService.deleteAdmin("xiaoxiong");
-		assertEquals("删除成功", responseMes.getMessage());
+	public void testAddBook() {
+		ResponseMes responseMes = adminService.addBook(isbn, title, author, publisher, summary, imgUrl, 45.0, 1, 88);
+		assertEquals("success", responseMes.getStatus());
 	}
-	
+
+	/**
+	 * 插入已有图书
+	 */
+	@Test
+	public void testAddBook2() {
+		testAddBook();
+		ResponseMes responseMes = adminService.addBook(isbn, title, author, publisher, summary, imgUrl, 45.0, 1, 88);
+		assertEquals("success", responseMes.getStatus());
+	}
+	@Ignore
+	@Test
+	public void testDeleteBook() {
+		testAddBook();
+		assertEquals("success", adminService.deleteBook(isbn, 1).getStatus());
+	}
+	@Ignore
+	@Test
+	public void testUpdateBookInfo() {
+		testAddBook();
+		adminService.updateBookInfo(isbn, 1, 10, 16.0);
+	}
 }

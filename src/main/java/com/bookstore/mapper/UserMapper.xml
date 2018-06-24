@@ -2,10 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bookstore.mapper.UserMapper">
 	<select id="getUser" parameterType="string" resultType="com.bookstore.entity.User">
-		select user_name, password, phone from user where user_name = #{userName}
+		select * from user where user_name = #{userName}
 	</select>
 			
-	<insert id="insertUser" parameterType="com.bookstore.entity.User">
-		insert into user values(#{userName},MD5(#{password}),#{phone})
-	</insert>
+	
+	<update id="updateUserInfo" parameterType="com.bookstore.entity.User">
+		update user
+			set password = MD5(#{password})
+				,phone = #{phone}
+				,real_name = #{realName}
+				,address = #{address}
+			where user_name = #{userName}
+	</update>
 </mapper>

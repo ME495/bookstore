@@ -4,14 +4,29 @@
 	<select id="getAdminByName" parameterType="string" resultType="com.bookstore.entity.Admin">
 		select * from admin where admin_name = #{adminName}
 	</select>
-	
-	<insert id="insertAdmin" parameterType="com.bookstore.entity.Admin">
-		insert into admin values(#{adminName},MD5(#{password}))
-	</insert>
-	
-	<delete id="deleteAdmin" parameterType="string">
-		delete from admin where admin_name = #{adminName}
+
+	<delete id="deleteUser" parameterType="string">
+		delete from user where user_name = #{userName}
 	</delete>
 	
-
+	<update id="modifyUserPwd" >
+		update user
+			set password = MD5(#{password})
+			where user_name = #{userName} 
+	</update>
+	
+	<insert id="addBook">
+		insert into book values(#{book.isbn},#{book.title},#{book.author},#{book.publisher},#{book.summary},#{book.originalPrice},#{book.imgUrl});	
+		insert into book_price values(#{bookPrice.isbn},#{bookPrice.degree},#{bookPrice.actualPrice},#{bookPrice.num});
+	</insert>
+	
+	<update id="updateBook" statementType="CALLABLE">
+		call update_book(#{isbn},#{degree},#{num},#{actualPrice})
+	</update>
+	
+	<update id="deleteBook">
+		update book_price
+			set num = 0
+			where isbn = #{isbn} and degree = #{degree}
+	</update>
 </mapper>

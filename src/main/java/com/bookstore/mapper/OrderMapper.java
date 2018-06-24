@@ -10,5 +10,7 @@ import com.bookstore.entity.OrderSelector;
 
 @Repository
 public interface OrderMapper {
-	public List<Order> query(@Param("s") OrderSelector s);
+	public List<Order> query(@Param("s") OrderSelector s, @Param("is_asc") boolean isAsc);
+	public int setOrderStatus(@Param("order_id") int order_id, @Param("status") int status);
+	public Order getOrder(@Param("orderId") int orderId);
 }

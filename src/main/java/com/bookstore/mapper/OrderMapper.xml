@@ -2,7 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bookstore.mapper.OrderMapper">
 	<select id="query" resultType="com.bookstore.entity.Order">
-		select * from `order`
+		select order_id, s.user_name as user_name, s.address as address, order_time, status, money, real_name
+		from `order` s join `user` t on(s.user_name = t.user_name)
 		<where>
 			<if test="s.orderId != null">
 				and order_id = #{s.orderId}
@@ -17,10 +18,7 @@
 				and status !=2
 			</if>
 			<if test="s.userName != null">
-				and user_name = #{s.userName}
-			</if>
-			<if test="s.adminName != null">
-				and admin_name = #{s.userName}
+				and s.user_name = #{s.userName}
 			</if>
 			<if test="s.beginTime != null">
 				and order_time &gt;= #{s.beginTime}
@@ -29,6 +27,26 @@
 				and order_time &lt;= #{s.endTime}
 			</if>
 		</where>
-		limit #{s.index}, #{s.page}
+		<choose>
+			<when test="is_asc">
+				order by order_time asc
+			</when>
+			<otherwise>
+				order by order_time desc
+			</otherwise>
+		</choose>
+		limit #{s.index}, #{s.size}
 	</select>
+
+	<update id="setOrderStatus">
+		update `order`
+		set status = #{status}
+		where order_id = #{order_id}
+	</update>
+
+    <select id="getOrder" resultType="com.bookstore.entity.Order">
+		select * from `order`
+		where order_id = #{orderId}
+	</select>
+
 </mapper>

@@ -5,6 +5,8 @@ import static org.junit.Assert.*;
 import java.util.Date;
 import java.util.List;
 
+import com.alibaba.fastjson.JSONObject;
+import com.bookstore.utils.BaseJUnit;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +18,12 @@ import com.bookstore.entity.Order;
 import com.bookstore.entity.OrderSelector;
 import com.bookstore.mapper.OrderMapper;
 import com.bookstore.message.ResponseMes;
+import org.springframework.test.context.transaction.TransactionConfiguration;
+import org.springframework.transaction.annotation.Transactional;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration({"classpath:spring-cfg.xml"})
-public class OrderMapperTest {
+@TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true)
+@Transactional
+public class OrderMapperTest extends BaseJUnit {
 
 	@Autowired
 	OrderMapper orderMapper;
@@ -31,8 +35,19 @@ public class OrderMapperTest {
 		s.setStatus1(true);
 		s.setStatus2(true);
 //		s.setUserName("rigzyxwl");
-		List<Order> list = orderMapper.query(s);
+		List<Order> list = orderMapper.query(s, true);
 		System.out.println(new ResponseMes(ResponseMes.SUCCESS, list).toJsonString());
 	}
 
+	@Test
+	public void testSetOrderStatus() {
+		assertEquals(1, orderMapper.setOrderStatus(103, 1));
+	}
+
+	@Test
+	public void testGetOrder() {
+		Order order = orderMapper.getOrder(103);
+		System.out.println(JSONObject.toJSONString(order));
+	}
+	
 }

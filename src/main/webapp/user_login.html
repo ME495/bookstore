@@ -3,8 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>用户登陆</title>
+    <script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+    <script type="application/javascript">
+        $(document).ready(function () {
+            $("#submit").click(function () {
+                var user_name = $("#user_name").val()
+                var password = $("#password").val()
+                $.post("./user_login.do", {user_name: user_name, password: password}, function (data, status) {
+                    if (status == "success") {
+                        var json = data;
+                        if (json.status == "success") {
+                            location.href = "./user/index.html";
+                        }
+                    }
+                })
+            });
+        });
+    </script>
 </head>
 <body>
-    <h1>用户登陆界面</h1>
+<h1>用户登陆界面</h1>
+<input type="text" name="user_name" id="user_name">
+<input type="password" name="password" id="password">
+<input type="submit" name="submit" id="submit">
 </body>
 </html>

@@ -1,0 +1,83 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: ME495
+  Date: 2018/6/13
+  Time: 14:12
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!-- 新 Bootstrap 核心 CSS 文件 -->
+<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- 可选的Bootstrap主题文件（一般不使用） -->
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"></script>
+
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">湘大旧书店</a>
+        </div>
+        <div>
+            <ul class="nav nav-tabs">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        图书管理 <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="./add_book.jsp">添加图书</a></li>
+                        <li><a href="./modify_book.jsp">修改图书</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        用户管理 <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="./query_user_info.jsp">查看用户信息</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        订单管理 <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="./query_order.jsp">订单查询</a></li>
+                        <li><a href="./allocate_order.jsp">分配订单</a></li>
+                    </ul>
+                </li>
+                <li class="navbar-right"><a href="#" id="logout"><span class="glyphicon glyphicon-log-in"></span>注销</a></li>
+                <li class="navbar-right"><a href="#" id="name"><span class="glyphicon glyphicon-user"></span>admin</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<script type="application/javascript">
+    $(document).ready(function () {
+        $.post("../check_login.do", function (data, status) {
+            if (status == "success") {
+                var json = data;
+                var st = "<span class=\"glyphicon glyphicon-user\"></span>"
+                if (json.status == "success") {
+                    $("#name").html(st + json.message.name);
+                }
+            }
+        });
+        $("#logout").click(function () {
+            $.post("../logout.do", function (data, status) {
+                if (status == "success") {
+                    var json = data;
+                    if (json.status == "success") {
+                        location.href = "../admin_login.html";
+                    } else {
+                        alert("注销失败！");
+                    }
+                }
+            })
+        });
+    });
+</script>

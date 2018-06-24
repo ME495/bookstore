@@ -6,6 +6,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.io.UnsupportedEncodingException;
 
+import com.bookstore.utils.LoginJUnit;
+import com.bookstore.utils.MockMvcJUnit;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,69 +30,63 @@ import com.bookstore.message.ResponseMes;
  * @author ME495
  *
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration({
-	"classpath:spring-cfg.xml", 
-	"classpath:mybatis-cfg.xml", 
-	"classpath:dispatcher-servlet.xml"})
-@WebAppConfiguration
-public class LoginControllerTest {
-
-	@Autowired
-	private WebApplicationContext wac; 
-	
-	private MockMvc mockMvc;
-	
-	@Before
-	public void setUp() {
-		this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
-	}
+public class LoginControllerTest extends LoginJUnit {
 	
 	@Test
 	public void testUserLogin() throws UnsupportedEncodingException, Exception {
-		MvcResult result = mockMvc.perform(
-				post("/user_login.do")
-				.contentType(MediaType.APPLICATION_FORM_URLENCODED)
-				.param("user_name", "chengjian")
-				.param("password", "123456"))
-			.andExpect(status().isOk())
-			.andReturn();
-		String st = result.getResponse().getContentAsString();
+		String st = userLogin("chengjian", "123456");
 		JSONObject jsonObject = JSONObject.parseObject(st);
 		assertEquals(ResponseMes.SUCCESS, jsonObject.getString("status"));
-		String role = (String) result.getRequest().getSession().getAttribute("role");
+		String role = (String) getMockHttpSession().getAttribute("role");
 		assertEquals("user", role);
 	}
 	
 	@Test
 	public void testAdminLogin() throws UnsupportedEncodingException, Exception {
-		MvcResult result = mockMvc.perform(
-				post("/admin_login.do")
-				.contentType(MediaType.APPLICATION_FORM_URLENCODED)
-				.param("admin_name", "chengjian")
-				.param("password", "123456"))
-			.andExpect(status().isOk())
-			.andReturn();
-		String st = result.getResponse().getContentAsString();
+		String st = adminLogin("chengjian", "123456");
 		JSONObject jsonObject = JSONObject.parseObject(st);
 		assertEquals(ResponseMes.SUCCESS, jsonObject.getString("status"));
-		String role = (String) result.getRequest().getSession().getAttribute("role");
+		String role = (String) getMockHttpSession().getAttribute("role");
 		assertEquals("admin", role);
 	}
 	
 	@Test
-	public void testSuperLogout() throws Exception {
-		//模拟用户登陆
-		MvcResult result = mockMvc.perform(
-				post("/super_login.do")
-				.contentType(MediaType.APPLICATION_FORM_URLENCODED)
-				.param("password", "Bookstore!"))
-			.andExpect(status().isOk())
-			.andReturn();
-		String st = result.getResponse().getContentAsString();
+	public void testSuperLogin() throws Exception {
+		String st = superLogin("Bookstore!");
 		JSONObject jsonObject = JSONObject.parseObject(st);
 		assertEquals(ResponseMes.SUCCESS, jsonObject.getString("status"));
-		String role = (String) result.getRequest().getSession().getAttribute("role");
+		String role = (String) getMockHttpSession().getAttribute("role");
 		assertEquals("super", role);
+	}
+
+	@Test
+	public void testLoginCheck1() throws Exception {
+		userLogin("chengjian", "123456");
+		MvcResult result = getMockMvc().perform(post("/check_login.do")
+				.session(getMockHttpSession())
+				.contentType(MediaType.APPLICATION_FORM_URLENCODED)
+		).andExpect(status().isOk()).andReturn();
+		String st = result.getResponse().getContentAsString();
+		JSONObject jsonObject = JSON.parseObject(st);
+		assertEquals(ResponseMes.SUCCESS, jsonObject.getString("status"));
+		JSONObject jsonObject2 = jsonObject.getJSONObject("message");
+		assertEquals("chengjian", jsonObject2.getString("name"));
+		assertEquals("user", jsonObject2.getString("role"));
+	}
+
+	@Test
+	public void testLoginCheck2() throws Exception {
+		superLogin("Bookstore!");
+		MvcResult result = getMockMvc().perform(post("/check_login.do")
+				.session(getMockHttpSession())
+				.contentType(MediaType.APPLICATION_FORM_URLENCODED)
+		).andExpect(status().isOk()).andReturn();
+		String st = result.getResponse().getContentAsString();
+		JSONObject jsonObject = JSON.parseObject(st);
+		assertEquals(ResponseMes.SUCCESS, jsonObject.getString("status"));
+		JSONObject jsonObject2 = jsonObject.getJSONObject("message");
+		assertEquals("super", jsonObject2.getString("name"));
+		assertEquals("super", jsonObject2.getString("role"));
+		System.out.println(result.getResponse().getContentAsString());
 	}
 }

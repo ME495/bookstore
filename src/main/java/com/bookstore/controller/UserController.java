@@ -6,17 +6,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.JSON;
 import com.bookstore.service.UserService;
 
 @Controller
+@RequestMapping(produces = "application/json;charset=utf-8")
 public class UserController {
 	@Autowired
 	private UserService userService;
 
 	@ResponseBody
-	@RequestMapping(value = "add_user.do", produces = "text/plain;charset=utf-8")
-	public String insertUser(@RequestParam("user_name") String userName, String password, String phone) {
-		return JSONObject.toJSONString(userService.insertUser(userName, password, phone));
+	@RequestMapping(value = "/user/get_user.do")
+	public String getUser(@RequestParam("user_name") String userName) {
+		return JSON.toJSONString(userService.getUser(userName));
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/user/modify_info.do")
+	public String updateUserInfo(@RequestParam("user_name") String userName,@RequestParam("old_password") String oldPassword,@RequestParam("new_password") String newPassword,String phone,@RequestParam("real_name") String realName,String address) {
+		return JSON.toJSONString(userService.updateUserInfo(userName, oldPassword, newPassword, phone, realName, address));
 	}
 }

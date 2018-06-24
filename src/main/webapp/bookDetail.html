@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>test03</title>
+    <meta charset="utf-8">
+    <meta name="referrer" content="no-referrer" />
+    <link rel="stylesheet" href="/lib/semantic.min.css">
+    <script src="/lib/jquery.min.js"></script>
+    <script src="/lib/semantic.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+</head>
+
+<body>
+    <div class="xob-header">
+        <a class="xob-logo" href="/">
+			<i class="icon book"></i>
+			<span>湘大旧书店</span>
+		</a>
+        <div class="login-area">
+            <ul>
+                <li>
+                    <a class="ui button basic blue" id="toShopCart">
+						<i class="icon shop"></i>
+						购物车
+					</a>
+                </li>
+                <li>
+					<a class="ui button basic blue" id="toOrderList">
+						<i class="icon list"></i>
+						我的订单
+					</a>
+				</li>
+				<li style="display: none;">
+					<i class="icon user"></i>
+					<span class="sign-actions" id="userinfo"></span>
+				</li>
+                <li>
+                    <span class="sign-actions" id="toLogin">登录</span>
+                </li>
+                <li>
+                    <span class="sign-actions" id="toRegister">注册</span>
+                </li>
+            </ul>
+        </div>
+        <div class="search-container">
+            <div class="ui label right pointing red hidden">请输入要查找的图书</div>
+            <div class="ui input icon">
+                <input type="text" name="" placeholder="查找图书" id="searchBook">
+                <i class="icon search link" id="toSearch"></i>
+            </div>
+        </div>
+        <div class="ui modal tiny" id="loginModal">
+            <div class="content">
+                <div class="signmodal-title">登录湘大旧书店</div>
+                <div class="signmodal-subtitle">发现更多特价好书</div>
+                <div class="signform-container">
+                    <form class="ui form" id="loginForm">
+                        <div class="field">
+                            <label>用户名</label>
+                            <input type="text" name="user_name">
+                        </div>
+                        <div class="field">
+                            <label>密码</label>
+                            <input type="password" name="password">
+                        </div>
+                    </form>
+                    <div class="ui message error raised hidden" id="loginErrorMsg">
+                        <i class="icon close"></i>
+                        <div class="header">Error</div>
+                        <p id="">asdfdf</p>
+                    </div>
+                    <button class="ui button primary fluid" id="loginButton">登 录</button>
+                </div>
+            </div>
+        </div>
+        <div class="ui modal tiny" id="registerModal">
+            <div class="content">
+                <div class="signmodal-title">注册湘大旧书店</div>
+                <div class="signmodal-subtitle">发现更多特价好书</div>
+                <div class="signform-container">
+                    <form class="ui form" id="registerForm">
+                        <div class="field">
+                            <label>用户名</label>
+                            <input type="text" name="user_name">
+                        </div>
+                        <div class="field">
+                            <label>密码</label>
+                            <input type="password" name="password">
+                        </div>
+                        <div class="field">
+                            <label>输入邮箱</label>
+                            <input type="text" name="email">
+                        </div>
+                    </form>
+                    <div class="ui message error raised hidden" id="registerErrorMsg">
+                        <i class="icon close"></i>
+                        <div class="header">Error</div>
+                        <p></p>
+                    </div>
+                    <button class="ui button primary fluid" id="registerButton">注 册</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ui divider hidden">
+    </div>
+    <div class="xob-body">
+        <div class="book-info-container">
+            <div class="book-image-box">
+                <div class="book-image-container">
+                    <img class="book-image-large" src="" id="bookImage" />
+                </div>
+            </div>
+            <div class="book-detail-box">
+                <div class="book-detail-name" id="bookName"></div>
+                <div class="book-summary" id="bookSummary"></div>
+                <div class="book-author mt10">
+                    <span id="authorName"></span>
+                    <span> 著</span>
+                </div>
+                <div class="book-price-box">
+                    <div class="box-title">超值价</div>
+                    <strong class="book-detail-price">
+						￥
+						<span id="bookPrice"></span>
+					</strong>
+                </div>
+
+
+                <div class="choose-amount-box">
+                    <div class="box-title">数量</div>
+                    <div class="amount-wigets">
+                        <button class="ui button gray basic" id="amountSub">-</button>
+                        <div class="ui input amount-input">
+                            <input type="text" name="" id="amount" value="1" />
+                        </div>
+                        <button class="ui button basic gray" id="amountAdd">+</button>
+                    </div>
+                </div>
+
+	            <div class="book-old-degree">
+	            	<div class="ui selection dropdown">
+	                    <input type="hidden" name="gender" id="oldDegree">
+	                    <i class="dropdown icon"></i>
+	                    <div class="default text">选择图书新旧程度</div>
+	                    <div class="menu">
+	                        <div class="item" data-value="2">五成新</div>
+	                        <div class="item" data-value="1">七成新</div>
+	                        <div class="item" data-value="0">九成新</div>
+	                    </div>
+	                </div>
+	            </div>
+
+                <div class="book-detail-actions">
+                    <!-- <button class="ui button basic red large">立即购买</button> -->
+                    <button class="ui button red large" id="addToShopCart">
+                        <i class="icon shopping cart"></i> 加入购物车
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ui divider hidden clearing"></div>
+    <div class="xob-footer">
+        <div class="footer-links">
+            <a href="" class="footer-link">企业合作</a>
+            <a href="" class="footer-link">人才招聘</a>
+            <a href="" class="footer-link">联系我们</a>
+            <a href="" class="footer-link">常见问题</a>
+            <a href="" class="footer-link">意见反馈</a>
+            <a href="" class="footer-link">友情链接</a>
+            <a href="/admin_login.html" class="footer-link">管理员登录</a>
+			<a href="/super_login.html" class="footer-link">超级管理员登录</a>
+        </div>
+        <div class="footer-copyright">
+            copyright 2018 @ xtubooks开发团队
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="/js/common.js"></script>
+<script type="text/javascript" src="/js/bookDetail.js"></script>
+
+</html>
