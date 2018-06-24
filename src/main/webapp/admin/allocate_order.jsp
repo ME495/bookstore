@@ -42,16 +42,21 @@
                     <h4 class="modal-title" id="myModalLabel">订单详情</h4>
                 </div>
                 <div class="modal-body">
-                    <label>下单人姓名：</label>
+                    <label>订单号：</label>
+                    <label id="show_order_id"></label>
+                    <br>
+                    <label>下单人：</label>
                     <label id="show_name"></label>
+                    <br>
+                    <label>手机号：</label>
+                    <label id="show_phone"></label>
                     <br>
                     <label >地址：</label>
                     <label id="show_address"></label>
+                    <br>
                     <table class="table">
-                        <caption>购买书籍</caption>
                         <thead>
                         <tr>
-                            <th>isbn</th>
                             <th>书名</th>
                             <th>新旧程度</th>
                             <th>作者</th>
@@ -89,16 +94,19 @@
             $e.append("<td>" + value.orderTime + "</td>");
             $e.append("<td>" + value.money + "</td>");
             var $span = $("<span class='allocate btn btn-primary' data-toggle='modal' data-target='#myModal'>分配订单</span>");
-            $span.attr("title", value.orderId);
+            $span.attr("order_id", value.orderId);
             $span.attr("name", value.realName);
             $span.attr("address", value.address);
+            $span.attr("phone", value.phone);
             $e.append($("<td></td>").append($span));
             $("#order_list").append($e);
         });
         $(".allocate").click(function () {
             element = $(this);
-            var order_id = $(this).attr("title");
+            var order_id = $(this).attr("order_id");
+            $("#show_order_id").html($(this).attr("order_id"));
             $("#show_name").html($(this).attr("name"));
+            $("#phone").html($(this).attr("phone"));
             $("#show_address").html($(this).attr("address"));
             console.log(order_id);
             $.post("./order_detail.do", {"order_id": order_id}, function (data, status) {
@@ -111,7 +119,6 @@
                         else if (value.degree == 2) degree = "五成新";
                         else degree = "三成新";
                         var $e = $("<tr></tr>");
-                        $e.append("<td>" + value.isbn + "</a></td>");
                         $e.append("<td>" + value.title + "</td>");
                         $e.append("<td>" + degree + "</td>");
                         $e.append("<td>" + value.author + "</td>");
@@ -170,8 +177,8 @@
         });
         
         $("#print").click(function () {
-            var text = $(".modal-body").html();
-            printConten(null, text);
+            var order_id = $("#show_order_id").html();
+            location.href = "./print.do?order_id=" + order_id;
         });
 
         $("#confirm").click(function () {

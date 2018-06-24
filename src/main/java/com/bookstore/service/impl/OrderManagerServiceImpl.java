@@ -112,9 +112,9 @@ public class OrderManagerServiceImpl implements OrderManagerService {
 		parameters.put("address", order.getAddress());
 		parameters.put("phone", user.getPhone());
 		List<OrderDetail> list = orderDetailMapper.getOrderDetail(Integer.valueOf(order.getOrderId()));
-		for(OrderDetail o : list) {
-			System.out.println(o.getDegreeName());
-		}
+//		for(OrderDetail o : list) {
+//			System.out.println(o.getDegreeName());
+//		}
 		JRDataSource jrDataSource = new JRBeanCollectionDataSource(list);
 		byte[] bytes = null;
 		try {

@@ -10,7 +10,7 @@ import com.alibaba.fastjson.annotation.JSONField;
  *
  */
 public class Order {
-	private String orderId, userName, address, realName;
+	private String orderId, userName, address, realName, phone;
 	@JSONField(format = "yyyy-MM-dd HH:mm:ss")
 	private Timestamp orderTime;
 	private int status;
@@ -83,5 +83,13 @@ public class Order {
 
 	public void setRealName(String realName) {
 		this.realName = realName;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 }
