@@ -113,9 +113,9 @@ public class OrderManagerController {
 	@RequestMapping(value = "/admin/print.do")
 	public void printTest(@RequestParam("order_id") int orderId, HttpServletResponse response) throws IOException {
 		byte[] bytes = orderManagerService.printOrderDetail(orderId);
-		String filename = "test.pdf";
+		String filename = "order" + orderId + ".pdf";
 		response.setContentType("application/pdf");
-        response.setHeader("Content-Disposition","attachment; filename="+filename+""); 
+        response.setHeader("Content-Disposition","attachment; filename="+filename);
         ServletOutputStream out = response.getOutputStream();
         out.write(bytes);
         out.flush();
