@@ -4,7 +4,7 @@ $(function() {
 
 	var orderList = null;
 
-	$.get("/user/my_order.do" + param, function(result) {
+	$.get("../user/my_order.do" + param, function(result) {
 		if (result.status == "success") {
 	    	if (result.message.length != 0) {
 	    		// $("#loader").parent().removeClass("active");
@@ -36,7 +36,7 @@ $(function() {
 				orderstatus = "已完成";
 				color = "green";
 			}
-			let orderDetailUrl = "/user/orderDetail.html?orderId=" + item.orderId;
+			let orderDetailUrl = "/bookstore/user/orderDetail.html?orderId=" + item.orderId;
 
 			let rowDiv = $("<div data-orderid=" + item.orderId + "></div>");
 			let header = $("<h4 class='ui top attached block header'><span>订单号-" + item.orderId + "</span><span class='ui label " + color + " fr'>" + orderstatus + "</span></h4>");
@@ -54,7 +54,7 @@ $(function() {
 		for (var i in orderList) {
 			if (orderList[i].orderId == orderId) {
 				sessionStorage['order'] = JSON.stringify(orderList[i]);
-				window.location.href = "/user/orderDetail.html?orderId=" + orderId;
+				window.location.href = "/bookstore/user/orderDetail.html?orderId=" + orderId;
 			}
 		}
 	}

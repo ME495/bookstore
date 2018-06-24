@@ -18,7 +18,7 @@ $(function() {
 
 	
 	//检查登录状态
-	$.post("/check_login.do", function(result) {
+	$.post("/bookstore/check_login.do", function(result) {
 		// result = JSON.parse(result);
 		if (result.status === "success") {
 			$("#userinfo").text(result.message.name).parents("li").show();
@@ -77,7 +77,7 @@ $(function() {
     			real_name: real_name,
     			address: address
     		};
-    		$.post("/signup.do", data, function(result) {
+    		$.post("/bookstore/signup.do", data, function(result) {
     			// result = JSON.parse(result);
     			alert(result.status);
     			if (result.status === "fail") {
@@ -105,7 +105,7 @@ $(function() {
     			user_name: user_name,
     			password: password
     		};
-    		$.post("/user_login.do", data, function(result) {
+    		$.post("/bookstore/user_login.do", data, function(result) {
     			// result = JSON.parse(result);
     			if (result.status == "fail") {
     				$("#registerErrorMsg p").text("用户名或密码错误");
@@ -131,7 +131,7 @@ $(function() {
     	if (searchText == "") {
     		$(".search-container .label").removeClass("hidden");
     	} else {
-    		var url = "/searchResult.html?keyword=" + searchText + "&index=0&size=15";
+    		var url = "/bookstore/searchResult.html?keyword=" + searchText + "&index=0&size=15";
     		url = encodeURI(url);
     		window.location.href = url;
     	}
@@ -160,7 +160,7 @@ $(function() {
     	var books = JSON.parse(sessionStorage['booklist']);
     	console.log("books:" + books);
     	sessionStorage['book'] = JSON.stringify(books[index]);
-    	window.location.href = "/bookDetail.html?isbn=" + books[index].isbn;
+    	window.location.href = "/bookstore/bookDetail.html?isbn=" + books[index].isbn;
     }
 
 
@@ -168,13 +168,13 @@ $(function() {
     	// alert(sessionStorage['logined']);
     	if (sessionStorage['logined']) {
     		// console.log("jump");
-    		window.location.href = "/user/shopCart.html";
+    		window.location.href = "/bookstore/user/shopCart.html";
     	}
     });
 
     $("#toOrderList").click(function() {
     	if (sessionStorage['logined']) {
-    		window.location.href = "/user/orderList.html";
+    		window.location.href = "/bookstore/user/orderList.html";
     	}
     })
 

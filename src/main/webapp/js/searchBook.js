@@ -23,7 +23,7 @@ $(function() {
 		key_word: keyword,
 		size: size
 	};
-	$.post("/search_book.do", searchData, function(result) {
+	$.post("./search_book.do", searchData, function(result) {
 		// result = JSON.parse(result);
 		if (result.status == "fail") {
 			$("#loader").removeClass("loader").text(result.message);

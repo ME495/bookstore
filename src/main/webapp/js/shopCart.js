@@ -33,10 +33,10 @@ $(function() {
 			paymentId: paymentId,
 			PayerID: PayerID
 		};
-		$.post("/user/paypalReturn.do", data, function(result) {
+		$.post("../user/paypalReturn.do", data, function(result) {
 			if (result.status == "success") {
 				alert("支付成功");
-				window.location.href = "/user/orderList.html";
+				window.location.href = "../user/orderList.html";
 			} else {
 				alert("支付失败！");
 			}
@@ -47,7 +47,7 @@ $(function() {
 
 	var shopCart = [];
 
-	$.get("/user/trolley_check.do", function(result) {
+	$.get("../user/trolley_check.do", function(result) {
 		if (result.status == "success") {
 	    	if (result.message.length != 0) {
 	    		// $("#loader").parent().removeClass("active");
@@ -81,7 +81,7 @@ $(function() {
 		let json = {
 			trolleyMsg: JSON.stringify(data)
 		};
-		$.post("/user/payment.do", json, function(result) {
+		$.post("../user/payment.do", json, function(result) {
 			if (result.status == "success") {
 				window.location.href = result.message;
 			} else {
@@ -161,7 +161,7 @@ $(function() {
 				num: book.num+1,
 				degree: book.degree
 			};
-			$.post("/user/trolley_update.do", data, function(result) {
+			$.post("../user/trolley_update.do", data, function(result) {
 				if (result.status === "success") {
 					book.num++;
 					$(e.target).siblings("span").text(book.num);
@@ -184,7 +184,7 @@ $(function() {
 				num: book.num-1,
 				degree: book.degree
 			};
-			$.post("/user/trolley_update.do", data, function(result) {
+			$.post("../user/trolley_update.do", data, function(result) {
 				if (result.status === "success") {
 					book.num--;
 					$(e.target).siblings("span").text(book.num);
@@ -204,7 +204,7 @@ $(function() {
 				isbn: book.isbn,
 				degree: book.degree
 			};
-			$.post("/user/trolley_delete.do", data, function(result) {
+			$.post("../user/trolley_delete.do", data, function(result) {
 				if (result.status == "success") {
 					deleteBookInShopCart(book);
 			
