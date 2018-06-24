@@ -47,7 +47,7 @@ $(function() {
 			degree: degree,
 			num: number
 		};
-		$.post("/user/trolley_add.do", data, function(result) {
+		$.post("./user/trolley_add.do", data, function(result) {
 			if (result.status == "success") {
 				alert("添加成功");
 			} else {

@@ -8,7 +8,7 @@ $(function() {
 		order_id: orderId
 	};
 
-	$.post("/user/order_detail.do", data, function(result) {
+	$.post("../user/order_detail.do", data, function(result) {
 		if (result.status == "success") {
 	    	if (result.message.length != 0) {
 	    		// $("#loader").parent().removeClass("active");
@@ -61,7 +61,7 @@ $(function() {
 	} 
 
 	$("#confirmRecieved").click(function() {
-		$.post("/user/confirm_order.do", data, function(result) {
+		$.post("../user/confirm_order.do", data, function(result) {
 			if (result.status == "success") {
 				alert("已确认收货");
 				window.location.href = "/user/orderList.html";
