@@ -30,7 +30,8 @@ public class UserMapperTest {
 		assertEquals(user.getPassword(), DigestUtils.md5Hex("123456"));
 		assertEquals(user.getPhone(), "15616381480");
 	}
-
+	
+	@Ignore
 	@Test
 	public void testInsertUser() {
 		User user = new User();
