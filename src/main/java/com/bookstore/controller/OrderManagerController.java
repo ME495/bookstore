@@ -13,6 +13,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.bookstore.entity.OrderSelector;
 import com.bookstore.service.OrderManagerService;
 
+import java.io.IOException;
+
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -104,5 +108,17 @@ public class OrderManagerController {
 		} else {
 			return new ResponseMes(ResponseMes.FAIL, null).toJsonString();
 		}
+	}
+	
+	@RequestMapping(value = "/admin/print.do")
+	public void printTest(@RequestParam("order_id") int orderId, HttpServletResponse response) throws IOException {
+		byte[] bytes = orderManagerService.printOrderDetail(orderId);
+		String filename = "order" + orderId + ".pdf";
+		response.setContentType("application/pdf");
+        response.setHeader("Content-Disposition","attachment; filename="+filename);
+        ServletOutputStream out = response.getOutputStream();
+        out.write(bytes);
+        out.flush();
+        out.close();
 	}
 }

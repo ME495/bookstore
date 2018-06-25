@@ -5,10 +5,18 @@ package com.bookstore.entity;
  * @Author ME495
  */
 public class OrderDetail {
-    private String isbn, title, author,imgUrl;
-    private double unitPrice;
+    private String isbn, title, author,imgUrl, degreeName;
+	private double unitPrice;
     private int degree, num;
 
+    public String getDegreeName() {
+		return degreeName;
+	}
+
+	public void setDegreeName(String degreeName) {
+		this.degreeName = degreeName;
+	}
+	
     public String getIsbn() {
         return isbn;
     }
@@ -55,6 +63,13 @@ public class OrderDetail {
 
     public void setDegree(int degree) {
         this.degree = degree;
+        if (degree == 0) {
+        	setDegreeName("九成新");
+        } else if (degree == 1){
+        	setDegreeName("七成新");
+        } else {
+        	setDegreeName("五成新");
+        }
     }
 
     public String getImgUrl() {

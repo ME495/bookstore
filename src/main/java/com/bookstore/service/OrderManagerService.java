@@ -8,4 +8,5 @@ public interface OrderManagerService {
 	public String allocateOrder(int orderId);
 	public String confirmOrder(int orderId);
 	public String approveOrder(int orderId);
+	public byte[] printOrderDetail(int orderId);
 }
