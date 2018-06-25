@@ -111,6 +111,7 @@ public class OrderManagerServiceImpl implements OrderManagerService {
 		parameters.put("userName", order.getUserName());
 		parameters.put("address", order.getAddress());
 		parameters.put("phone", user.getPhone());
+		parameters.put("money", order.getMoney());
 		List<OrderDetail> list = orderDetailMapper.getOrderDetail(Integer.valueOf(order.getOrderId()));
 //		for(OrderDetail o : list) {
 //			System.out.println(o.getDegreeName());

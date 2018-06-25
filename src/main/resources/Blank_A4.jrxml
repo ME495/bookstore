@@ -6,6 +6,7 @@
 	<parameter name="userName" class="java.lang.String"/>
 	<parameter name="phone" class="java.lang.String"/>
 	<parameter name="address" class="java.lang.String"/>
+	<parameter name="money" class="java.lang.Double"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
@@ -19,7 +20,7 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="160" splitType="Stretch">
+		<band height="135" splitType="Stretch">
 			<staticText>
 				<reportElement positionType="Float" x="225" y="13" width="125" height="47" uuid="afee600b-589a-4db0-a877-4a26daa97a96"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -28,58 +29,58 @@
 				<text><![CDATA[订单详情]]></text>
 			</staticText>
 			<textField>
-				<reportElement positionType="FixRelativeToBottom" x="100" y="130" width="450" height="30" uuid="c0ca8377-537e-4c8a-9300-5088cc8996b8"/>
+				<reportElement positionType="FixRelativeToBottom" x="100" y="110" width="450" height="20" uuid="c0ca8377-537e-4c8a-9300-5088cc8996b8"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="myfont" size="20"/>
+					<font fontName="myfont" size="16"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{address}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="0" y="130" width="100" height="30" uuid="1e9c2d07-2cbb-49d2-a4fa-d8b7def7c781"/>
+				<reportElement x="0" y="110" width="100" height="20" uuid="1e9c2d07-2cbb-49d2-a4fa-d8b7def7c781"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="myfont" size="20"/>
+					<font fontName="myfont" size="16"/>
 				</textElement>
 				<text><![CDATA[地址：]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="100" width="100" height="30" uuid="467d0e68-e3b4-4dab-9079-f9915b291b0b"/>
+				<reportElement x="0" y="90" width="100" height="20" uuid="467d0e68-e3b4-4dab-9079-f9915b291b0b"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="myfont" size="20"/>
+					<font fontName="myfont" size="16"/>
 				</textElement>
 				<text><![CDATA[手机号：]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="70" width="100" height="30" uuid="602308e0-61a2-49ef-87f1-af92847b64d2"/>
+				<reportElement x="0" y="70" width="100" height="20" uuid="602308e0-61a2-49ef-87f1-af92847b64d2"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="myfont" size="20"/>
+					<font fontName="myfont" size="16"/>
 				</textElement>
 				<text><![CDATA[下单人：]]></text>
 			</staticText>
 			<textField>
-				<reportElement positionType="FixRelativeToBottom" x="100" y="70" width="150" height="30" uuid="7ca29adc-41fc-456d-99d7-2057665f2e47"/>
+				<reportElement positionType="FixRelativeToBottom" x="100" y="70" width="150" height="20" uuid="7ca29adc-41fc-456d-99d7-2057665f2e47"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="myfont" size="20"/>
+					<font fontName="myfont" size="16"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{userName}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="280" y="70" width="100" height="30" uuid="a320d7c0-2f01-4fae-8d0c-2d03570d6a31"/>
+				<reportElement x="280" y="70" width="100" height="20" uuid="a320d7c0-2f01-4fae-8d0c-2d03570d6a31"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="myfont" size="20"/>
+					<font fontName="myfont" size="16"/>
 				</textElement>
 				<text><![CDATA[订单号：]]></text>
 			</staticText>
 			<textField>
-				<reportElement positionType="FixRelativeToBottom" x="380" y="70" width="150" height="30" uuid="3bf564d6-0d70-4192-82fc-d2b5c4de515f"/>
+				<reportElement positionType="FixRelativeToBottom" x="380" y="70" width="150" height="20" uuid="3bf564d6-0d70-4192-82fc-d2b5c4de515f"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="myfont" size="20"/>
+					<font fontName="myfont" size="16"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{orderId}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement positionType="FixRelativeToBottom" x="100" y="100" width="200" height="30" uuid="ee287cf7-661d-4400-8aa3-9458640ea61a"/>
+				<reportElement positionType="FixRelativeToBottom" x="100" y="90" width="200" height="20" uuid="ee287cf7-661d-4400-8aa3-9458640ea61a"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="myfont" size="20"/>
+					<font fontName="myfont" size="16"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{phone}]]></textFieldExpression>
 			</textField>
@@ -89,10 +90,10 @@
 		<band height="10" splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="30" splitType="Stretch">
+		<band height="22" splitType="Stretch">
 			<property name="com.jaspersoft.studio.layout"/>
 			<staticText>
-				<reportElement x="0" y="0" width="270" height="30" uuid="ca584b83-9a22-4e48-a5bf-6b255d78a630">
+				<reportElement x="0" y="0" width="270" height="22" uuid="ca584b83-9a22-4e48-a5bf-6b255d78a630">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7f452ef6-4df3-49df-b9ff-4c9a2b35849f"/>
 				</reportElement>
 				<box>
@@ -102,12 +103,12 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="myfont" size="20"/>
+					<font fontName="myfont" size="12"/>
 				</textElement>
 				<text><![CDATA[书名]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="270" y="0" width="80" height="30" uuid="198db38e-c2ce-42b3-910b-4165be48fa7f">
+				<reportElement x="270" y="0" width="80" height="22" uuid="198db38e-c2ce-42b3-910b-4165be48fa7f">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7f452ef6-4df3-49df-b9ff-4c9a2b35849f"/>
 				</reportElement>
 				<box>
@@ -117,12 +118,12 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="myfont" size="20"/>
+					<font fontName="myfont" size="12"/>
 				</textElement>
 				<text><![CDATA[新旧程度]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="350" y="0" width="100" height="30" uuid="e7256709-ef5a-4c78-9ff9-84f077d0af7c">
+				<reportElement x="350" y="0" width="100" height="22" uuid="e7256709-ef5a-4c78-9ff9-84f077d0af7c">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7f452ef6-4df3-49df-b9ff-4c9a2b35849f"/>
 				</reportElement>
 				<box>
@@ -132,12 +133,12 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="myfont" size="20"/>
+					<font fontName="myfont" size="12"/>
 				</textElement>
 				<text><![CDATA[作者]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="450" y="0" width="50" height="30" uuid="1a012b62-3b43-4ce3-8f60-fd6b4c622d93">
+				<reportElement x="450" y="0" width="50" height="22" uuid="1a012b62-3b43-4ce3-8f60-fd6b4c622d93">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7f452ef6-4df3-49df-b9ff-4c9a2b35849f"/>
 				</reportElement>
 				<box>
@@ -147,12 +148,12 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="myfont" size="20"/>
+					<font fontName="myfont" size="12"/>
 				</textElement>
 				<text><![CDATA[单价]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="500" y="0" width="50" height="30" uuid="d5f9694b-7dc8-4b85-b0c2-e4eaa856e70e">
+				<reportElement x="500" y="0" width="50" height="22" uuid="d5f9694b-7dc8-4b85-b0c2-e4eaa856e70e">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7f452ef6-4df3-49df-b9ff-4c9a2b35849f"/>
 				</reportElement>
 				<box>
@@ -162,16 +163,16 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="myfont" size="20"/>
+					<font fontName="myfont" size="12"/>
 				</textElement>
 				<text><![CDATA[数量]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="40" splitType="Prevent">
+		<band height="24" splitType="Prevent">
 			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="270" height="40" uuid="ed290be3-c5a3-4470-a52b-9a20095832b0">
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="270" height="24" uuid="ed290be3-c5a3-4470-a52b-9a20095832b0">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7f452ef6-4df3-49df-b9ff-4c9a2b35849f"/>
 				</reportElement>
 				<box>
@@ -181,12 +182,12 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="myfont" size="16"/>
+					<font fontName="myfont" size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{title}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="270" y="0" width="80" height="40" uuid="defcf4ad-7faa-4e6b-bd9e-9c61b7161e4d">
+				<reportElement stretchType="RelativeToBandHeight" x="270" y="0" width="80" height="24" uuid="defcf4ad-7faa-4e6b-bd9e-9c61b7161e4d">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="fe306705-71d7-4b9b-887d-4ee2c9417f86"/>
 				</reportElement>
 				<box>
@@ -196,12 +197,12 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="myfont" size="16"/>
+					<font fontName="myfont" size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{degreeName}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="350" y="0" width="100" height="40" uuid="d2e710e3-a12f-4faa-86f2-16ffa58adcae">
+				<reportElement stretchType="RelativeToBandHeight" x="350" y="0" width="100" height="24" uuid="d2e710e3-a12f-4faa-86f2-16ffa58adcae">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="fe306705-71d7-4b9b-887d-4ee2c9417f86"/>
 				</reportElement>
 				<box>
@@ -211,12 +212,12 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="myfont" size="16"/>
+					<font fontName="myfont" size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{author}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="450" y="0" width="50" height="40" uuid="41e06c58-e6d6-4cbd-9d8c-1bf16874d5ea">
+				<reportElement stretchType="RelativeToBandHeight" x="450" y="0" width="50" height="24" uuid="41e06c58-e6d6-4cbd-9d8c-1bf16874d5ea">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="fe306705-71d7-4b9b-887d-4ee2c9417f86"/>
 				</reportElement>
 				<box>
@@ -226,12 +227,12 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
-					<font fontName="myfont" size="16"/>
+					<font fontName="myfont" size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{unitPrice}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement stretchType="RelativeToBandHeight" x="500" y="0" width="50" height="40" uuid="09528df1-0f8d-48d5-ba0d-14e94d4634d6">
+				<reportElement stretchType="RelativeToBandHeight" x="500" y="0" width="50" height="24" uuid="09528df1-0f8d-48d5-ba0d-14e94d4634d6">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="fe306705-71d7-4b9b-887d-4ee2c9417f86"/>
 				</reportElement>
 				<box>
@@ -241,7 +242,7 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="myfont" size="16"/>
+					<font fontName="myfont" size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{num}]]></textFieldExpression>
 			</textField>
@@ -262,6 +263,21 @@
 		</band>
 	</pageFooter>
 	<summary>
-		<band height="42" splitType="Stretch"/>
+		<band height="48" splitType="Stretch">
+			<staticText>
+				<reportElement stretchType="RelativeToTallestObject" x="370" y="8" width="80" height="20" uuid="a455ed2d-0819-4094-b0cd-f48dd39ea056"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="myfont" size="16"/>
+				</textElement>
+				<text><![CDATA[总金额:]]></text>
+			</staticText>
+			<textField>
+				<reportElement positionType="Float" x="450" y="8" width="100" height="20" uuid="94dc56a1-4b9d-475c-8fdf-30efa3dc6cdb"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="myfont" size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{money}]]></textFieldExpression>
+			</textField>
+		</band>
 	</summary>
 </jasperReport>
