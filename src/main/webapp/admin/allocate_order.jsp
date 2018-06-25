@@ -51,9 +51,11 @@
                     <label>手机号：</label>
                     <label id="show_phone"></label>
                     <br>
-                    <label >地址：</label>
+                    <label>地址：</label>
                     <label id="show_address"></label>
                     <br>
+                    <label>总金额：</label>
+                    <label id="show_money"></label>
                     <table class="table">
                         <thead>
                         <tr>
@@ -98,6 +100,7 @@
             $span.attr("name", value.realName);
             $span.attr("address", value.address);
             $span.attr("phone", value.phone);
+            $span.attr("money", value.money);
             $e.append($("<td></td>").append($span));
             $("#order_list").append($e);
         });
@@ -106,8 +109,9 @@
             var order_id = $(this).attr("order_id");
             $("#show_order_id").html($(this).attr("order_id"));
             $("#show_name").html($(this).attr("name"));
-            $("#phone").html($(this).attr("phone"));
+            $("#show_phone").html($(this).attr("phone"));
             $("#show_address").html($(this).attr("address"));
+            $("#show_money").html($(this).attr("money"));
             console.log(order_id);
             $.post("./order_detail.do", {"order_id": order_id}, function (data, status) {
                 if (data.status == "success" && data.status == "success") {
