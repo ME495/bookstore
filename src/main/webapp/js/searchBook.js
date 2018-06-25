@@ -16,6 +16,7 @@ $(function() {
 
 	var currentPage = Math.floor(index / 15) + 1;
 
+	$("#searchBook").val(keyword);
 	$(".pagination-container .page-num:eq(" + (currentPage - 1) + ")").addClass("active");
 
 	var searchData = {

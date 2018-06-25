@@ -29,8 +29,12 @@ $(function() {
 
 
 	//自己写的一个小插件，类似于Andriod中的Toast消息提示
-	var timer1, timer2;
-	$.charlieToast = function(message, type) {
+	// $("#toast").hide();
+
+    var timer1, timer2;
+
+    alert = function(message, type=2) {
+
         clearTimeout(timer1);
         clearTimeout(timer2);
 
@@ -56,6 +60,17 @@ $(function() {
    	showToast = function(message) {
    		alert(message);
    	}
+
+   	logout = function() {
+    	$.post("/bookstore/logout.do", function(result) {
+    		if (result.status == "success") {
+    			sessionStorage['logined'] = "";
+    			window.location.href = "/bookstore/";
+    		} else {
+    			alert("服务器繁忙，请稍后再试");
+    		}
+    	})
+    }
 
    	//注册和登录部分
     $("#registerButton").click(function() {

@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="../css/main.css">
 </head>
 <body>
+	<div id="toast"></div>
 	<div class="xob-header">
 		<a class="xob-logo" href="../">
 			<i class="icon book"></i>
@@ -34,11 +35,18 @@
 					</a>
 				</li>
 				<li style="display: none;">
-					<i class="icon user"></i>
-					<span class="sign-actions" id="userinfo"></span>
-				</li>
-				<li style="display: none;">
-					<span class="sign-actions" id="userinfo"></span>
+					<div class="ui dropdown">
+						<div class="text">
+							<i class="icon user"></i>
+							<span class="sign-actions" id="userinfo"></span>
+						</div>
+						<i class="icon dropdown"></i>
+						<div class="menu">
+							<div class="item" onclick="logout()">
+								注 销 登 录
+							</div>
+						</div>
+					</div>
 				</li>
 				<li>
 					<span class="sign-actions" id="toLogin">登录</span>

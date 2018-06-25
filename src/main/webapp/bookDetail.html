@@ -12,6 +12,9 @@
 </head>
 
 <body>
+
+	<div id="toast"></div>
+
     <div class="xob-header">
         <a class="xob-logo" href="./">
 			<i class="icon book"></i>
@@ -32,8 +35,18 @@
 					</a>
 				</li>
 				<li style="display: none;">
-					<i class="icon user"></i>
-					<span class="sign-actions" id="userinfo"></span>
+					<div class="ui dropdown">
+						<div class="text">
+							<i class="icon user"></i>
+							<span class="sign-actions" id="userinfo"></span>
+						</div>
+						<i class="icon dropdown"></i>
+						<div class="menu">
+							<div class="item" onclick="logout()">
+								注 销 登 录
+							</div>
+						</div>
+					</div>
 				</li>
                 <li>
                     <span class="sign-actions" id="toLogin">登录</span>
@@ -106,7 +119,15 @@
     <div class="ui divider hidden">
     </div>
     <div class="xob-body">
-        <div class="book-info-container">
+
+    	<div class="ui segment loader-pannel">
+			<div class="ui inverted dimmer active">
+				<div class="ui text loader large" id="loader">正在加载</div>
+			</div>
+		</div>
+
+
+        <div class="book-info-container not-show">
             <div class="book-image-box">
                 <div class="book-image-container">
                     <img class="book-image-large" src="" id="bookImage" />
@@ -140,16 +161,22 @@
                 </div>
 
 	            <div class="book-old-degree">
-	            	<div class="ui selection dropdown">
+	            	<!-- <div class="ui selection dropdown">
 	                    <input type="hidden" name="gender" id="oldDegree">
 	                    <i class="dropdown icon"></i>
 	                    <div class="default text">选择图书新旧程度</div>
 	                    <div class="menu">
 	                        <div class="item" data-value="2">五成新</div>
 	                        <div class="item" data-value="1">七成新</div>
-	                        <div class="item" data-value="0">九成新</div>
+	                        <div class="item active selected" data-value="0">九成新</div>
 	                    </div>
-	                </div>
+	                </div> -->
+
+	                <select name="gender" id="oldDegree" class="ui dropdown">
+	                	<option value="2">五成新</option>
+	                	<option value="1">七成新</option>
+	                	<option value="0" selected="true">九成新</option>
+	                </select>
 	            </div>
 
                 <div class="book-detail-actions">

@@ -62,15 +62,5 @@ $(function() {
 
     });
 
-    logout = function() {
-    	$.post("logout.do", function(result) {
-    		if (result.status == "success") {
-    			sessionStorage['logined'] = "";
-    			window.location.reload();
-    		} else {
-    			alert("服务器繁忙，请稍后再试");
-    		}
-    	})
-    }
 
 })
