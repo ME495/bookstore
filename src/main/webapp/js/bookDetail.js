@@ -25,7 +25,7 @@ $(function() {
 		}
 	});
 
-	let isbn = JSON.parse(sessionStorage['book']).isbn;
+	var isbn = JSON.parse(sessionStorage['book']).isbn;
 
 	$.post("./book_detail.do",{isbn: isbn, degree: 0}, function(result) {
 		// alert(1);
@@ -55,7 +55,7 @@ $(function() {
 	}
 
 	$("#oldDegree").change(function() {
-		let degree = $(this).val();
+		var degree = $(this).val();
 		$.post("./book_detail.do", {isbn: isbn, degree: degree}, function(result) {
 			if (result.status == "success") {
 				$("#bookPrice").text(result.message.actualPrice);
@@ -73,13 +73,13 @@ $(function() {
 			alert("请先登录!");
 			return;
 		}
-		let degree = $("#oldDegree").val();
+		var degree = $("#oldDegree").val();
 		if (degree == "") {
 			alert("请选择新旧程度");
 			return;
 		}
-		let number = $("#amount").val();
-		let data = {
+		var number = $("#amount").val();
+		var data = {
 			isbn: isbn,
 			degree: degree,
 			num: number

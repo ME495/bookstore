@@ -74,12 +74,12 @@ $(function() {
 
    	//注册和登录部分
     $("#registerButton").click(function() {
-    	let user_name = $("#registerModal [name='user_name']").val();
-    	let password = $("#registerModal [name='password']").val();
+    	var user_name = $("#registerModal [name='user_name']").val();
+    	var password = $("#registerModal [name='password']").val();
     	// var email = $("#registerModal [name='email']").val();
-    	let phone = $("#registerModal [name='phone']").val();
-    	let real_name = $("#registerModal [name='real_name']").val();
-    	let address = $("#registerModal [name='address']").val();
+    	var phone = $("#registerModal [name='phone']").val();
+    	var real_name = $("#registerModal [name='real_name']").val();
+    	var address = $("#registerModal [name='address']").val();
     	if (user_name.trim() == "" || password.trim() == "" || phone.trim() == "" || real_name.trim() == "" || address.trim() == "") {
     		$("#registerErrorMsg p").text("请填入完整信息");
     		$("#registerErrorMsg").transition('show');

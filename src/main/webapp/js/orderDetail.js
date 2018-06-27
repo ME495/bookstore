@@ -1,10 +1,10 @@
 $(function() {
 
-	let orderId = /orderId=(.+)/g.exec(window.location.href)[0];
+	var orderId = /orderId=(.+)/g.exec(window.location.href)[0];
 	orderId = orderId.substring(orderId.indexOf("=") + 1);
 	// alert(orderId);
 
-	let data = {
+	var data = {
 		order_id: orderId
 	};
 
@@ -26,9 +26,9 @@ $(function() {
 
 	showOrderDetail = function(booklist) {
 
-		let order = JSON.parse(sessionStorage['order']);
-		let orderstatus = "";
-		let color = "";
+		var order = JSON.parse(sessionStorage['order']);
+		var orderstatus = "";
+		var color = "";
 		if (order.status === 0) {
 			orderstatus = "未发货";
 			color = "red";
@@ -43,7 +43,7 @@ $(function() {
 		$("#orderTotalPrice").text("￥" + order.money);
 
 		booklist.map(function(item) {
-			let degree = "";
+			var degree = "";
 			if (item.degree == 0) {
 				degree = "九成新";
 			} else if (item.degree == 1) {
@@ -51,7 +51,7 @@ $(function() {
 			} else {
 				degree = "五成新";
 			}
-			let rowDiv = $("<div class='orderdetail-item'><div class='orderdetail-content'><div class='orderdetail-img'><img src='" + item.imgUrl + "' /></div><div class='orderdetail-summary'><div class='orderdetail-booknum'>数量：" + item.num + "</div><h5>" + item.title + "</h5><p>" + degree + "</p><p class='shopcart-bookprice'>￥" + item.unitPrice + "</p></div></div></div>");
+			var rowDiv = $("<div class='orderdetail-item'><div class='orderdetail-content'><div class='orderdetail-img'><img src='" + item.imgUrl + "' /></div><div class='orderdetail-summary'><div class='orderdetail-booknum'>数量：" + item.num + "</div><h5>" + item.title + "</h5><p>" + degree + "</p><p class='shopcart-bookprice'>￥" + item.unitPrice + "</p></div></div></div>");
 			$(".orderdetail-body").append(rowDiv);
 		});
 
