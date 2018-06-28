@@ -17,8 +17,8 @@ public class PaypalPayment {
 	private static final String CLIENT_ID = "Ad_tvce_uS0eTjVEK7-Ztr6TIvG2wFL2p_YvZsBcmfH_6X7Qn33IvRVo14lSPJCBZv_-Griz-dcyLfDF"; // Sandbox
 	private static final String CLIENT_SECRET = "EPj9Dmc0_HE7VmXfqpHh1lwHmRAhJ7vrxsDjVOMMCn9bizaiP7IELu3scY700Tnx0HZslXLMg01JvTqE"; //Sandbox
 	private static final String MODE = "sandbox"; // or live
-	private static final String CANCEL_URL = "http://localhost:8081/bookstore/user/paymentCancelled.html"; // TODO 你的真实取消地址
-	private static final String RETURN_URL = "http://localhost:8080/bookstore/user/shopCart.html"; // TODO 你的paypal返回调用地址
+	private static final String CANCEL_URL = "http://120.78.138.112:8080/bookstore/user/paymentCancelled.html"; // TODO 你的真实取消地址
+	private static final String RETURN_URL = "http://120.78.138.112/bookstore/user/shopCart.html"; // TODO 你的paypal返回调用地址
 	private static final String CURRENCY = "HKD";
 	private static final String DESCRIPTION = "湘大旧书店订单";
 	private static final String METHOD = "paypal";
