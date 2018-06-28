@@ -12,13 +12,11 @@ import org.springframework.transaction.annotation.Transactional;
 import com.alibaba.fastjson.JSON;
 import com.bookstore.utils.LoginJUnit;
 
-@Transactional
-@TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true)
 public class SuperControllerTest extends LoginJUnit {
 	@Test
 	public void testInsertAdmin() throws Exception {
 		superLogin("Bookstore!");
-		String responseString = getMockMvc().perform(post("/super/add_admin.do").param("admin_name", "a2145")
+		String responseString = getMockMvc().perform(post("/super/add_admin.do").param("admin_name", "chengjian")
 				.param("password", "123456").session(getMockHttpSession())).andReturn().getResponse()
 				.getContentAsString();
 		assertTrue(responseString.contains("创建成功"));
@@ -38,7 +36,7 @@ public class SuperControllerTest extends LoginJUnit {
 		superLogin("Bookstore!");
 		String responseStr = getMockMvc().perform(post("/super/admin_list.do").session(getMockHttpSession()))
 				.andReturn().getResponse().getContentAsString();
-		System.out.println(responseStr);
+//		System.out.println(responseStr);
 		assertEquals("success", JSON.parseObject(responseStr).get("status"));
 	}
 }
