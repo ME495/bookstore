@@ -4,15 +4,16 @@
 	<title>test03</title>
 	<meta charset="utf-8">
 	<meta name="referrer" content="no-referrer" />
-	<link rel="stylesheet" href="/lib/semantic.min.css">
+	<link rel="stylesheet" href="../lib/semantic.min.css">
 	<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.3.1/dist/semantic.min.css"> -->
-    <script src="/lib/jquery.min.js"></script>
-    <script src="/lib/semantic.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <script src="../lib/jquery.min.js"></script>
+    <script src="../lib/semantic.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/main.css">
 </head>
 <body>
+	<div id="toast"></div>
 	<div class="xob-header">
-		<a class="xob-logo" href="/">
+		<a class="xob-logo" href="../">
 			<i class="icon book"></i>
 			<span>湘大旧书店</span>
 		</a>
@@ -34,11 +35,18 @@
 					</a>
 				</li>
 				<li style="display: none;">
-					<i class="icon user"></i>
-					<span class="sign-actions" id="userinfo"></span>
-				</li>
-				<li style="display: none;">
-					<span class="sign-actions" id="userinfo"></span>
+					<div class="ui dropdown">
+						<div class="text">
+							<i class="icon user"></i>
+							<span class="sign-actions" id="userinfo"></span>
+						</div>
+						<i class="icon dropdown"></i>
+						<div class="menu">
+							<div class="item" onclick="logout()">
+								注 销 登 录
+							</div>
+						</div>
+					</div>
 				</li>
 				<li>
 					<span class="sign-actions" id="toLogin">登录</span>
@@ -135,28 +143,9 @@
 			</h2>
 			<div class="ui divider"></div>
 			<div class="orderdetail-body">
-				<!-- <div class="orderdetail-item">
-					<div class="orderdetail-content">
-						<div class="orderdetail-img">
-							<img src="https://img3.doubanio.com/view/subject/s/public/s29784115.jpg" />
-						</div>
-						<div class="orderdetail-summary">
-							<div class="orderdetail-booknum">
-								数量：1
-							</div>
-							<h5>
-								基督山伯爵
-							</h5>
-							<p>
-								九成新
-							</p>
-							<p class="shopcart-bookprice">
-								￥25.2
-							</p>
-						</div>
 
-					</div>
-				</div> -->
+				
+
 			</div>
 
 			<div class="orderdetail-footer">
@@ -182,6 +171,8 @@
 			<a href="" class="footer-link">常见问题</a>
 			<a href="" class="footer-link">意见反馈</a>
 			<a href="" class="footer-link">友情链接</a>
+			<a href="../admin_login.html" class="footer-link">管理员登录</a>
+			<a href="../super_login.html" class="footer-link">超级管理员登录</a>
 		</div>
 		<div class="footer-copyright">
 			copyright 2018 @ xtubooks开发团队
@@ -190,6 +181,6 @@
 
 	
 </body>
-<script type="text/javascript" src="/js/common.js"></script>
-<script type="text/javascript" src="/js/orderDetail.js"></script>
+<script type="text/javascript" src="../js/common.js"></script>
+<script type="text/javascript" src="../js/orderDetail.js"></script>
 </html>

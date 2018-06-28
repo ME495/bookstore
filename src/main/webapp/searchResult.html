@@ -4,14 +4,15 @@
 	<title>test03</title>
 	<meta charset="utf-8">
 	<meta name="referrer" content="no-referrer"/>
-	<link rel="stylesheet" href="/lib/semantic.min.css">
-    <script src="/lib/jquery.min.js"></script>
-    <script src="/lib/semantic.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="/css/main.css">
+	<link rel="stylesheet" href="./lib/semantic.min.css">
+    <script src="./lib/jquery.min.js"></script>
+    <script src="./lib/semantic.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="./css/main.css">
 </head>
 <body>
+	<div id="toast"></div>
 	<div class="xob-header">
-		<a class="xob-logo" href="/">
+		<a class="xob-logo" href="./">
 			<i class="icon book"></i>
 			<span>湘大旧书店</span>
 		</a>
@@ -32,8 +33,18 @@
 					</a>
 				</li>
 				<li style="display: none;">
-					<i class="icon user"></i>
-					<span class="sign-actions" id="userinfo"></span>
+					<div class="ui dropdown">
+						<div class="text">
+							<i class="icon user"></i>
+							<span class="sign-actions" id="userinfo"></span>
+						</div>
+						<i class="icon dropdown"></i>
+						<div class="menu">
+							<div class="item" onclick="logout()">
+								注 销 登 录
+							</div>
+						</div>
+					</div>
 				</li>
 				<li>
 					<span class="sign-actions" id="toLogin">登录</span>
@@ -66,10 +77,7 @@
 							<label>密码</label>
 							<input type="password" name="password">
 						</div>
-						<!-- <div class="field">
-							<label>输入验证码</label>
-							<input type="text" name="">
-						</div> -->
+
 					</form>
 					<div class="ui message error raised hidden" id="loginErrorMsg">
 						<i class="icon close"></i>
@@ -117,40 +125,7 @@
 
 	<div class="xob-body">
 
-		<!-- <div class="book-kinds border-bottom">
-			<span class="book-kinds-title">大类:</span>
-			<ul class="fl">
-				<li>
-					<a class="kind-item">小说</a>
-				</li>
-				<li>
-					<a class="kind-item">文学</a>
-				</li>
-				<li>
-					<a href="" class="kind-item">语言</a>
-				</li>
 
-			</ul>
-		</div>
-
-		<div class="book-kinds">
-			<span class="book-kinds-title">小类:</span>
-			<ul class="fl">
-				<li>
-					<a class="kind-item">中国古典小说</a>
-				</li>
-				<li>
-					<a class="kind-item">中国现代小说</a>
-				</li>
-				<li>
-					<a href="" class="kind-item">当代小说</a>
-				</li>
-				<li>
-					<a href="" class="kind-item">四大名著</a>
-				</li>
-
-			</ul>
-		</div> -->
 
 		<h3>查询结果 / </h3>
 		<div class="ui divider"></div>
@@ -162,79 +137,10 @@
 		</div>
 
 		<div class="books-container not-show">
-				<!-- <div class="book-item">
-					<a href="javascript:;" data-bookid="123456">
-						<img src="https://img13.360buyimg.com/n2/jfs/t658/193/368125886/17075/4b1428b8/546335b8Naab48023.jpg" class="book-image-normal">
-						<div class="book-name">如何阅读一本书</div>
-					</a>
-					<div class="book-price">￥36.60</div>
-				</div>
+	
 
-				<div class="book-item">
-					<a href="">
-						<img src="https://img13.360buyimg.com/n2/jfs/t658/193/368125886/17075/4b1428b8/546335b8Naab48023.jpg" class="book-image-normal">
-						<div class="book-name">如何阅读一本书</div>
-					</a>
-					<div class="book-price">￥36.60</div>
-				</div>
-				<div class="book-item">
-					<a href="">
-						<img src="https://img13.360buyimg.com/n2/jfs/t658/193/368125886/17075/4b1428b8/546335b8Naab48023.jpg" class="book-image-normal">
-						<div class="book-name">如何阅读一本书</div>
-					</a>
-					<div class="book-price">￥36.60</div>
-				</div>
-				<div class="book-item">
-					<a href="">
-						<img src="https://img13.360buyimg.com/n2/jfs/t658/193/368125886/17075/4b1428b8/546335b8Naab48023.jpg" class="book-image-normal">
-						<div class="book-name">如何阅读一本书</div>
-					</a>
-					<div class="book-price">￥36.60</div>
-				</div>
-				<div class="book-item">
-					<a href="">
-						<img src="https://img13.360buyimg.com/n2/jfs/t658/193/368125886/17075/4b1428b8/546335b8Naab48023.jpg" class="book-image-normal">
-						<div class="book-name">如何阅读一本书</div>
-					</a>
-					<div class="book-price">￥36.60</div>
-				</div>
-				<div class="book-item">
-					<a href="">
-						<img src="https://img13.360buyimg.com/n2/jfs/t658/193/368125886/17075/4b1428b8/546335b8Naab48023.jpg" class="book-image-normal">
-						<div class="book-name">如何阅读一本书</div>
-					</a>
-					<div class="book-price">￥36.60</div>
-				</div>
-				<div class="book-item">
-					<a href="">
-						<img src="https://img13.360buyimg.com/n2/jfs/t658/193/368125886/17075/4b1428b8/546335b8Naab48023.jpg" class="book-image-normal">
-						<div class="book-name">如何阅读一本书</div>
-					</a>
-					<div class="book-price">￥36.60</div>
-				</div>
-				<div class="book-item">
-					<a href="">
-						<img src="https://img13.360buyimg.com/n2/jfs/t658/193/368125886/17075/4b1428b8/546335b8Naab48023.jpg" class="book-image-normal">
-						<div class="book-name">如何阅读一本书</div>
-					</a>
-					<div class="book-price">￥36.60</div>
-				</div>
-				<div class="book-item">
-					<a href="">
-						<img src="https://img13.360buyimg.com/n2/jfs/t658/193/368125886/17075/4b1428b8/546335b8Naab48023.jpg" class="book-image-normal">
-						<div class="book-name">如何阅读一本书</div>
-					</a>
-					<div class="book-price">￥36.60</div>
-				</div>
-				<div class="book-item">
-					<a href="">
-						<img src="https://img13.360buyimg.com/n2/jfs/t658/193/368125886/17075/4b1428b8/546335b8Naab48023.jpg" class="book-image-normal">
-						<div class="book-name">如何阅读一本书</div>
-					</a>
-					<div class="book-price">￥36.60</div>
-				</div> -->
 
-			</div>
+		</div>
 
 			<div class="pagination-container">
 				<div class="ui menu pagination md">
@@ -268,6 +174,8 @@
 			<a href="" class="footer-link">常见问题</a>
 			<a href="" class="footer-link">意见反馈</a>
 			<a href="" class="footer-link">友情链接</a>
+			<a href="./admin_login.html" class="footer-link">管理员登录</a>
+			<a href="./super_login.html" class="footer-link">超级管理员登录</a>
 		</div>
 		<div class="footer-copyright">
 			copyright 2018 @ xtubooks开发团队
@@ -276,6 +184,6 @@
 
 	
 </body>
-<script type="text/javascript" src="js/common.js"></script>
-<script type="text/javascript" src="js/searchBook.js"></script>
+<script type="text/javascript" src="./js/common.js"></script>
+<script type="text/javascript" src="./js/searchBook.js"></script>
 </html>

@@ -1,10 +1,10 @@
 $(function() {
 
-	let param = "?status0=true&status1=true&status2=true&index=0&size=99";
+	var param = "?status0=true&status1=true&status2=true&index=0&size=99";
 
 	var orderList = null;
 
-	$.get("/user/my_order.do" + param, function(result) {
+	$.get("../user/my_order.do" + param, function(result) {
 		if (result.status == "success") {
 	    	if (result.message.length != 0) {
 	    		// $("#loader").parent().removeClass("active");
@@ -24,8 +24,8 @@ $(function() {
 	showOrderList = function(booklist) {
 
 		booklist.map(function(item) {
-			let orderstatus = "";
-			let color = "";
+			var orderstatus = "";
+			var color = "";
 			if (item.status === 0) {
 				orderstatus = "未发货";
 				color = "red";
@@ -36,25 +36,25 @@ $(function() {
 				orderstatus = "已完成";
 				color = "green";
 			}
-			let orderDetailUrl = "/user/orderDetail.html?orderId=" + item.orderId;
+			var orderDetailUrl = "/bookstore/user/orderDetail.html?orderId=" + item.orderId;
 
-			let rowDiv = $("<div data-orderid=" + item.orderId + "></div>");
-			let header = $("<h4 class='ui top attached block header'><span>订单号-" + item.orderId + "</span><span class='ui label " + color + " fr'>" + orderstatus + "</span></h4>");
-			let body = $("<div class='ui bottom attached segment'><button class='ui button basic blue fr' onclick='toOrderDetail(event)'>查看详情</button><div>时间：<span>" + item.orderTime + "</span></div><div>地址：<span>" + item.address + "</span></div><div>金额：<span>" + item.money + "</span></div></div>");
-			let divider = $("<div class='ui section divider'></div>");
+			var rowDiv = $("<div data-orderid=" + item.orderId + "></div>");
+			var header = $("<h4 class='ui top attached block header'><span>订单号-" + item.orderId + "</span><span class='ui label " + color + " fr'>" + orderstatus + "</span></h4>");
+			var body = $("<div class='ui bottom attached segment'><button class='ui button basic blue fr' onclick='toOrderDetail(event)'>查看详情</button><div>时间：<span>" + item.orderTime + "</span></div><div>地址：<span>" + item.address + "</span></div><div>金额：<span>" + item.money + "</span></div></div>");
+			var divider = $("<div class='ui section divider'></div>");
 			rowDiv.append(header).append(body).append(divider);
 			$(".orderlist-container").append(rowDiv);
 		});
 	}
 
 	toOrderDetail = function(e) {
-		let orderId = $(e.target).parent().parent().attr("data-orderid");
+		var orderId = $(e.target).parent().parent().attr("data-orderid");
 		console.log(orderList);
 		console.log(orderId);
 		for (var i in orderList) {
 			if (orderList[i].orderId == orderId) {
 				sessionStorage['order'] = JSON.stringify(orderList[i]);
-				window.location.href = "/user/orderDetail.html?orderId=" + orderId;
+				window.location.href = "/bookstore/user/orderDetail.html?orderId=" + orderId;
 			}
 		}
 	}

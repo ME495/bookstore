@@ -25,29 +25,66 @@ $(function() {
 		}
 	});
 
-	var book = JSON.parse(sessionStorage['book']);
-	console.log(book);
-	$("#bookName").text(book.title);
-	$("#authorName").text(book.author);
-	$("#bookSummary").text(book.summary);
-	$("#bookPrice").text(book.originalPrice);
-	$("#bookImage").prop("src", book.imgUrl);
+	var isbn = JSON.parse(sessionStorage['book']).isbn;
+
+	$.post("./book_detail.do",{isbn: isbn, degree: 0}, function(result) {
+		// alert(1);
+		if (result.status == "success") {
+	    	if (result.message) {
+	    		// $("#loader").parent().removeClass("active");
+	    		$(".loader-pannel").hide();
+	    		showBookDetail(result.message);
+	    		$(".book-info-container").removeClass("not-show");
+	    	} else {
+	    		$("#loader").removeClass("loader").text("没有找到该图书 =_=!");
+	    	}
+    	} else {
+    		$("#loader").removeClass("loader").text("出错啦，刷新试试吧");
+    	}
+	});
+
+
+	showBookDetail = function(obj) {
+		var book = obj.book;
+		$("#bookName").text(book.title);
+		$("#authorName").text(book.author);
+		$("#bookSummary").text(book.summary);
+		$("#bookPrice").text(obj.actualPrice);
+		$("#bookImage").prop("src", book.imgUrl);
+		$("#oldDegree").val(0);
+	}
+
+	$("#oldDegree").change(function() {
+		var degree = $(this).val();
+		$.post("./book_detail.do", {isbn: isbn, degree: degree}, function(result) {
+			if (result.status == "success") {
+				$("#bookPrice").text(result.message.actualPrice);
+			} else {
+				alert("服务器繁忙，请稍后再试");
+			}
+		});
+	})
+
+
 
 
 	$("#addToShopCart").click(function() {
-		let isbn = book.isbn;
-		let degree = $("#oldDegree").val();
+		if (!sessionStorage['logined']) {
+			alert("请先登录!");
+			return;
+		}
+		var degree = $("#oldDegree").val();
 		if (degree == "") {
 			alert("请选择新旧程度");
 			return;
 		}
-		let number = $("#amount").val();
-		let data = {
+		var number = $("#amount").val();
+		var data = {
 			isbn: isbn,
 			degree: degree,
 			num: number
 		};
-		$.post("/user/trolley_add.do", data, function(result) {
+		$.post("./user/trolley_add.do", data, function(result) {
 			if (result.status == "success") {
 				alert("添加成功");
 			} else {

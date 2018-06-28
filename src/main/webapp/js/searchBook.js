@@ -16,6 +16,7 @@ $(function() {
 
 	var currentPage = Math.floor(index / 15) + 1;
 
+	$("#searchBook").val(keyword);
 	$(".pagination-container .page-num:eq(" + (currentPage - 1) + ")").addClass("active");
 
 	var searchData = {
@@ -23,7 +24,7 @@ $(function() {
 		key_word: keyword,
 		size: size
 	};
-	$.post("/search_book.do", searchData, function(result) {
+	$.post("./search_book.do", searchData, function(result) {
 		// result = JSON.parse(result);
 		if (result.status == "fail") {
 			$("#loader").removeClass("loader").text(result.message);

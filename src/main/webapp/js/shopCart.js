@@ -21,22 +21,22 @@ $(function() {
 	// 	}
 	// ];
 
-	let url = window.location.href;
-	let paymentId = /paymentId=(.+?)&/g.exec(url);
-	let PayerID = /PayerID=(.+)/g.exec(url);
+	var url = window.location.href;
+	var paymentId = /paymentId=(.+?)&/g.exec(url);
+	var PayerID = /PayerID=(.+)/g.exec(url);
 	if (paymentId != null && PayerID != null) {
 		paymentId = paymentId[0];
 		PayerID = PayerID[0];
 		paymentId = paymentId.substring(paymentId.indexOf("=") + 1, paymentId.length - 1);
 		PayerID = PayerID.substring(PayerID.indexOf("=") + 1);
-		let data = {
+		var data = {
 			paymentId: paymentId,
 			PayerID: PayerID
 		};
-		$.post("/user/paypalReturn.do", data, function(result) {
+		$.post("../user/paypalReturn.do", data, function(result) {
 			if (result.status == "success") {
 				alert("支付成功");
-				window.location.href = "/user/orderList.html";
+				window.location.href = "../user/orderList.html";
 			} else {
 				alert("支付失败！");
 			}
@@ -47,7 +47,7 @@ $(function() {
 
 	var shopCart = [];
 
-	$.get("/user/trolley_check.do", function(result) {
+	$.get("../user/trolley_check.do", function(result) {
 		if (result.status == "success") {
 	    	if (result.message.length != 0) {
 	    		// $("#loader").parent().removeClass("active");
@@ -63,11 +63,11 @@ $(function() {
 	});
 
 	$("#toPay").click(function() {
-		let data = [];
-		for (let i in shopCart) {
-			let book = shopCart[i];
+		var data = [];
+		for (var i in shopCart) {
+			var book = shopCart[i];
 			if (book.selected) {
-				let obj = {
+				var obj = {
 					isbn: book.isbn,
 					num: book.num,
 					degree: book.degree
@@ -78,10 +78,10 @@ $(function() {
 		if (data.length == 0) {
 			return;
 		}
-		let json = {
+		var json = {
 			trolleyMsg: JSON.stringify(data)
 		};
-		$.post("/user/payment.do", json, function(result) {
+		$.post("../user/payment.do", json, function(result) {
 			if (result.status == "success") {
 				window.location.href = result.message;
 			} else {
@@ -92,9 +92,9 @@ $(function() {
 
 	showShopCart = function(booklist) {
 		booklist.map(function(item, index) {
-			let book = item;
+			var book = item;
 			// console.log(index);
-			let degree = "";
+			var degree = "";
 			if (book.degree == 0) {
 				degree = "九成新";
 			} else if (book.degree == 1) {
@@ -103,15 +103,15 @@ $(function() {
 				degree = "五成新";
 			}
 
-			let rowDiv = $("<div" + " class='shopcart-row'" + " data-bookisbn=" + book.isbn + " data-degree=" + book.degree + "></div>");
-			let item1Div = $("<div class='item1'><div class='ui checkbox'><input type='checkbox' onchange='chooseBook(event)'><label></label></div></div>");
-			let item2Div = $("<div class='item2'><div class='shopcart-image fl'><img src='" + book.imgUrl + "'/></div><div class='shopcart-summary fl'><h5>" + book.title + "</h5><p>" + degree + " </p><p class='shopcart-bookprice'>￥<span>" + book.actualPrice +"</span></p></div></div>");
-			let item3Div = $("<div class='item3'><i class='icon close' onclick='deleteBook(event)'></i></div>");
-			let item4Div = $("<div class='item4'><i class='icon minus' onclick='subCount(event)'></i><span class='shopcart-amount'>" + book.num + "</span><i class='icon plus' onclick='addCount(event)'></i></div>");
+			var rowDiv = $("<div" + " class='shopcart-row'" + " data-bookisbn=" + book.isbn + " data-degree=" + book.degree + "></div>");
+			var item1Div = $("<div class='item1'><div class='ui checkbox'><input type='checkbox' onchange='chooseBook(event)'><label></label></div></div>");
+			var item2Div = $("<div class='item2'><div class='shopcart-image fl'><img src='" + book.imgUrl + "'/></div><div class='shopcart-summary fl'><h5>" + book.title + "</h5><p>" + degree + " </p><p class='shopcart-bookprice'>￥<span>" + book.actualPrice +"</span></p></div></div>");
+			var item3Div = $("<div class='item3'><i class='icon close' onclick='devareBook(event)'></i></div>");
+			var item4Div = $("<div class='item4'><i class='icon minus' onclick='subCount(event)'></i><span class='shopcart-amount'>" + book.num + "</span><i class='icon plus' onclick='addCount(event)'></i></div>");
 			rowDiv.append(item1Div).append(item2Div).append(item3Div).append(item4Div);
 			$(".shopcart-body").append(rowDiv);
 
-			let bookObj = {
+			var bookObj = {
 				isbn: book.isbn,
 				num: 1,
 				price: book.actualPrice,
@@ -128,7 +128,7 @@ $(function() {
 		if ($("#chooseAll").prop("checked")) {
 			$(".shopcart-container :checkbox").map(function(index, item) {
 				$(item).prop("checked", true);
-				for (let index in shopCart) {
+				for (var index in shopCart) {
 					var book = shopCart[index];
 					book.selected = true;
 				}
@@ -136,7 +136,7 @@ $(function() {
 		} else {
 			$(".shopcart-container :checkbox").map(function(index, item) {
 				$(item).prop("checked", false);
-				for (let index in shopCart) {
+				for (var index in shopCart) {
 					var book = shopCart[index];
 					book.selected = false;
 				}
@@ -146,7 +146,7 @@ $(function() {
 	}
 
 	chooseBook = function(e) {
-		let book = findBookInShopCart(e);
+		var book = findBookInShopCart(e);
 		if (book != null) {
 			book.selected = $(e.target).prop("checked");
 		}
@@ -154,14 +154,14 @@ $(function() {
 	}
 
 	addCount = function(e) {
-		let book = findBookInShopCart(e);
+		var book = findBookInShopCart(e);
 		if (book != null) {
-			let data = {
+			var data = {
 				isbn: book.isbn,
 				num: book.num+1,
 				degree: book.degree
 			};
-			$.post("/user/trolley_update.do", data, function(result) {
+			$.post("../user/trolley_update.do", data, function(result) {
 				if (result.status === "success") {
 					book.num++;
 					$(e.target).siblings("span").text(book.num);
@@ -174,17 +174,17 @@ $(function() {
 	}
 
 	subCount = function(e) {
-		let book = findBookInShopCart(e);
+		var book = findBookInShopCart(e);
 		if (book != null) {
 			if (book.num == 1) {
 				return;
 			}
-			let data = {
+			var data = {
 				isbn: book.isbn,
 				num: book.num-1,
 				degree: book.degree
 			};
-			$.post("/user/trolley_update.do", data, function(result) {
+			$.post("../user/trolley_update.do", data, function(result) {
 				if (result.status === "success") {
 					book.num--;
 					$(e.target).siblings("span").text(book.num);
@@ -197,18 +197,18 @@ $(function() {
 		caculatePrice();
 	}
 
-	deleteBook = function(e) {
-		let book = findBookInShopCart(e);
+	devareBook = function(e) {
+		var book = findBookInShopCart(e);
 		if (book != null) {
-			let data = {
+			var data = {
 				isbn: book.isbn,
 				degree: book.degree
 			};
-			$.post("/user/trolley_delete.do", data, function(result) {
+			$.post("../user/trolley_devare.do", data, function(result) {
 				if (result.status == "success") {
-					deleteBookInShopCart(book);
+					devareBookInShopCart(book);
 			
-					let row = $(e.target).parents(".shopcart-row");
+					var row = $(e.target).parents(".shopcart-row");
 					row.parent()[0].removeChild(row[0]);
 					caculatePrice();
 				} else {
@@ -220,10 +220,10 @@ $(function() {
 
 
 	findBookInShopCart = function(e) {
-		let dom = $(e.target).parents(".shopcart-row");
-		let isbn = dom.attr("data-bookisbn");
-		let degree = dom.attr("data-degree");
-		for (let index in shopCart) {
+		var dom = $(e.target).parents(".shopcart-row");
+		var isbn = dom.attr("data-bookisbn");
+		var degree = dom.attr("data-degree");
+		for (var index in shopCart) {
 			var book = shopCart[index];
 			if (book.isbn == isbn && book.degree == degree) {
 				return book;
@@ -232,10 +232,10 @@ $(function() {
 		return null;
 	}
 
-	deleteBookInShopCart = function(book) {
-		let index = null;
-		for (let i in shopCart) {
-			let item = shopCart[i];
+	devareBookInShopCart = function(book) {
+		var index = null;
+		for (var i in shopCart) {
+			var item = shopCart[i];
 			if (item === book) {
 				index = i;
 			}
@@ -247,9 +247,9 @@ $(function() {
 
 	
 	caculatePrice = function() {
-		let totalPrice = 0;
-		for (let index in shopCart) {
-			let book = shopCart[index];
+		var totalPrice = 0;
+		for (var index in shopCart) {
+			var book = shopCart[index];
 			if (book.selected) {
 				totalPrice += book.price * book.num;
 			}

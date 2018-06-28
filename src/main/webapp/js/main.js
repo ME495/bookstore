@@ -47,7 +47,7 @@ $(function() {
     	index: 0,
     	size: 15
     };
-    $.post("/browse_book.do", browse_data, function(result) {
+    $.post("./browse_book.do", browse_data, function(result) {
     	// console.log(result);
     	// result = JSON.parse(result);
     	if (result.status == "success") {
@@ -62,6 +62,5 @@ $(function() {
 
     });
 
-    
 
 })

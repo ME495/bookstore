@@ -18,7 +18,7 @@ $(function() {
 
 	
 	//检查登录状态
-	$.post("/check_login.do", function(result) {
+	$.post("/bookstore/check_login.do", function(result) {
 		// result = JSON.parse(result);
 		if (result.status === "success") {
 			$("#userinfo").text(result.message.name).parents("li").show();
@@ -29,8 +29,12 @@ $(function() {
 
 
 	//自己写的一个小插件，类似于Andriod中的Toast消息提示
-	var timer1, timer2;
-	$.charlieToast = function(message, type) {
+	// $("#toast").hide();
+
+    var timer1, timer2;
+
+    alert = function(message, type=2) {
+
         clearTimeout(timer1);
         clearTimeout(timer2);
 
@@ -57,24 +61,38 @@ $(function() {
    		alert(message);
    	}
 
+   	logout = function() {
+    	$.post("/bookstore/logout.do", function(result) {
+    		if (result.status == "success") {
+    			sessionStorage['logined'] = "";
+    			window.location.href = "/bookstore/";
+    		} else {
+    			alert("服务器繁忙，请稍后再试");
+    		}
+    	})
+    }
+
    	//注册和登录部分
     $("#registerButton").click(function() {
     	var user_name = $("#registerModal [name='user_name']").val();
     	var password = $("#registerModal [name='password']").val();
-    	var email = $("#registerModal [name='email']").val();
-    	if (user_name.trim() == "" || password.trim() == "" || email.trim() == "") {
+    	// var email = $("#registerModal [name='email']").val();
+    	var phone = $("#registerModal [name='phone']").val();
+    	var real_name = $("#registerModal [name='real_name']").val();
+    	var address = $("#registerModal [name='address']").val();
+    	if (user_name.trim() == "" || password.trim() == "" || phone.trim() == "" || real_name.trim() == "" || address.trim() == "") {
     		$("#registerErrorMsg p").text("请填入完整信息");
     		$("#registerErrorMsg").transition('show');
     	} else {
     		var data = {
     			user_name: user_name,
     			password: password,
-    			email: email,
-    			phone: '18373233677',
-    			real_name: '爱上嘎洒十多个',
-    			address: '大三发斯蒂芬'
+    			// email: email,
+    			phone: phone,
+    			real_name: real_name,
+    			address: address
     		};
-    		$.post("/signup.do", data, function(result) {
+    		$.post("/bookstore/signup.do", data, function(result) {
     			// result = JSON.parse(result);
     			alert(result.status);
     			if (result.status === "fail") {
@@ -102,7 +120,7 @@ $(function() {
     			user_name: user_name,
     			password: password
     		};
-    		$.post("/user_login.do", data, function(result) {
+    		$.post("/bookstore/user_login.do", data, function(result) {
     			// result = JSON.parse(result);
     			if (result.status == "fail") {
     				$("#registerErrorMsg p").text("用户名或密码错误");
@@ -128,7 +146,7 @@ $(function() {
     	if (searchText == "") {
     		$(".search-container .label").removeClass("hidden");
     	} else {
-    		var url = "/searchResult.html?keyword=" + searchText + "&index=0&size=15";
+    		var url = "/bookstore/searchResult.html?keyword=" + searchText + "&index=0&size=15";
     		url = encodeURI(url);
     		window.location.href = url;
     	}
@@ -157,21 +175,21 @@ $(function() {
     	var books = JSON.parse(sessionStorage['booklist']);
     	console.log("books:" + books);
     	sessionStorage['book'] = JSON.stringify(books[index]);
-    	window.location.href = "/bookDetail.html?isbn=" + books[index].isbn;
+    	window.location.href = "/bookstore/bookDetail.html?isbn=" + books[index].isbn;
     }
 
 
     $("#toShopCart").click(function() {
-    	// console.log(sessionStorage['logined']);
+    	// alert(sessionStorage['logined']);
     	if (sessionStorage['logined']) {
     		// console.log("jump");
-    		window.location.href = "/user/shopCart.html";
+    		window.location.href = "/bookstore/user/shopCart.html";
     	}
     });
 
     $("#toOrderList").click(function() {
     	if (sessionStorage['logined']) {
-    		window.location.href = "/user/orderList.html";
+    		window.location.href = "/bookstore/user/orderList.html";
     	}
     })
 
