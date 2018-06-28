@@ -44,6 +44,31 @@ $(function() {
 	});
 
 
+	$.post("./book_degrees.do", {isbn: isbn}, function(result) {
+		if (result.status == "success") {
+			var arr = result.message;
+			if (arr.length == 0) {
+				alert("图书暂时无货");
+				return;
+			}
+			arr.map(function(value) {
+				if (value == 0) {
+					$("#oldDegree").append($("<option value='0'>九成新</option>"));
+				} else if (value == 1) {
+					$("#oldDegree").append($("<option value='1'>七成新</option>"));
+				} else if (value == 2) {
+					$("#oldDegree").append($("<option value='2'>五成新</option>"));
+				}
+			});
+			$("#oldDegree").children()[0].selected = true;
+		}
+	})
+
+						
+	                	
+	                	
+
+
 	showBookDetail = function(obj) {
 		var book = obj.book;
 		$("#bookName").text(book.title);
@@ -64,8 +89,6 @@ $(function() {
 			}
 		});
 	})
-
-
 
 
 	$("#addToShopCart").click(function() {
