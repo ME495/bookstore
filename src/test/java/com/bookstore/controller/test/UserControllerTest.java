@@ -29,17 +29,7 @@ import com.bookstore.message.ResponseMes;
 import com.bookstore.utils.LoginJUnit;
 import com.mysql.fabric.xmlrpc.base.Param;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration({ "classpath:spring-cfg.xml", "classpath:mybatis-cfg.xml", "classpath:dispatcher-servlet.xml" })
-@WebAppConfiguration
-@Transactional
-@TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true)
 public class UserControllerTest extends LoginJUnit{
-	/**
-	 * 用户注册测试
-	 * @throws Exception
-	 */
-	@Test
 	public void testInsertUser() throws Exception {
 		String resposneStr = getMockMvc().perform(
 					post("/signup.do")

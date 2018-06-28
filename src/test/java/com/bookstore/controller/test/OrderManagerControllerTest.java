@@ -242,7 +242,7 @@ public class OrderManagerControllerTest extends LoginJUnit {
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
         ).andExpect(status().isOk()).andReturn();
         String st = result.getResponse().getContentAsString();
-        System.out.println(st);
+//        System.out.println(st);
         JSONObject jsonObject = JSON.parseObject(st);
         assertEquals(ResponseMes.SUCCESS, jsonObject.getString("status"));
     }

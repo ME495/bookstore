@@ -27,7 +27,7 @@ public class CommonMapperTest extends BaseJUnit {
 	@Test
 	public void testGetBookByIsbnAndDegree() {
 		BookDetailInfo bookDetailInfo = commonMapper.getBookByIsbnAndDegree("9787100155724", 1);
-		System.out.println(bookDetailInfo.getBook().getAuthor());
+//		System.out.println(bookDetailInfo.getBook().getAuthor());
 //		assertNotNull(bookDetailInfo);
 	}
 
@@ -45,7 +45,7 @@ public class CommonMapperTest extends BaseJUnit {
 	@Test
 	public void testGetBooksByKeyword() {
 		ArrayList<Book> books = commonMapper.getBooksByKeyWord("记", 1, 8);
-		System.out.println(books.size());
+//		System.out.println(books.size());
 	}
 	
 	   @Test

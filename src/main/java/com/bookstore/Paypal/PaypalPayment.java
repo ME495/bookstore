@@ -51,7 +51,7 @@ public class PaypalPayment {
 		payment.setTransactions(transactions);
 		payment.setRedirectUrls(redirectUrls);
 		payment.setIntent(INTENT);
-		System.out.println("PaypalPayment.java said: " + payment.create(apiContext).toString());
+//		System.out.println("PaypalPayment.java said: " + payment.create(apiContext).toString());
 		
 		return payment.create(apiContext);
 	}

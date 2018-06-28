@@ -20,7 +20,7 @@ public class ResponseMesTest {
 		list.add(user);
 		list.add(user);
 		ResponseMes mes = new ResponseMes(ResponseMes.SUCCESS, list);
-		System.out.println(mes.toJsonString());
+//		System.out.println(mes.toJsonString());
 	}
 
 }

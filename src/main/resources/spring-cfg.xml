@@ -49,5 +49,5 @@
 	<context:component-scan base-package="com.bookstore.service"></context:component-scan>
 	<context:component-scan base-package="com.bookstore.entity"></context:component-scan>
 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
-	<context:component-scan base-package="com.bookstrore.aspect"></context:component-scan>
+	<context:component-scan base-package="com.bookstore.aspect"></context:component-scan>
 </beans>

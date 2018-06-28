@@ -50,7 +50,7 @@ public class LoginControllerTest extends LoginJUnit {
 		assertEquals("super", role);
 	}
 
-	@Ignore
+	
 	@Test
 	public void testLoginCheck1() throws Exception {
 		userLogin("chengjian", "123456");
@@ -65,7 +65,7 @@ public class LoginControllerTest extends LoginJUnit {
 		assertEquals("chengjian", jsonObject2.getString("name"));
 		assertEquals("user", jsonObject2.getString("role"));
 	}
-	@Ignore
+	
 	@Test
 	public void testLoginCheck2() throws Exception {
 		superLogin("Bookstore!");
@@ -79,6 +79,6 @@ public class LoginControllerTest extends LoginJUnit {
 		JSONObject jsonObject2 = jsonObject.getJSONObject("message");
 		assertEquals("super", jsonObject2.getString("name"));
 		assertEquals("super", jsonObject2.getString("role"));
-		System.out.println(result.getResponse().getContentAsString());
+//		System.out.println(result.getResponse().getContentAsString());
 	}
 }

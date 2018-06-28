@@ -16,12 +16,12 @@ public class SuperControllerTest extends LoginJUnit {
 	@Test
 	public void testInsertAdmin() throws Exception {
 		superLogin("Bookstore!");
-		String responseString = getMockMvc().perform(post("/super/add_admin.do").param("admin_name", "chengjian")
+		String responseString = getMockMvc().perform(post("/super/add_admin.do").param("admin_name", "admin_name")
 				.param("password", "123456").session(getMockHttpSession())).andReturn().getResponse()
 				.getContentAsString();
 		assertTrue(responseString.contains("创建成功"));
 	}
-
+	
 	@Test
 	public void testDeleteAdmin() throws Exception {
 		testInsertAdmin();
@@ -30,7 +30,7 @@ public class SuperControllerTest extends LoginJUnit {
 				.andReturn().getResponse().getContentAsString();
 		assertTrue(responseString.contains("删除成功"));
 	}
-
+	
 	@Test
 	public void testListAdmins() throws Exception {
 		superLogin("Bookstore!");

@@ -103,7 +103,7 @@ public class OrderManagerServiceImpl implements OrderManagerService {
 	public byte[] printOrderDetail(int orderId) {
 		String dir = this.getClass().getResource("/").getPath();
 		File file = new File(dir+"/Blank_A4.jasper");
-		System.out.println(file.getPath());
+//		System.out.println(file.getPath());
 		Map<String, Object> parameters = new HashMap<>();
 		Order order = orderMapper.getOrder(orderId);
 		User user = userMapper.getUser(order.getUserName());

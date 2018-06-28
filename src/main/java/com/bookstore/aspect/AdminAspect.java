@@ -1,8 +1,5 @@
-package com.bookstrore.aspect;
+package com.bookstore.aspect;
 
-import javax.servlet.http.HttpSession;
-
-import org.apache.log4j.Logger;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -11,16 +8,10 @@ import org.springframework.stereotype.Component;
 
 import com.bookstore.mapper.UserMapper;
 import com.bookstore.message.ResponseMes;
-import com.bookstore.utils.LogUtil;
 
 @Component
 @Aspect
-public class AdminLogAspect extends LogUtil {
-	private HttpSession session;
-	private String operator;// 操作者
-	private String operation;// 操作
-	private String mes;// 返回信息
-	private Logger log = Logger.getLogger(AdminLogAspect.class);
+public class AdminAspect{
 	@Autowired
 	private UserMapper userMapper;
 	ResponseMes response;

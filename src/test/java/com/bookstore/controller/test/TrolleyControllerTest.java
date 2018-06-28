@@ -90,7 +90,7 @@ public class TrolleyControllerTest extends LoginJUnit {
                 .session(getMockHttpSession())
         ).andExpect(status().isOk()).andReturn();
 		String st = result.getResponse().getContentAsString();
-		System.out.println("testSelectTrolley said: " + st);
+//		System.out.println("testSelectTrolley said: " + st);
         JSONObject jsonObject = JSON.parseObject(st);
         ArrayList<Trolley> trolleyList = new ArrayList<Trolley>();
         trolleyList = (ArrayList<Trolley>) JSONObject.parseArray(jsonObject.getString("message"), Trolley.class);
@@ -115,7 +115,7 @@ public class TrolleyControllerTest extends LoginJUnit {
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
         ).andExpect(status().isOk()).andReturn();
 		String st = result.getResponse().getContentAsString();
-		System.out.println("testGetPrice2Pay: " + st);
+//		System.out.println("testGetPrice2Pay: " + st);
 	}
 	
 	@Ignore
@@ -128,7 +128,7 @@ public class TrolleyControllerTest extends LoginJUnit {
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
         ).andExpect(status().isOk()).andReturn();
 		String st = result.getResponse().getContentAsString();
-		System.out.println("testDoPayment said: " + st);
+//		System.out.println("testDoPayment said: " + st);
 	}
 
 }

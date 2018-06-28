@@ -25,7 +25,7 @@ public class AdminServiceTest extends BaseJUnit {
 	private String publisher = "作家出版社";
 	private String summary = "测试一下";
 	private String imgUrl = "https://img3.doubanio.com/view/subject/s/public/s29417905.jpg";
-	@Ignore
+	
 	@Test
 	public void testDeleteUser() {
 		User user = new User();
@@ -38,7 +38,7 @@ public class AdminServiceTest extends BaseJUnit {
 		assertEquals("success", adminService.deleteUser("xiaoxiong").getStatus());
 	}
 
-	@Ignore
+	
 	@Test
 	public void testModifyUserPwd() {
 		adminService.modifyUserPwd("xiyou", "xiyou");
@@ -64,13 +64,13 @@ public class AdminServiceTest extends BaseJUnit {
 		ResponseMes responseMes = adminService.addBook(isbn, title, author, publisher, summary, imgUrl, 45.0, 1, 88);
 		assertEquals("success", responseMes.getStatus());
 	}
-	@Ignore
+	
 	@Test
 	public void testDeleteBook() {
 		testAddBook();
 		assertEquals("success", adminService.deleteBook(isbn, 1).getStatus());
 	}
-	@Ignore
+	
 	@Test
 	public void testUpdateBookInfo() {
 		testAddBook();

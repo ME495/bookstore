@@ -36,7 +36,7 @@ public class OrderMapperTest extends BaseJUnit {
 		s.setStatus2(true);
 //		s.setUserName("rigzyxwl");
 		List<Order> list = orderMapper.query(s, true);
-		System.out.println(new ResponseMes(ResponseMes.SUCCESS, list).toJsonString());
+//		System.out.println(new ResponseMes(ResponseMes.SUCCESS, list).toJsonString());
 	}
 
 	@Test
@@ -47,7 +47,7 @@ public class OrderMapperTest extends BaseJUnit {
 	@Test
 	public void testGetOrder() {
 		Order order = orderMapper.getOrder(103);
-		System.out.println(JSONObject.toJSONString(order));
+//		System.out.println(JSONObject.toJSONString(order));
 	}
 	
 }

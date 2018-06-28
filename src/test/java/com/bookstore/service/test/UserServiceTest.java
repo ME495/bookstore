@@ -42,7 +42,7 @@ public class UserServiceTest extends BaseJUnit {
     testInsertUser();
     ResponseMes responseMes = userService.updateUserInfo("xiaoxiong", "123456", "654321", "12345644564", "你好",
         "湘潭大学琴湖18栋");
-    System.out.println(responseMes.getMessage());
+//    System.out.println(responseMes.getMessage());
     assertEquals("success", responseMes.getStatus());
   }
 
