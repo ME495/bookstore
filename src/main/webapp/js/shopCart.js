@@ -113,7 +113,7 @@ $(function() {
 
 			var bookObj = {
 				isbn: book.isbn,
-				num: 1,
+				num: book.num,
 				price: book.actualPrice,
 				selected: false,
 				degree: book.degree
