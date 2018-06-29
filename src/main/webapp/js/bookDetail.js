@@ -1,6 +1,8 @@
 $(function() {
 
+
 	$(".ui.dropdown").dropdown();
+
 
 	$("#amount").change(function() {
 		if (isNaN($("#amount").val())) {
@@ -64,11 +66,7 @@ $(function() {
 		}
 	})
 
-						
-	                	
-	                	
-
-
+	
 	showBookDetail = function(obj) {
 		var book = obj.book;
 		$("#bookName").text(book.title);

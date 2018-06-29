@@ -1,6 +1,5 @@
 $(function() {
 
-	console.log(sessionStorage['abc']);
 	//通过当前url获取查找的关键字
 	var url = window.location.href;
 	var keywordReg = /keyword=(.+?)&/g;
@@ -19,13 +18,13 @@ $(function() {
 	$("#searchBook").val(keyword);
 	$(".pagination-container .page-num:eq(" + (currentPage - 1) + ")").addClass("active");
 
+
 	var searchData = {
 		index: index,
 		key_word: keyword,
 		size: size
 	};
 	$.post("./search_book.do", searchData, function(result) {
-		// result = JSON.parse(result);
 		if (result.status == "fail") {
 			$("#loader").removeClass("loader").text(result.message);
 			$(".pagination-container").hide();

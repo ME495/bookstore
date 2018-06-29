@@ -29,7 +29,6 @@ $(function() {
 
 
 	//自己写的一个小插件，类似于Andriod中的Toast消息提示
-	// $("#toast").hide();
 
     var timer1, timer2;
 
@@ -152,10 +151,12 @@ $(function() {
     	}
     });
 
+
+    //根据图书数据列表动态生成图书内容项
     showBooks = function(booklist) {
     	for (var i = 0; i < booklist.length; i++) {
     		var book = booklist[i];
-    		var div1 = $("<div class='book-item'></div>");
+    		var div1 = $("<div class='book-item transition hidden'></div>");
 	    	var a1 = $("<a class='book-link' data-bookindex=\'" + i + "\' onclick='toBookDetail(event)'></a>");
     		var imgDiv = document.createElement("img");
     		$(imgDiv).addClass("book-image-normal").attr("src", book.imgUrl);
@@ -166,6 +167,7 @@ $(function() {
     		$(a1).append(imgDiv).append(bookNameDiv);
     		$(div1).append(a1).append(bookPriceDiv);
     		$(".books-container").append(div1);
+    		div1.transition("zoom");
     	}
 
     }

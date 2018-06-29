@@ -48,8 +48,6 @@ $(function() {
     	size: 15
     };
     $.post("./browse_book.do", browse_data, function(result) {
-    	// console.log(result);
-    	// result = JSON.parse(result);
     	if (result.status == "success") {
     		$("#loader").parent().removeClass("active");
     		$(".loader-pannel").hide();
@@ -60,6 +58,36 @@ $(function() {
     		$("#loader").removeClass("loader").text("出错啦，刷新试试吧");
     	}
 
+    });
+
+
+    //加载更多图书
+    $("#loadMore").click(function() {
+    	browse_data.index += 15;
+    	$(this).transition("zoom");
+    	$(".loadmore-pannel").removeClass("not-show");
+    	$.post("./browse_book.do", browse_data, function(result) {
+    		if (result.status == "success") {
+    			if (result.message.length == 0) {
+    				alert("没有更多了");
+    				$("#loadMore").transition("zoom");
+    				$(".loadmore-pannel").addClass("not-show");
+    				return;
+    			}
+    			showBooks(result.message);
+    		} else {
+    			alert("服务器有点忙，请稍后再试");
+    		}
+    		$("#loadMore").transition("zoom");
+    		$(".loadmore-pannel").addClass("not-show");
+    	})
+
+    });
+
+
+    //回到顶部
+    $("#toTop").click(function() {
+        $("html, body").animate({scrollTop: '0px'}, 600);
     });
 
 
