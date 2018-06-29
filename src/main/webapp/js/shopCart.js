@@ -106,7 +106,7 @@ $(function() {
 			var rowDiv = $("<div" + " class='shopcart-row'" + " data-bookisbn=" + book.isbn + " data-degree=" + book.degree + "></div>");
 			var item1Div = $("<div class='item1'><div class='ui checkbox'><input type='checkbox' onchange='chooseBook(event)'><label></label></div></div>");
 			var item2Div = $("<div class='item2'><div class='shopcart-image fl'><img src='" + book.imgUrl + "'/></div><div class='shopcart-summary fl'><h5>" + book.title + "</h5><p>" + degree + " </p><p class='shopcart-bookprice'>￥<span>" + book.actualPrice +"</span></p></div></div>");
-			var item3Div = $("<div class='item3'><i class='icon close' onclick='devareBook(event)'></i></div>");
+			var item3Div = $("<div class='item3'><i class='icon close' onclick='deleteBook(event)'></i></div>");
 			var item4Div = $("<div class='item4'><i class='icon minus' onclick='subCount(event)'></i><span class='shopcart-amount'>" + book.num + "</span><i class='icon plus' onclick='addCount(event)'></i></div>");
 			rowDiv.append(item1Div).append(item2Div).append(item3Div).append(item4Div);
 			$(".shopcart-body").append(rowDiv);
@@ -197,16 +197,16 @@ $(function() {
 		caculatePrice();
 	}
 
-	devareBook = function(e) {
+	deleteBook = function(e) {
 		var book = findBookInShopCart(e);
 		if (book != null) {
 			var data = {
 				isbn: book.isbn,
 				degree: book.degree
 			};
-			$.post("../user/trolley_devare.do", data, function(result) {
+			$.post("../user/trolley_delete.do", data, function(result) {
 				if (result.status == "success") {
-					devareBookInShopCart(book);
+					deleteBookInShopCart(book);
 			
 					var row = $(e.target).parents(".shopcart-row");
 					row.parent()[0].removeChild(row[0]);
@@ -232,7 +232,7 @@ $(function() {
 		return null;
 	}
 
-	devareBookInShopCart = function(book) {
+	deleteBookInShopCart = function(book) {
 		var index = null;
 		for (var i in shopCart) {
 			var item = shopCart[i];
