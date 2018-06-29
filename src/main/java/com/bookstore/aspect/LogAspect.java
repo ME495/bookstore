@@ -123,17 +123,15 @@ public class LogAspect {
    *          参数的键值对
    */
   private void buildOperator(String methodName, HashMap<String, Object> map) {
-    if (methodName.endsWith("insertUser")) {// 用户注册的操作者在参数列表里
-      operator = (String) map.get("userName");
-    } else if (methodName.contains("CommonController")) {// 未注册用户
-      operator = "游客";
-    } else {// 其余的操作者在session中
+    //操作者在session中,或为游客
       HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes())
           .getRequest();
       session = request.getSession();
       operator = (String) session.getAttribute("name");
+      if(operator == null) {
+    	  operator = "游客";
+      }
     }
-  }
 
   /**
    * 获取功能简介
