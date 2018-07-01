@@ -20,7 +20,8 @@ $(function() {
 	//检查登录状态
 	$.post("/bookstore/check_login.do", function(result) {
 		// result = JSON.parse(result);
-		if (result.status === "success") {
+		// console.log(result);
+		if (result.status === "success" && result.message.role == "user") {
 			$("#userinfo").text(result.message.name).parents("li").show();
 			$("#toLogin, #toRegister").hide();
 			sessionStorage['logined'] = true;
