@@ -42,4 +42,8 @@ public class TrolleyServiceTest extends BaseJUnit {
 		assertEquals(79.2, (double) response.getMessage(), 0.01);
 	}
 
+	@Test
+	public void testCheckBookNum() {
+		System.out.println(trolleyService.checkBookNum("[{\"isbn\":\"9787117011303\", \"degree\":\"0\",\"num\":\"33\"}]"));
+	}
 }

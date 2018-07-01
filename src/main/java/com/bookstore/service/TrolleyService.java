@@ -2,6 +2,7 @@ package com.bookstore.service;
 
 import java.util.ArrayList;
 
+import com.alibaba.fastjson.JSONObject;
 import com.bookstore.entity.Order;
 import com.bookstore.entity.Trolley4Pay;
 import com.bookstore.message.ResponseMes;
@@ -104,7 +105,7 @@ public interface TrolleyService {
 	/**
 	 * 插入订单ID_支付ID映射
 	 * @param orderId
-	 * @param payment_id
+	 * @param paymentId
 	 * 成功返回“{“status”: “success”}”
 	 * 失败返回“{“status”: “fail”}”
 	 */
@@ -112,8 +113,10 @@ public interface TrolleyService {
 	
 	/**
 	 * 从order_payment表中获取order_id
-	 * @param payment_id
+	 * @param paymentId
 	 */
 	public int getOrderId(String paymentId);
+
+	public String checkBookNum(String trolleyMsg);
 
 }

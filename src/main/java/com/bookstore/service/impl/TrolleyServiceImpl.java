@@ -1,15 +1,14 @@
 package com.bookstore.service.impl;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import com.bookstore.entity.*;
+import com.bookstore.mapper.CommonMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSONObject;
-import com.bookstore.entity.BookDetailInfo;
-import com.bookstore.entity.Order;
-import com.bookstore.entity.Trolley;
-import com.bookstore.entity.Trolley4Pay;
 import com.bookstore.mapper.TrolleyMapper;
 import com.bookstore.message.ResponseMes;
 import com.bookstore.service.CommonService;
@@ -20,6 +19,8 @@ public class TrolleyServiceImpl implements TrolleyService {
 	
 	@Autowired
 	private TrolleyMapper trolleyMapper;
+	@Autowired
+	private CommonMapper commonMapper;
 	@Autowired
 	private CommonService commonService;
 
@@ -137,5 +138,20 @@ public class TrolleyServiceImpl implements TrolleyService {
 	public int getOrderId(String paymentId) {
 		return trolleyMapper.getOrderId(paymentId);
 	}
+
+	@Override
+	public String checkBookNum(String trolleyMsg) {
+		List<Trolley4Pay> list = JSONObject.parseArray(trolleyMsg, Trolley4Pay.class);
+		for (Trolley4Pay o : list) {
+			BookDetailInfo bookDetailInfo = commonMapper.getBookByIsbnAndDegree(o.getIsbn(), o.getDegree());
+			int num = bookDetailInfo.getNum();
+			if (bookDetailInfo.getNum() < o.getNum()) {
+				String title = bookDetailInfo.getBook().getTitle();
+				return "《" + title + "》只剩" + num + "本";
+			}
+		}
+		return null;
+	}
+
 
 }
