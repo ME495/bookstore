@@ -86,23 +86,26 @@ public class CommonServiceImpl implements CommonService {
 	@Override
 	public ResponseMes insertUser(String userName, String password, String phone, String realName, String address) {
 		ResponseMes responseMes;
-		// 如果手机格式不正确,则返回"手机号码格式错误"
-		if (userName.matches("[a-zA-Z][a-zA-Z0-9_]{3,15}") && password.matches("[a-zA-Z0-9_]{6,16}")
-				&& phone.matches("^1([358][0-9]|4[579]|66|7[0135678]|9[89])[0-9]{8}$")) {
-			if (userMapper.getUser(userName) == null) {// 如果账号已存在,则返回"该账号已存在"
-				User user = new User();
-				user.setUserName(userName);
-				user.setPassword(password);
-				user.setPhone(phone);
-				user.setRealName(realName);
-				user.setAddress(address);
-				commonMapper.insertUser(user);
-				responseMes = new ResponseMes(ResponseMes.SUCCESS, "注册成功");
+		// 判断格式是否正确
+		if (userName.matches("[a-zA-Z][a-zA-Z0-9_]{3,15}") && password.matches("[a-zA-Z0-9_]{6,16}")) {
+			if (phone.matches("^1([358][0-9]|4[579]|66|7[0135678]|9[89])[0-9]{8}$")) {
+				if (userMapper.getUser(userName) == null) {// 如果账号已存在,则返回"该账号已存在"
+					User user = new User();
+					user.setUserName(userName);
+					user.setPassword(password);
+					user.setPhone(phone);
+					user.setRealName(realName);
+					user.setAddress(address);
+					commonMapper.insertUser(user);
+					responseMes = new ResponseMes(ResponseMes.SUCCESS, "注册成功");
+				} else {
+					responseMes = new ResponseMes(ResponseMes.FAIL, "该账号已存在");
+				}
 			} else {
-				responseMes = new ResponseMes(ResponseMes.FAIL, "该账号已存在");
+				responseMes = new ResponseMes(ResponseMes.FAIL, "手机号码格式错误!");
 			}
 		} else {
-			responseMes = new ResponseMes(ResponseMes.FAIL, "格式错误");
+			responseMes = new ResponseMes(ResponseMes.FAIL, "账号或密码格式错误!账号4~16位,以字母开头,包含字母、数字、下划线,密码为6~16字母、数字或下划线!");
 		}
 		return responseMes;
 	}
