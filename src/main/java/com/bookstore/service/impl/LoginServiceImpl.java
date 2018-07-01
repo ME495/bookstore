@@ -11,6 +11,9 @@ import com.bookstore.mapper.SuperMapper;
 import com.bookstore.mapper.UserMapper;
 import com.bookstore.service.LoginService;
 
+import java.io.*;
+import java.util.Properties;
+
 /**
  * 
  * @author ME495
@@ -19,14 +22,30 @@ import com.bookstore.service.LoginService;
 @Service
 public class LoginServiceImpl implements LoginService {
 
-	//超级管理员密码
-	private final static String superPassword = "Bookstore!";
-	
+	private static String superPassword = null;
 	@Autowired
 	private UserMapper userMapper;
 	
 	@Autowired
 	private AdminMapper adminMapper;
+
+	private String getSuperPassword() {
+		if (superPassword == null) {
+			String dir = this.getClass().getResource("/").getPath();
+			String path = dir + "/super_password.properties";
+			try {
+				BufferedReader bufferedReader = new BufferedReader(new FileReader(path));
+				Properties properties = new Properties();
+				properties.load(bufferedReader);
+				superPassword = properties.getProperty("super_password");
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return superPassword;
+	}
 	
 	@Override
 	public boolean checkUser(String userName, String password) {
@@ -50,7 +69,7 @@ public class LoginServiceImpl implements LoginService {
 
 	@Override
 	public boolean checkSuper(String password) {
-		if (password != null && password.equals(superPassword)) {
+		if (password != null && password.equals(getSuperPassword())) {
 			return true;
 		} else {
 			return false;
