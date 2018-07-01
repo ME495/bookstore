@@ -1,6 +1,11 @@
 //几个页面通用的JS
 $(function() {
 
+	var prefix = "./";
+	if (window.location.href.indexOf("user") > 0) {
+		prefix = "../";
+	}
+
 	$("#toLogin").click(function() {
 		$("#loginModal").modal("show");
 	});
@@ -15,10 +20,9 @@ $(function() {
 	$(".message .close").click(function() {
 		$(this).closest(".message").transition("fade");
 	})
-
 	
 	//检查登录状态
-	$.post("/bookstore/check_login.do", function(result) {
+	$.post(prefix + "check_login.do", function(result) {
 		// result = JSON.parse(result);
 		// console.log(result);
 		if (result.status === "success" && result.message.role == "user") {
@@ -62,10 +66,10 @@ $(function() {
    	}
 
    	logout = function() {
-    	$.post("/bookstore/logout.do", function(result) {
+    	$.post(prefix + "logout.do", function(result) {
     		if (result.status == "success") {
     			sessionStorage['logined'] = "";
-    			window.location.href = "/bookstore/";
+    			window.location.href = prefix;
     		} else {
     			alert("服务器繁忙，请稍后再试");
     		}
@@ -92,7 +96,7 @@ $(function() {
     			real_name: real_name,
     			address: address
     		};
-    		$.post("/bookstore/signup.do", data, function(result) {
+    		$.post(prefix + "signup.do", data, function(result) {
     			// result = JSON.parse(result);
     			alert(result.status);
     			if (result.status === "fail") {
@@ -120,7 +124,7 @@ $(function() {
     			user_name: user_name,
     			password: password
     		};
-    		$.post("/bookstore/user_login.do", data, function(result) {
+    		$.post(prefix + "user_login.do", data, function(result) {
     			// result = JSON.parse(result);
     			if (result.status == "fail") {
     				$("#registerErrorMsg p").text("用户名或密码错误");
@@ -146,7 +150,7 @@ $(function() {
     	if (searchText == "") {
     		$(".search-container .label").removeClass("hidden");
     	} else {
-    		var url = "/bookstore/searchResult.html?keyword=" + searchText + "&index=0&size=15";
+    		var url = prefix + "searchResult.html?keyword=" + searchText + "&index=0&size=15";
     		url = encodeURI(url);
     		window.location.href = url;
     	}
@@ -178,7 +182,7 @@ $(function() {
     	var books = JSON.parse(sessionStorage['booklist']);
     	console.log("books:" + books);
     	sessionStorage['book'] = JSON.stringify(books[index]);
-    	window.location.href = "/bookstore/bookDetail.html?isbn=" + books[index].isbn;
+    	window.location.href = prefix + "bookDetail.html?isbn=" + books[index].isbn;
     }
 
 
@@ -186,13 +190,13 @@ $(function() {
     	// alert(sessionStorage['logined']);
     	if (sessionStorage['logined']) {
     		// console.log("jump");
-    		window.location.href = "/bookstore/user/shopCart.html";
+    		window.location.href = prefix + "user/shopCart.html";
     	}
     });
 
     $("#toOrderList").click(function() {
     	if (sessionStorage['logined']) {
-    		window.location.href = "/bookstore/user/orderList.html";
+    		window.location.href = prefix + "user/orderList.html";
     	}
     })
 

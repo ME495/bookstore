@@ -36,7 +36,7 @@ $(function() {
 				orderstatus = "已完成";
 				color = "green";
 			}
-			var orderDetailUrl = "/bookstore/user/orderDetail.html?orderId=" + item.orderId;
+			var orderDetailUrl = "./orderDetail.html?orderId=" + item.orderId;
 
 			var rowDiv = $("<div data-orderid=" + item.orderId + "></div>");
 			var header = $("<h4 class='ui top attached block header'><span>订单号-" + item.orderId + "</span><span class='ui label " + color + " fr'>" + orderstatus + "</span></h4>");
@@ -54,7 +54,7 @@ $(function() {
 		for (var i in orderList) {
 			if (orderList[i].orderId == orderId) {
 				sessionStorage['order'] = JSON.stringify(orderList[i]);
-				window.location.href = "/bookstore/user/orderDetail.html?orderId=" + orderId;
+				window.location.href = "./user/orderDetail.html?orderId=" + orderId;
 			}
 		}
 	}
