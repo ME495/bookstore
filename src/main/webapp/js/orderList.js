@@ -54,7 +54,7 @@ $(function() {
 		for (var i in orderList) {
 			if (orderList[i].orderId == orderId) {
 				sessionStorage['order'] = JSON.stringify(orderList[i]);
-				window.location.href = "./user/orderDetail.html?orderId=" + orderId;
+				window.location.href = "./orderDetail.html?orderId=" + orderId;
 			}
 		}
 	}
