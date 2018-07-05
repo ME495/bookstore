@@ -186,7 +186,7 @@
         });
 
         $("#confirm").click(function () {
-            $.post("./allocate_order.do", {"order_id": element.attr("title")}, function (data, status) {
+            $.post("./allocate_order.do", {"order_id": element.attr("order_id")}, function (data, status) {
                 if (status == "success") {
                     if (data.status == "success") {
                         element.parent().html("<span class='btn btn-default' disabled='disabled'>分配成功</span>");
