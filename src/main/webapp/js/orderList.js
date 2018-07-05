@@ -1,10 +1,15 @@
 $(function() {
 
+	var prefix = "./";
+	if (window.location.href.indexOf("user") > 0) {
+		prefix = "../";
+	}
+
 	var param = "?status0=true&status1=true&status2=true&index=0&size=99";
 
 	var orderList = null;
 
-	$.get("../user/my_order.do" + param, function(result) {
+	$.get(prefix + "user/my_order.do" + param, function(result) {
 		if (result.status == "success") {
 	    	if (result.message.length != 0) {
 	    		// $("#loader").parent().removeClass("active");
@@ -54,7 +59,7 @@ $(function() {
 		for (var i in orderList) {
 			if (orderList[i].orderId == orderId) {
 				sessionStorage['order'] = JSON.stringify(orderList[i]);
-				window.location.href = "./orderDetail.html?orderId=" + orderId;
+				window.location.href = prefix + "user/orderDetail.html?orderId=" + orderId;
 			}
 		}
 	}
