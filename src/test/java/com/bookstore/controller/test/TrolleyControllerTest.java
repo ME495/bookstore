@@ -131,4 +131,17 @@ public class TrolleyControllerTest extends LoginJUnit {
 //		System.out.println("testDoPayment said: " + st);
 	}
 
+	@Test
+	public void testDoPayment2() throws Exception {
+		userLogin("jinqi", "123456");
+		MvcResult result = getMockMvc().perform(post("/user/payment.do")
+				.param("trolleyMsg", "[{\"isbn\":\"9787108061119\", degree:0, num:1000}, {\"isbn\":\"9787100155724\", degree:2, num:3}]")
+				.session(getMockHttpSession())
+				.contentType(MediaType.APPLICATION_FORM_URLENCODED)
+		).andExpect(status().isOk()).andReturn();
+		String st = result.getResponse().getContentAsString();
+		JSONObject jsonObject = JSON.parseObject(st);
+		assertEquals(ResponseMes.FAIL, jsonObject.getString("status"));
+//		System.out.println("testDoPayment said: " + st);
+	}
 }

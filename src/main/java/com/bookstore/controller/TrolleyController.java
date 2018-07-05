@@ -100,6 +100,10 @@ public class TrolleyController {
 	@RequestMapping(value="/payment.do")
 	@ResponseBody
 	public String doPayment(@RequestParam("trolleyMsg") String trolleyMsg, HttpSession httpSession) {
+		String msg = trolleyService.checkBookNum(trolleyMsg);
+		if (msg != null) {
+			return new ResponseMes(ResponseMes.FAIL, msg).toJsonString();
+		}
 		JSONObject jsonObj = JSONObject.parseObject(getPrice2pay(trolleyMsg));
 		double totalMoney = jsonObj.getDoubleValue("message");
 		String total = ""+totalMoney;

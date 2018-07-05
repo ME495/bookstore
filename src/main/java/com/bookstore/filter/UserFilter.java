@@ -53,7 +53,7 @@ public class UserFilter implements Filter {
 		HttpSession httpSession = httpServletRequest.getSession();
 		String role = (String) httpSession.getAttribute("role");
 		if (role == null || !role.equals("user")) {
-			httpServletResponse.sendRedirect("../user_login.html");
+			httpServletResponse.sendRedirect("../index.html");
 		}
 		chain.doFilter(request, response);
 	}

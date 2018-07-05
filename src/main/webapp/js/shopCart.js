@@ -85,7 +85,7 @@ $(function() {
 			if (result.status == "success") {
 				window.location.href = result.message;
 			} else {
-				alert("请稍后再试");
+				alert(result.message);
 			}
 		})
 	})
