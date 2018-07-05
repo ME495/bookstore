@@ -41,7 +41,6 @@ $(function() {
 		}, 5000);
 	});
 
-
     //首页显示的图书内容
     var browse_data = {
     	index: 0,
@@ -57,9 +56,7 @@ $(function() {
     	} else {
     		$("#loader").removeClass("loader").text("出错啦，刷新试试吧");
     	}
-
     });
-
 
     //加载更多图书
     $("#loadMore").click(function() {
@@ -75,6 +72,11 @@ $(function() {
     				return;
     			}
     			showBooks(result.message);
+    			var booklist = JSON.parse(sessionStorage['booklist']);
+    			for (var i = 0; i < result.message.length; i++)  {
+    				booklist.push(result.message[i]);
+    			}
+    			sessionStorage['booklist'] = JSON.stringify(booklist);
     		} else {
     			alert("服务器有点忙，请稍后再试");
     		}

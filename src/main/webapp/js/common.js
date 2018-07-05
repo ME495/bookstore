@@ -156,13 +156,14 @@ $(function() {
     	}
     });
 
+    var bookIndex = 0;
 
     //根据图书数据列表动态生成图书内容项
     showBooks = function(booklist) {
     	for (var i = 0; i < booklist.length; i++) {
     		var book = booklist[i];
     		var div1 = $("<div class='book-item transition hidden'></div>");
-	    	var a1 = $("<a class='book-link' data-bookindex=\'" + i + "\' onclick='toBookDetail(event)'></a>");
+	    	var a1 = $("<a class='book-link' data-bookindex=\'" + (bookIndex++) + "\' onclick='toBookDetail(event)'></a>");
     		var imgDiv = document.createElement("img");
     		$(imgDiv).addClass("book-image-normal").attr("src", book.imgUrl);
     		var bookNameDiv = document.createElement("div");
@@ -174,7 +175,6 @@ $(function() {
     		$(".books-container").append(div1);
     		div1.transition("zoom");
     	}
-
     }
 
     toBookDetail = function(e) {
