@@ -27,11 +27,11 @@ public class TrolleyServiceImpl implements TrolleyService {
 	@Override
 	public ResponseMes insertTrolley(String userName, String isbn, int degree, int num) {
 		try {
-			BookDetailInfo classfiedBook = (BookDetailInfo) commonService.getBookByIsbnAndDegree(isbn, degree)
-					.getMessage();
-			if(num > classfiedBook.getNum()) {
-				return new ResponseMes(ResponseMes.FAIL, "库存不够！");
-			}
+//			BookDetailInfo classfiedBook = (BookDetailInfo) commonService.getBookByIsbnAndDegree(isbn, degree)
+//					.getMessage();
+//			if(num > classfiedBook.getNum()) {
+//				return new ResponseMes(ResponseMes.FAIL, "库存不够！");
+//			}
 			trolleyMapper.insertTrolley(userName, isbn, degree, num);
 			return new ResponseMes(ResponseMes.SUCCESS, null);
 		}  catch(org.springframework.dao.DuplicateKeyException e1) {

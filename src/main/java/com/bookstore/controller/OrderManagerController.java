@@ -111,7 +111,8 @@ public class OrderManagerController {
 	}
 	
 	@RequestMapping(value = "/admin/print.do")
-	public void print(@RequestParam("order_id") int orderId, HttpServletResponse response) throws IOException {
+	@ResponseBody
+	public String print(@RequestParam("order_id") int orderId, HttpServletResponse response) throws IOException {
 		byte[] bytes = orderManagerService.printOrderDetail(orderId);
 		String filename = "order" + orderId + ".pdf";
 		response.setContentType("application/pdf");
@@ -120,5 +121,6 @@ public class OrderManagerController {
         out.write(bytes);
         out.flush();
         out.close();
+        return new ResponseMes(ResponseMes.SUCCESS, "打印成功！").toJsonString();
 	}
 }

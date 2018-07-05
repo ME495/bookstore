@@ -109,7 +109,7 @@ $(function() {
 			if (result.status == "success") {
 				alert("添加成功");
 			} else {
-				alert("添加失败！请稍后再试");
+				alert(result.message);
 			}
 		})
 
